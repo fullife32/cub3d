@@ -6,13 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:15:23 by eassouli          #+#    #+#             */
-/*   Updated: 2019/11/21 11:05:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/01 16:28:37 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_strlen(const char *s, char c)
+int		ft_strclen(const char *s, char c)
 {
 	int				i;
 
@@ -28,7 +28,7 @@ int		ft_strlen(const char *s, char c)
 	return (-1);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strcjoin(char *s1, char *s2)
 {
 	int				i;
 	int				j;
@@ -56,7 +56,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-void	ft_memmove(void *dst, const void *src, size_t len)
+void	ft_memcmove(void *dst, const void *src, size_t len)
 {
 	unsigned char	*dest;
 	unsigned char	*source;

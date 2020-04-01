@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/03/31 17:52:13 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/01 17:54:15 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 #define PARSE_H
 
 #include "get_next_line/get_next_line.h"
+#include "libft/libft.h"
 
 #define ERR -1
-#define SPACE 3
-#define NO 4
-#define SO 5
-#define WE 6
-#define EA 7
+#define OK 1
 
 typedef struct	s_res
 {
@@ -49,6 +46,11 @@ typedef struct	s_clr
 	char	*ceiling;
 }				t_clr;
 
-int	parse(int fd, t_res *res, t_txr *txr, t_clr *clr);
+void	init(t_res *res, t_clr *clr);
+int		err(int error);
+
+int		res_check(char *line, t_res *res);
+int		txr_check(char c, char *line, t_txr *txr);
+int		parse(int fd, t_res *res, t_txr *txr, t_clr *clr);
 
 #endif
