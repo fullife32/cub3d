@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:15:23 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/01 16:28:37 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/02 17:07:36 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*ft_strcjoin(char *s1, char *s2)
 	int				j;
 	char			*str;
 
-	i = s1 ? ft_strlen(s1, '\0') : 0;
-	j = s2 ? ft_strlen(s2, '\0') : 0;
+	i = s1 ? ft_strclen(s1, '\0') : 0;
+	j = s2 ? ft_strclen(s2, '\0') : 0;
 	if (!(str = malloc(sizeof(char) * (i + j + 1))))
 		return (NULL);
 	i = 0;
