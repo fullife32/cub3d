@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:03 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/02 17:16:36 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/04 00:33:43 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		clr_atoi(char c, char *line, t_clr *clr)
 	return (OK);
 }
 
-int	clr_parse(char c, char *line, t_clr *clr)
+int		clr_parse(char c, char *line, t_clr *clr)
 {
 	int	len;
 
