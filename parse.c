@@ -6,11 +6,19 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/04 00:32:25 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/05 16:55:20 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
+static int	err(char **line)
+{
+	if (*line)
+		free(*line);
+	*line = NULL;
+	return (ERR);
+}
 
 int	res_parse(char *line, t_res *res)
 {
@@ -43,16 +51,17 @@ int	parse(int fd, t_res *res, t_txr *txr, t_clr *clr)
 			line++;
 		if (*line == 'R')
 			if (res_parse(line, res) == ERR)
-				return (ERR);
+				return (err(&line));
 		if (*line == 'N' || *line == 'S' || *line == 'W' || *line == 'E')
 			if (txr_parse(*line, line, txr) == ERR)
-				return (ERR);
+				return (err(&line));
 		if (*line == 'F' || *line == 'C')
 			if (clr_parse(*line, line, clr) == ERR)
-				return (ERR);
+				return (err(&line));
 		if (*line == '0' || *line == '1' || *line == '2')
-			;
-		free(line);
+			return (ERR);
+		if (line)
+			free(line);
 		line = NULL;
 	}
 	return (OK);

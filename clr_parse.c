@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:03 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/04 00:33:43 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/05 16:26:03 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,17 @@ int		clr_atoi(char c, char *line, t_clr *clr)
 	return (OK);
 }
 
+int		clr_malloc(char c, int len, t_clr *clr)
+{
+	if (c == 'F')
+		if ((clr->floor = malloc(sizeof(char) * len + 1)) == NULL)
+			return (ERR);
+	if (c == 'C')
+		if ((clr->ceiling = malloc(sizeof(char) * len + 1)) == NULL)
+			return (ERR);
+	return (OK);
+}
+
 int		clr_parse(char c, char *line, t_clr *clr)
 {
 	int	len;
@@ -60,17 +71,17 @@ int		clr_parse(char c, char *line, t_clr *clr)
 		line++;
 	if (!(*line >= '0' && *line <= '9'))
 	{
-		while (*(line + len) != '\0')
+		while (*(line + len) != '\0' && *(line + len) != ' ')
 			len++;
+		if ((clr_malloc(c, len, clr)) == ERR)
+			return (ERR);
 		if (c == 'F')
 			ft_strlcpy(clr->floor, line, len);
 		else if (c == 'C')
 			ft_strlcpy(clr->ceiling, line, len);
 	}
 	else
-	{
 		if (clr_atoi(c, line, clr) == ERR)
 			return (ERR);
-	}
 	return (OK);
 }

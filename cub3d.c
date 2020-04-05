@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/04 00:42:05 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/05 17:05:13 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,28 @@ void	init(t_res *res, t_txr *txr, t_clr *clr)
 	clr->ceiling = 0;
 }
 
-int	err(int error, t_res *res, t_txr *txr, t_clr *clr)
+static int	err(int error, t_res *res, t_txr *txr, t_clr *clr)
 {
 	write(1, "Error\n", 6);
 	if (error == 1)
 		write(1, "Invalid Format\n", 15);
 	else if (error == 2)
 		write(1, "Incorrect Parsing\n", 18);
+	if (txr->north)
+		free(txr->north);
+	if (txr->south)
+		free(txr->south);
+	if (txr->west)
+		free(txr->west);
+	if (txr->east)
+		free(txr->east);
+	if (txr->sprite)
+		free(txr->sprite);
+	if (clr->floor)
+		free(clr->floor);
+	if (clr->ceiling)
+		free(clr->ceiling);
+	init(res, txr, clr);
 	return (ERR);
 }
 
@@ -53,7 +68,7 @@ int	main(int ac, char **av)
 	{
 		fd = open("test.cub", O_RDONLY);
 		if (fd == -1)
-			return (err(1));
+			return (err(1, &res, &txr, &clr));
 		if (parse(fd, &res, &txr, &clr) == ERR)
 			return (err(2, &res, &txr, &clr));
 	}
@@ -61,7 +76,7 @@ int	main(int ac, char **av)
 	{
 		fd = open(av[1], O_RDONLY);
 		if (fd == -1)
-			return (err(1));
+			return (err(1, &res, &txr, &clr));
 		if (parse(fd, &res, &txr, &clr) == ERR)
 			return (err(2, &res, &txr, &clr));
 	}

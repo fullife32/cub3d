@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/04 00:43:58 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/05 16:40:27 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct	s_clr
 }				t_clr;
 
 void	init(t_res *res, t_txr *txr, t_clr *clr);
-int		err(int error, t_res *res, t_txr *txr, t_clr *clr);
 
 void	txr_cpy(char c, char *line, int len, t_txr *txr);
 int		txr_malloc(char c, int len, t_txr *txr);
@@ -59,6 +58,7 @@ int		parse(int fd, t_res *res, t_txr *txr, t_clr *clr);
 
 void	clr_rgb(char c, int *rgb, t_clr *clr);
 int		clr_atoi(char c, char *line, t_clr *clr);
+int		clr_malloc(char c, int len, t_clr *clr);
 int		clr_parse(char c, char *line, t_clr *clr);
 
 #endif
