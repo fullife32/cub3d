@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/05 16:55:20 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/05 17:57:10 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,37 @@ int	res_parse(char *line, t_res *res)
 	return (OK);
 }
 
-int	parse(int fd, t_res *res, t_txr *txr, t_clr *clr)
+int	map_parse(int fd, char *line, t_map *map)
+{
+	(void)fd;
+	(void)line;
+	(void)map;
+	return (OK);
+}
+
+int	parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map)
 {
 	char	*line;
+	int		i;
 	
 	while (get_next_line(fd, &line) > 0)
 	{
+		i = 0;
 		printf("%s\n", line);
-		while (*line == ' ')
-			line++;
-		if (*line == 'R')
-			if (res_parse(line, res) == ERR)
+		while (line[i] == ' ')
+			i++;
+		if (line[i] == 'R')
+			if (res_parse(line + i, res) == ERR)
 				return (err(&line));
-		if (*line == 'N' || *line == 'S' || *line == 'W' || *line == 'E')
-			if (txr_parse(*line, line, txr) == ERR)
+		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
+			if (txr_parse(line[i], line + i, txr) == ERR)
 				return (err(&line));
-		if (*line == 'F' || *line == 'C')
-			if (clr_parse(*line, line, clr) == ERR)
+		if (line[i] == 'F' || line[i] == 'C')
+			if (clr_parse(line[i], line + i, clr) == ERR)
 				return (err(&line));
-		if (*line == '0' || *line == '1' || *line == '2')
-			return (ERR);
+		if (line[i] == '0' || line[i] == '1' || line[i] == '2')
+			if (map_parse(fd, line, map) == ERR)
+				return (err(&line));
 		if (line)
 			free(line);
 		line = NULL;

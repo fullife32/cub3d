@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:03 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/05 16:26:03 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/05 17:34:43 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		clr_parse(char c, char *line, t_clr *clr)
 	{
 		while (*(line + len) != '\0' && *(line + len) != ' ')
 			len++;
-		if ((clr_malloc(c, len, clr)) == ERR)
+		if (clr_malloc(c, len, clr) == ERR)
 			return (ERR);
 		if (c == 'F')
 			ft_strlcpy(clr->floor, line, len);
