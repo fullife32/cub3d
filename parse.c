@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/05 17:57:10 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/06 18:03:06 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,35 @@ int	res_parse(char *line, t_res *res)
 
 int	map_parse(int fd, char *line, t_map *map)
 {
-	(void)fd;
-	(void)line;
-	(void)map;
+	t_list	*first;
+	t_list	*lst;
+	int		i;
+
+	first = NULL;
+	if ((lst = ft_lstnew(line)) == NULL)
+		return (ERR);
+	ft_lstadd_back(&first, lst);
+	while (get_next_line(fd, &line) > 0)
+	{
+		if ((lst = ft_lstnew(line)) == NULL)
+			return (ERR);
+		ft_lstadd_back(&first, lst);
+	}
+	if ((lst = ft_lstnew(line)) == NULL)
+		return (ERR);
+	ft_lstadd_back(&first, lst);
+	i = 0;
+	if ((map->map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL)
+		return (ERR);
+	lst = first;
+	while (lst != NULL)
+	{
+		map->map[i] = lst->content;
+		lst = lst->next;
+		i++;
+	}
+	map->map[i] = NULL;
+	// ft_lstclear(&first, (void *)ft_lstdelone);
 	return (OK);
 }
 
@@ -69,11 +95,13 @@ int	parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map)
 			if (clr_parse(line[i], line + i, clr) == ERR)
 				return (err(&line));
 		if (line[i] == '0' || line[i] == '1' || line[i] == '2')
+		{
 			if (map_parse(fd, line, map) == ERR)
 				return (err(&line));
-		if (line)
-			free(line);
-		line = NULL;
+			else
+				return (OK);
+		}
+		err(&line);
 	}
 	return (OK);
 }

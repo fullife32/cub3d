@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/05 17:51:57 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/06 18:11:54 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ int	main(int ac, char **av)
 	if (parse(fd, &res, &txr, &clr, &map) == ERR)
 		return (err(fd, &res, &txr, &clr, &map));
 	printf("\nRES :\nwidth = %d\nheight = %d\n\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n\nCLR :\nfloor :\nr = %d, g = %d, b = %d\nfloor = %s\nceilng :\nr = %d, g = %d, b = %d\nceiling = %s\n", res.width, res.height, txr.north, txr.south, txr.west, txr.east, txr.sprite, clr.f_r, clr.f_g, clr.f_b, clr.floor, clr.c_r, clr.c_g, clr.c_b, clr.ceiling);
+	printf("\nMAP :\no---------------------------------o -\n");
+	for (int i = 0; map.map[i] != NULL; i++)
+		printf("|%s| %d\n", map.map[i], i);
+	printf("o---------------------------------o --\n");
 	close(fd);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/05 18:02:46 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/06 17:06:52 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct	s_clr
 	char	*ceiling;
 }				t_clr;
 
-typedef struct s_map
+typedef struct	s_map
 {
 	char	**map;
 }				t_map;
