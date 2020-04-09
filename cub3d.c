@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/06 18:11:54 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/09 17:06:16 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	main(int ac, char **av)
 	for (int i = 0; map.map[i] != NULL; i++)
 		printf("|%s| %d\n", map.map[i], i);
 	printf("o---------------------------------o --\n");
+	mlx_test(&res);
 	close(fd);
 	return (0);
 }

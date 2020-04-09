@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/06 18:03:06 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/09 17:07:18 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int	res_parse(char *line, t_res *res)
 	while (*line == ' ')
 		line++;
 	res->width = ft_atoi(line);
-	if (res->width > 1920)
-		res->width = 1920;
+	if (res->width > 1280)
+		res->width = 1280;
 	while (*line >= '0' && *line <= '9')
 		line++;
 	while (*line == ' ')
 		line++;
 	res->height = ft_atoi(line);
-	if (res->height > 1080)
-		res->height = 1080;
+	if (res->height > 720)
+		res->height = 720;
 	if (res->height <= 0 || res->width <= 0)
 		return (ERR);
 	return (OK);

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/06 17:06:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/09 16:46:11 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ void	clr_rgb(char c, int *rgb, t_clr *clr);
 int		clr_atoi(char c, char *line, t_clr *clr);
 int		clr_malloc(char c, int len, t_clr *clr);
 int		clr_parse(char c, char *line, t_clr *clr);
+
+int		mlx_test(t_res *res);
 
 #endif
