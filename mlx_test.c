@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:43 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/09 17:55:33 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/09 18:02:31 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ int	deal_key(int key, void *params)
 
 int	mlx_test(t_res *res)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	t_mlx	mlx;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, res->width, res->height, "WOA");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
-	mlx_key_hook(win_ptr, deal_key, (void *)0);
-	mlx_loop(mlx_ptr);
+	mlx.mlx_ptr = mlx_init();
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, res->width, res->height, "WOA");
+	mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, 250, 250, 0xFFFFFF);
+	mlx_key_hook(mlx.win_ptr, deal_key, (void *)0);
+	mlx_loop(mlx.mlx_ptr);
 	return (OK);
 }
