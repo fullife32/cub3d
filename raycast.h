@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/10 17:59:28 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:13:38 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct	s_plr
 }				t_plr;
 
 
-int		raycast_init(t_mlx *mlx, t_plr *plr);
+void	raycast_init(t_mlx *mlx, t_plr *plr);
 int		raycast_create(t_res *res, t_map *map);
 
 # endif

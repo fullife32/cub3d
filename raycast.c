@@ -6,13 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/10 18:07:00 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:13:24 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-int	raycast_init(t_mlx *mlx, t_plr *plr)
+void	raycast_init(t_mlx *mlx, t_plr *plr)
 {
 	plr->pos_x = 22;
 	plr->pos_y = 12;
@@ -37,10 +37,9 @@ int	raycast_init(t_mlx *mlx, t_plr *plr)
 	mlx->step_y = 0;
 	mlx->hit = 0;
 	mlx->side = 0;
-	return (OK);
 }
 
-int	raycast_create(t_res *res, t_map *map)
+int		raycast_create(t_res *res, t_map *map)
 {
 	int			x;
 	int			w;
@@ -103,6 +102,5 @@ int	raycast_create(t_res *res, t_map *map)
 				mlx.hit = 1;
 		}
 	}
-
 	return (OK);
 }
