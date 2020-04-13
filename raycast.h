@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/10 18:13:38 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/13 19:02:25 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "parse.h"
 #include "minilibx_mms/mlx.h"
 #include <math.h>
+#include <time.h>
 
 typedef struct	s_mlx
 {
@@ -40,6 +41,10 @@ typedef struct	s_mlx
 	int		step_y;
 	int		hit;
 	int		side;
+	int		line_h;
+	int		draw_start;
+	int		draw_end;
+	int		color;
 }				t_mlx;
 
 typedef struct	s_plr
@@ -49,7 +54,6 @@ typedef struct	s_plr
 	double	dir_x;
 	double	dir_y;
 }				t_plr;
-
 
 void	raycast_init(t_mlx *mlx, t_plr *plr);
 int		raycast_create(t_res *res, t_map *map);

@@ -1,1 +1,5 @@
-add check if every variables is correct after parsing
+add check if every variables are correct after parsing
+check if map is correct (no leaks)
+Define posx and posy depending on start position
+Define dirx and dirx depending on NSWE
+Separate functions
