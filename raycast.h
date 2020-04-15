@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/13 19:02:25 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/14 16:38:49 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct	s_mlx
 	double	raydir_y;
 	int		map_x;
 	int		map_y;
-	double	sidedist_x;
-	double	sidedist_y;
+	double	sidedst_x;
+	double	sidedst_y;
 	double	deltadst_x;
 	double	deltadst_y;
 	double	perp_wall_dist;
@@ -55,7 +55,7 @@ typedef struct	s_plr
 	double	dir_y;
 }				t_plr;
 
-void	raycast_init(t_mlx *mlx, t_plr *plr);
+void	draw_vert_line(int x, t_mlx *mlx, int color);
 int		raycast_create(t_res *res, t_map *map);
 
 # endif

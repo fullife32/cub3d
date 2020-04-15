@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/10 17:59:19 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/14 16:14:13 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ typedef struct	s_clr
 typedef struct	s_map
 {
 	char	**map;
+	int		pposx;
+	int		pposy;
+	char	pdir;
 }				t_map;
 
 
@@ -60,6 +63,7 @@ int		txr_malloc(char c, int len, t_txr *txr);
 int		txr_parse(char c, char *line, t_txr *txr);
 
 int		res_parse(char *line, t_res *res);
+int		add_line(char *line, t_list	**first, t_list	**lst);
 int		map_parse(int fd, char *line, t_map *map);
 int		parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map);
 

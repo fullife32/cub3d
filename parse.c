@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/09 17:07:18 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/14 15:04:11 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ int	res_parse(char *line, t_res *res)
 	return (OK);
 }
 
+int	add_line(char *line, t_list	**first, t_list	**lst)
+{
+	if ((*lst = ft_lstnew(line)) == NULL)
+		return (ERR);
+	ft_lstadd_back(first, *lst);
+	return (OK);
+}
+
 int	map_parse(int fd, char *line, t_map *map)
 {
 	t_list	*first;
@@ -47,18 +55,16 @@ int	map_parse(int fd, char *line, t_map *map)
 	int		i;
 
 	first = NULL;
-	if ((lst = ft_lstnew(line)) == NULL)
+	lst = NULL;
+	if (add_line(line, &first, &lst) == ERR)
 		return (ERR);
-	ft_lstadd_back(&first, lst);
 	while (get_next_line(fd, &line) > 0)
 	{
-		if ((lst = ft_lstnew(line)) == NULL)
-			return (ERR);
-		ft_lstadd_back(&first, lst);
-	}
-	if ((lst = ft_lstnew(line)) == NULL)
+		if (add_line(line, &first, &lst) == ERR)
 		return (ERR);
-	ft_lstadd_back(&first, lst);
+	}
+	if (add_line(line, &first, &lst) == ERR)
+		return (ERR);
 	i = 0;
 	if ((map->map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL)
 		return (ERR);
