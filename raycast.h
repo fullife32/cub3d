@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/14 16:38:49 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/20 18:03:39 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_mlx
 	int		draw_start;
 	int		draw_end;
 	int		color;
+	double	frame_time;
 }				t_mlx;
 
 typedef struct	s_plr
@@ -53,9 +54,17 @@ typedef struct	s_plr
 	double	pos_y;
 	double	dir_x;
 	double	dir_y;
+	double	move_speed;
+	double	rot_speed;
 }				t_plr;
 
-void	draw_vert_line(int x, t_mlx *mlx, int color);
+typedef struct	s_big
+{
+	t_mlx	mlx;
+	t_plr	plr;
+}				t_big;
+
+void	draw_vert_line(int x, t_mlx *mlx);
 int		raycast_create(t_res *res, t_map *map);
 
 # endif
