@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/14 15:06:53 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/21 17:52:18 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,27 @@ static int	err(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map)
 int	main(int ac, char **av)
 {
 	int		fd;
-	t_res	res;
-	t_txr	txr;
-	t_clr	clr;
-	t_map	map;
+	// t_res	res;
+	// t_txr	txr;
+	// t_clr	clr;
+	// t_map	map;
+	t_big	big;
 
 	fd = 0;
-	init(&res, &txr, &clr, &map);
+	init(&big.res, &big.txr, &big.clr, &big.map);
 	if (ac == 1)
 		fd = open("test.cub", O_RDONLY);
 	else if (ac == 2)
 		fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		return (err(fd, &res, &txr, &clr, &map));
-	if (parse(fd, &res, &txr, &clr, &map) == ERR)
-		return (err(fd, &res, &txr, &clr, &map));
-	printf("\nRES :\nwidth = %d\nheight = %d\n\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n\nCLR :\nfloor :\nr = %d, g = %d, b = %d\nfloor = %s\nceilng :\nr = %d, g = %d, b = %d\nceiling = %s\n", res.width, res.height, txr.north, txr.south, txr.west, txr.east, txr.sprite, clr.f_r, clr.f_g, clr.f_b, clr.floor, clr.c_r, clr.c_g, clr.c_b, clr.ceiling);
+		return (err(fd, &big.res, &big.txr, &big.clr, &big.map));
+	if (parse(fd, &big.res, &big.txr, &big.clr, &big.map) == ERR)
+		return (err(fd, &big.res, &big.txr, &big.clr, &big.map));
+	printf("\nRES :\nwidth = %d\nheight = %d\n\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n\nCLR :\nfloor :\nr = %d, g = %d, b = %d\nfloor = %s\nceilng :\nr = %d, g = %d, b = %d\nceiling = %s\n", big.res.width, big.res.height, big.txr.north, big.txr.south, big.txr.west, big.txr.east, big.txr.sprite, big.clr.f_r, big.clr.f_g, big.clr.f_b, big.clr.floor, big.clr.c_r, big.clr.c_g, big.clr.c_b, big.clr.ceiling);
 	printf("\nMAP :\n|0123456789012345678901234567890|\n");
-	for (int i = 0; map.map[i] != NULL; i++)
-		printf("|%s| %d\n", map.map[i], i);
-	raycast_create(&res, &map);
+	for (int i = 0; big.map.map[i] != NULL; i++)
+		printf("|%s| %d\n", big.map.map[i], i);
+	raycast(&big);
 	close(fd);
 	return (0);
 }

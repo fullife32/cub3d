@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/20 18:03:39 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/21 19:26:38 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,53 +18,20 @@
 #include <math.h>
 #include <time.h>
 
-typedef struct	s_mlx
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	double	plane_x;
-	double	plane_y;
-	double	time;
-	double	old_time;
-	double	camera_x;
-	double	camera_y;
-	double	raydir_x;
-	double	raydir_y;
-	int		map_x;
-	int		map_y;
-	double	sidedst_x;
-	double	sidedst_y;
-	double	deltadst_x;
-	double	deltadst_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		line_h;
-	int		draw_start;
-	int		draw_end;
-	int		color;
-	double	frame_time;
-}				t_mlx;
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define LR 123
+# define RR 124
 
-typedef struct	s_plr
-{
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	move_speed;
-	double	rot_speed;
-}				t_plr;
+void	raycast_dir(int x, t_big *big, t_res *res);
+void	raycast_dst(t_big *big);
+void	raycast_hit(t_big *big);
+void	raycast_line(t_big *big, t_res *res);
 
-typedef struct	s_big
-{
-	t_mlx	mlx;
-	t_plr	plr;
-}				t_big;
-
+int		deal_key(int key, void *param);
 void	draw_vert_line(int x, t_mlx *mlx);
-int		raycast_create(t_res *res, t_map *map);
+int		raycast(t_big *big);
 
 # endif
