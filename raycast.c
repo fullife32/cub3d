@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/22 18:04:09 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/22 18:45:36 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	draw_vert_line(int x, t_mlx *mlx, t_res *res)
 	i = mlx->draw_start;
 	while (i < res->height)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, i, 0x008000);
+		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, i, 0xA2A2A2);
 		i++;
 	}
 }
