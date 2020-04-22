@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/21 19:26:38 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:47:44 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 # define LR 123
 # define RR 124
 
-void	raycast_dir(int x, t_big *big, t_res *res);
+void	raycast_dir(t_big *big);
 void	raycast_dst(t_big *big);
 void	raycast_hit(t_big *big);
-void	raycast_line(t_big *big, t_res *res);
+void	raycast_line(t_big *big);
 
 int		deal_key(int key, void *param);
-void	draw_vert_line(int x, t_mlx *mlx);
+void	draw_vert_line(int x, t_mlx *mlx, t_res *res);
 int		raycast(t_big *big);
 
 # endif

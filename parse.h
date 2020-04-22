@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/21 18:39:13 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:05:42 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,24 @@ typedef struct	s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	double	plane_x;
 	double	plane_y;
+	double	plane_x;
 	double	time;
 	double	old_time;
 	int		x;
-	double	camera_x;
 	double	camera_y;
-	double	raydir_x;
+	double	camera_x;
 	double	raydir_y;
-	int		map_x;
+	double	raydir_x;
 	int		map_y;
-	double	sidedst_x;
+	int		map_x;
 	double	sidedst_y;
-	double	deltadst_x;
+	double	sidedst_x;
 	double	deltadst_y;
+	double	deltadst_x;
 	double	perp_wall_dist;
-	int		step_x;
 	int		step_y;
+	int		step_x;
 	int		hit;
 	int		side;
 	int		line_h;
@@ -84,6 +84,7 @@ typedef struct	s_mlx
 	int		draw_end;
 	int		color;
 	double	frame_time;
+	double	oldplane_y;
 }				t_mlx;
 
 typedef struct	s_plr
@@ -94,6 +95,7 @@ typedef struct	s_plr
 	double	dir_y;
 	double	move_speed;
 	double	rot_speed;
+	double	olddir_y;
 }				t_plr;
 
 typedef struct	s_big
