@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/25 20:12:25 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/26 01:32:10 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct	s_plr
 
 typedef struct	s_mov
 {
-	char	mov[128];
+	char	mov[512];
 }				t_mov;
 
 typedef struct	s_all

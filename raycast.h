@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/25 20:05:15 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/26 01:27:10 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define R 2
 # define LR 123
 # define RR 124
+# define RUN 257
 
 void	raycast_dir(t_all *all);
 void	raycast_dst(t_all *all);

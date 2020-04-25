@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/26 00:38:08 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/26 01:33:35 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,10 @@ int		movement(t_all *all)
 		all->mlx.plane_y = all->mlx.plane_y * cos(-all->plr.rot_speed) - all->mlx.plane_x * sin(-all->plr.rot_speed);
 		all->mlx.plane_x = all->mlx.oldplane_y * sin(-all->plr.rot_speed) + all->mlx.plane_x * cos(-all->plr.rot_speed);
 	}
+	if (all->mov.mov[RUN] == OK)
+		all->plr.move_speed = all->mlx.frame_time * 10.0;
+	if (all->mov.mov[RUN] == FALSE)
+		all->plr.move_speed = all->mlx.frame_time * 5.0;
 	return (OK);
 }
 
