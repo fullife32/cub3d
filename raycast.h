@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/25 16:11:56 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/25 20:05:15 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #include <math.h>
 #include <time.h>
 
-# define W 13
-# define A 0
-# define S 1
-# define D 2
+# define FW 13
+# define BW 1
+# define L 0
+# define R 2
 # define LR 123
 # define RR 124
 
@@ -30,7 +30,8 @@ void	raycast_dst(t_all *all);
 void	raycast_hit(t_all *all);
 void	raycast_line(t_all *all);
 
-int		deal_key(int key, void *param);
+int		movement(t_all *all);
+int		deal_key(t_all *all);
 void	draw_vert_line(int x, t_mlx *mlx, t_res *res);
 int		raycast(t_all *all);
 

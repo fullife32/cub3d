@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/25 16:11:51 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/25 20:12:25 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdio.h>
 
 #define ERR -1
+#define FALSE 0
 #define OK 1
 
 typedef struct	s_res
@@ -85,6 +86,11 @@ typedef struct	s_mlx
 	int		color;
 	double	frame_time;
 	double	oldplane_y;
+	void	*img_ptr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	char	*img;
 }				t_mlx;
 
 typedef struct	s_plr
@@ -98,6 +104,11 @@ typedef struct	s_plr
 	double	olddir_y;
 }				t_plr;
 
+typedef struct	s_mov
+{
+	char	mov[128];
+}				t_mov;
+
 typedef struct	s_all
 {
 	t_res	res;
@@ -106,6 +117,7 @@ typedef struct	s_all
 	t_map	map;
 	t_mlx	mlx;
 	t_plr	plr;
+	t_mov	mov;
 }				t_all;
 
 void	init(t_res *res, t_txr *txr, t_clr *clr, t_map *map);

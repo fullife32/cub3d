@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/25 16:12:13 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/25 20:22:47 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,52 +96,66 @@ void	raycast_line(t_all *all)
 	all->mlx.draw_end = all->mlx.line_h / 2 + all->res.height / 2;
 	if (all->mlx.draw_end >= all->res.height)
 		all->mlx.draw_end = all->res.height - 1;
-	all->mlx.color = (all->mlx.side == 1) ? 0xFF6347 : 0xFF7F50; //NS blue WE pink
+	all->mlx.color = (all->mlx.side == 0) ? 0xFF7F50 : 0xFF6347;
 }
 
 void	draw_vert_line(int x, t_mlx *mlx, t_res *res)
 {
 	// printf("x = %d start = %d end = %d color %d\n", x, mlx.draw_start, mlx.draw_end, color);
-	int i = 0;
+	int i;
+	int pos;
 
+	i = 0;
 	while (i < mlx->draw_start)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, i, 0xAAFFFF);
+		pos = (i * mlx->size_line + x * (mlx->bpp / 8));
+		*(unsigned int *)(mlx->img + pos) = 0x00BFFF;
 		i++;
 	}
 	while (mlx->draw_start <= mlx->draw_end)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, mlx->draw_start, mlx->color);
+		pos = (mlx->draw_start * mlx->size_line + x * (mlx->bpp / 8));
+		*(unsigned int *)(mlx->img + pos) = mlx->color;
 		mlx->draw_start++;
 	}
 	i = mlx->draw_start;
 	while (i < res->height)
 	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, x, i, 0xA2A2A2);
+		pos = (i * mlx->size_line + x * (mlx->bpp / 8));
+		*(unsigned int *)(mlx->img + pos) = 0x708090;
 		i++;
 	}
 }
 
-int		keyPress(int key, void *param)
+int		key_press(int key, t_all *all)
 {
-	t_all	*all;
+	all->mov.mov[key] = OK;
+	return (OK);
+}
 
-	all = (t_all *)(param);
-	if (key == W)
+int		key_release(int key, t_all *all)
+{
+	all->mov.mov[key] = FALSE;
+	return (OK);
+}
+
+int		movement(t_all *all)
+{
+	if (all->mov.mov[FW] == OK)
 	{
 		if (all->map.map[(int)all->plr.pos_y][(int)(all->plr.pos_x + all->plr.dir_x * all->plr.move_speed)] != '1')
 			all->plr.pos_x += all->plr.dir_x * all->plr.move_speed;
 		if (all->map.map[(int)(all->plr.pos_y + all->plr.dir_y * all->plr.move_speed)][(int)all->plr.pos_x] != '1')
 			all->plr.pos_y += all->plr.dir_y * all->plr.move_speed;
 	}
-	if (key == S)
+	if (all->mov.mov[BW] == OK)
 	{
 		if (all->map.map[(int)all->plr.pos_y][(int)(all->plr.pos_x - all->plr.dir_x * all->plr.move_speed)] != '1')
 			all->plr.pos_x -= all->plr.dir_x * all->plr.move_speed;
 		if (all->map.map[(int)(all->plr.pos_y - all->plr.dir_y * all->plr.move_speed)][(int)all->plr.pos_x] != '1')
 			all->plr.pos_y -= all->plr.dir_y * all->plr.move_speed;
 	}
-	if (key == LR)
+	if (all->mov.mov[LR] == OK)
 	{
 		all->plr.olddir_y = all->plr.dir_y;
 		all->plr.dir_y = all->plr.dir_y * cos(all->plr.rot_speed) - all->plr.dir_x * sin(all->plr.rot_speed);
@@ -150,7 +164,7 @@ int		keyPress(int key, void *param)
 		all->mlx.plane_y = all->mlx.plane_y * cos(all->plr.rot_speed) - all->mlx.plane_x * sin(all->plr.rot_speed);
 		all->mlx.plane_x = all->mlx.oldplane_y * sin(all->plr.rot_speed) + all->mlx.plane_x * cos(all->plr.rot_speed);
 	}
-	if (key == RR)
+	if (all->mov.mov[RR] == OK)
 	{
 		all->plr.olddir_y = all->plr.dir_y;
 		all->plr.dir_y = all->plr.dir_y * cos(-all->plr.rot_speed) - all->plr.dir_x * sin(-all->plr.rot_speed);
@@ -159,23 +173,12 @@ int		keyPress(int key, void *param)
 		all->mlx.plane_y = all->mlx.plane_y * cos(-all->plr.rot_speed) - all->mlx.plane_x * sin(-all->plr.rot_speed);
 		all->mlx.plane_x = all->mlx.oldplane_y * sin(-all->plr.rot_speed) + all->mlx.plane_x * cos(-all->plr.rot_speed);
 	}
-	deal_key(key, param);
 	return (OK);
 }
 
-int		keyRelease(int key, void *param)
+int		deal_key(t_all *all)
 {
-	(void)key;
-	(void)param;
-	return (OK);
-}
-
-int		deal_key(int key, void *param)
-{
-	t_all	*all;
-
-	(void)key;
-	all = (t_all *)param;
+	movement(all);
 	all->mlx.x = 0;
 	while (all->mlx.x < all->res.width)
 	{
@@ -190,7 +193,8 @@ int		deal_key(int key, void *param)
 		draw_vert_line(all->mlx.x, &all->mlx, &all->res);
 		all->mlx.x++;
 	}
-	mlx_string_put(all->mlx.mlx_ptr, all->mlx.win_ptr, 30, 20, 0xFFFFFF, ft_itoa(1 / all->mlx.frame_time));
+	mlx_put_image_to_window(all->mlx.mlx_ptr, all->mlx.win_ptr, all->mlx.img_ptr, 0, 0);
+	mlx_string_put(all->mlx.mlx_ptr, all->mlx.win_ptr, 20, 20, 0xFFFFFF, ft_itoa(1 / all->mlx.frame_time));
 	return (OK);
 }
 
@@ -202,16 +206,14 @@ int		raycast(t_all *all)
 	all->plr.dir_y = -1; all->plr.dir_x = 0;
 	all->mlx.plane_y = 0; all->mlx.plane_x = 0.66;
 	all->mlx.time = 0; all->mlx.old_time = 0;
-	all->mlx.frame_time = 0.008;
-	all->plr.move_speed = all->mlx.frame_time * 30.0;
-	all->plr.rot_speed = all->mlx.frame_time * 18.0;
-	deal_key(0, all);
-	while (1)
-	{
-		mlx_hook(all->mlx.win_ptr, 2, 0, keyPress, all);
-		mlx_hook(all->mlx.win_ptr, 3, 0, keyRelease, all);
-		// mlx_loop_hook(all->mlx.mlx_ptr, deal_key, all);
-		mlx_loop(all->mlx.mlx_ptr);
-	}
+	all->mlx.frame_time = 0.016;
+	all->plr.move_speed = all->mlx.frame_time * 5.0;
+	all->plr.rot_speed = all->mlx.frame_time * 3.0;
+	all->mlx.img_ptr = mlx_new_image(all->mlx.mlx_ptr, all->res.width, all->res.height);
+	all->mlx.img = mlx_get_data_addr(all->mlx.img_ptr, &all->mlx.bpp, &all->mlx.size_line, &all->mlx.endian);
+	mlx_hook(all->mlx.win_ptr, 2, 0, key_press, all);
+	mlx_hook(all->mlx.win_ptr, 3, 0, key_release, all);
+	mlx_loop_hook(all->mlx.mlx_ptr, deal_key, all);
+	mlx_loop(all->mlx.mlx_ptr);
 	return (OK);
 }
