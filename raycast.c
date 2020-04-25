@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/25 20:22:47 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/26 00:38:08 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,15 @@ void	raycast_line(t_all *all)
 void	draw_vert_line(int x, t_mlx *mlx, t_res *res)
 {
 	// printf("x = %d start = %d end = %d color %d\n", x, mlx.draw_start, mlx.draw_end, color);
-	int i;
+	int y;
 	int pos;
 
-	i = 0;
-	while (i < mlx->draw_start)
+	y = 0;
+	while (y < mlx->draw_start)
 	{
-		pos = (i * mlx->size_line + x * (mlx->bpp / 8));
+		pos = (y * mlx->size_line + x * (mlx->bpp / 8));
 		*(unsigned int *)(mlx->img + pos) = 0x00BFFF;
-		i++;
+		y++;
 	}
 	while (mlx->draw_start <= mlx->draw_end)
 	{
@@ -118,12 +118,12 @@ void	draw_vert_line(int x, t_mlx *mlx, t_res *res)
 		*(unsigned int *)(mlx->img + pos) = mlx->color;
 		mlx->draw_start++;
 	}
-	i = mlx->draw_start;
-	while (i < res->height)
+	y = mlx->draw_start;
+	while (y < res->height)
 	{
-		pos = (i * mlx->size_line + x * (mlx->bpp / 8));
+		pos = (y * mlx->size_line + x * (mlx->bpp / 8));
 		*(unsigned int *)(mlx->img + pos) = 0x708090;
-		i++;
+		y++;
 	}
 }
 
@@ -206,7 +206,7 @@ int		raycast(t_all *all)
 	all->plr.dir_y = -1; all->plr.dir_x = 0;
 	all->mlx.plane_y = 0; all->mlx.plane_x = 0.66;
 	all->mlx.time = 0; all->mlx.old_time = 0;
-	all->mlx.frame_time = 0.016;
+	all->mlx.frame_time = 0.008;
 	all->plr.move_speed = all->mlx.frame_time * 5.0;
 	all->plr.rot_speed = all->mlx.frame_time * 3.0;
 	all->mlx.img_ptr = mlx_new_image(all->mlx.mlx_ptr, all->res.width, all->res.height);
