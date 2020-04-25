@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/14 15:04:11 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/25 16:15:24 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map)
 	while (get_next_line(fd, &line) > 0)
 	{
 		i = 0;
-		printf("%s\n", line);
 		while (line[i] == ' ')
 			i++;
 		if (line[i] == 'R')

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/22 17:05:42 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/25 16:11:51 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct	s_plr
 	double	olddir_y;
 }				t_plr;
 
-typedef struct	s_big
+typedef struct	s_all
 {
 	t_res	res;
 	t_txr	txr;
@@ -106,7 +106,7 @@ typedef struct	s_big
 	t_map	map;
 	t_mlx	mlx;
 	t_plr	plr;
-}				t_big;
+}				t_all;
 
 void	init(t_res *res, t_txr *txr, t_clr *clr, t_map *map);
 
@@ -124,6 +124,6 @@ int		clr_atoi(char c, char *line, t_clr *clr);
 int		clr_malloc(char c, int len, t_clr *clr);
 int		clr_parse(char c, char *line, t_clr *clr);
 
-int		raycast(t_big *big);
+int		raycast(t_all *all);
 
 #endif

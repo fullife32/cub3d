@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/21 17:52:18 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/25 16:24:20 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,26 @@ int	main(int ac, char **av)
 	// t_txr	txr;
 	// t_clr	clr;
 	// t_map	map;
-	t_big	big;
+	t_all	all;
 
 	fd = 0;
-	init(&big.res, &big.txr, &big.clr, &big.map);
+	init(&all.res, &all.txr, &all.clr, &all.map);
 	if (ac == 1)
 		fd = open("test.cub", O_RDONLY);
 	else if (ac == 2)
 		fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		return (err(fd, &big.res, &big.txr, &big.clr, &big.map));
-	if (parse(fd, &big.res, &big.txr, &big.clr, &big.map) == ERR)
-		return (err(fd, &big.res, &big.txr, &big.clr, &big.map));
-	printf("\nRES :\nwidth = %d\nheight = %d\n\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n\nCLR :\nfloor :\nr = %d, g = %d, b = %d\nfloor = %s\nceilng :\nr = %d, g = %d, b = %d\nceiling = %s\n", big.res.width, big.res.height, big.txr.north, big.txr.south, big.txr.west, big.txr.east, big.txr.sprite, big.clr.f_r, big.clr.f_g, big.clr.f_b, big.clr.floor, big.clr.c_r, big.clr.c_g, big.clr.c_b, big.clr.ceiling);
-	printf("\nMAP :\n|0123456789012345678901234567890|\n");
-	for (int i = 0; big.map.map[i] != NULL; i++)
-		printf("|%s| %d\n", big.map.map[i], i);
-	raycast(&big);
+		return (err(fd, &all.res, &all.txr, &all.clr, &all.map));
+	if (parse(fd, &all.res, &all.txr, &all.clr, &all.map) == ERR)
+		return (err(fd, &all.res, &all.txr, &all.clr, &all.map));
+	printf("\nRES :\nwidth = %d\nheight = %d\n", all.res.width, all.res.height);
+	printf("\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n", all.txr.north, all.txr.south, all.txr.west, all.txr.east, all.txr.sprite);
+	printf("\nCLR :\nfloor :\nr = %d, g = %d, b = %d\nfloor = %s\nceilng :\nr = %d, g = %d, b = %d\nceiling = %s\n", all.clr.f_r, all.clr.f_g, all.clr.f_b, all.clr.floor, all.clr.c_r, all.clr.c_g, all.clr.c_b, all.clr.ceiling);
+	printf("\nMAP :\n|         10        20        30        40        50|");
+	printf("\n|012345678901234567890123456789012345678901234567890|\n");
+	for (int i = 0; all.map.map[i] != NULL; i++)
+		printf("|%s| %d\n", all.map.map[i], i);
+	raycast(&all);
 	close(fd);
 	return (0);
 }
