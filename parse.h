@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/28 18:10:51 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/28 18:25:26 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ typedef struct	s_img
 	int		endian;
 	char	*img;
 }				t_img;
-
 
 typedef struct	s_mov
 {
