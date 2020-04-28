@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/26 01:27:10 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/28 17:54:53 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@
 # define RR 124
 # define RUN 257
 
-void	raycast_dir(t_all *all);
-void	raycast_dst(t_all *all);
-void	raycast_hit(t_all *all);
-void	raycast_line(t_all *all);
+void	rc_dir(t_all *all);
+void	rc_dst(t_all *all);
+void	rc_hit(t_all *all);
+void	rc_line(t_all *all);
 
-int		movement(t_all *all);
-int		deal_key(t_all *all);
-void	draw_vert_line(int x, t_mlx *mlx, t_res *res);
+int		key_move(t_all *all);
+int		rc_loop(t_all *all);
+void	px_vline(t_all *all);
 int		raycast(t_all *all);
 
 # endif

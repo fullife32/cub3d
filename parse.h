@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/26 01:32:10 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/04/28 18:10:51 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,46 +51,19 @@ typedef struct	s_clr
 typedef struct	s_map
 {
 	char	**map;
-	int		pposx;
-	int		pposy;
-	char	pdir;
+	int		map_y;
+	int		map_x;
+	int		hit;
+	int		side;
 }				t_map;
 
 typedef struct	s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	double	plane_y;
-	double	plane_x;
+	void	*mlx;
+	void	*win;
 	double	time;
-	double	old_time;
 	int		x;
-	double	camera_y;
-	double	camera_x;
-	double	raydir_y;
-	double	raydir_x;
-	int		map_y;
-	int		map_x;
-	double	sidedst_y;
-	double	sidedst_x;
-	double	deltadst_y;
-	double	deltadst_x;
-	double	perp_wall_dist;
-	int		step_y;
-	int		step_x;
-	int		hit;
-	int		side;
-	int		line_h;
-	int		draw_start;
-	int		draw_end;
-	int		color;
 	double	frame_time;
-	double	oldplane_y;
-	void	*img_ptr;
-	int		bpp;
-	int		size_line;
-	int		endian;
-	char	*img;
 }				t_mlx;
 
 typedef struct	s_plr
@@ -99,14 +72,50 @@ typedef struct	s_plr
 	double	pos_y;
 	double	dir_x;
 	double	dir_y;
-	double	move_speed;
-	double	rot_speed;
 	double	olddir_y;
+	double	move_spd;
+	double	rot_spd;
 }				t_plr;
+
+typedef struct	s_dir
+{
+	double	plane_y;
+	double	oldplane_y;
+	double	plane_x;
+	double	camera_y;
+	double	camera_x;
+	double	raydir_y;
+	double	raydir_x;
+}				t_dir;
+
+typedef struct	s_dst
+{
+	double	sidedst_y;
+	double	sidedst_x;
+	double	deltadst_y;
+	double	deltadst_x;
+	double	wall_dst;
+	int		step_y;
+	int		step_x;
+}				t_dst;
+
+typedef struct	s_img
+{
+	int		line_h;
+	int		px_start;
+	int		px_end;
+	int		color;
+	void	*img_ptr;
+	int		bpp;
+	int		size_l;
+	int		endian;
+	char	*img;
+}				t_img;
+
 
 typedef struct	s_mov
 {
-	char	mov[512];
+	char	mov[65536];
 }				t_mov;
 
 typedef struct	s_all
@@ -117,6 +126,9 @@ typedef struct	s_all
 	t_map	map;
 	t_mlx	mlx;
 	t_plr	plr;
+	t_dir	dir;
+	t_dst	dst;
+	t_img	img;
 	t_mov	mov;
 }				t_all;
 
