@@ -1,1 +1,3 @@
 gcc -g -Wall -Wextra -Werror cub3d.c parse.c txr_parse.c clr_parse.c raycast.c get_next_line/*.c libft.a libmlx.dylib -o cub3d
+
+gcc -g -Wall -Wextra -Werror cub3d.c parse.c txr_parse.c clr_parse.c raycast.c get_next_line/*.c libft.a libmlx_x86_64.a -L/usr/include/../lib -lXext -lX11 -lm -lbsd -o cub3d
