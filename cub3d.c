@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/25 16:24:20 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/03 03:26:33 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int ac, char **av)
 		fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (err(fd, &all.res, &all.txr, &all.clr, &all.map));
-	if (parse(fd, &all.res, &all.txr, &all.clr, &all.map) == ERR)
+	if (parse(fd, &all.res, &all.txr, &all.clr, &all.map, &all.plr) == ERR)
 		return (err(fd, &all.res, &all.txr, &all.clr, &all.map));
 	printf("\nRES :\nwidth = %d\nheight = %d\n", all.res.width, all.res.height);
 	printf("\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n", all.txr.north, all.txr.south, all.txr.west, all.txr.east, all.txr.sprite);

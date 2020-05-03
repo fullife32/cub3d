@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/28 18:07:24 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/03 03:41:32 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,8 +206,8 @@ int		raycast(t_all *all)
 {
 	all->mlx.mlx = mlx_init();
 	all->mlx.win = mlx_new_window(all->mlx.mlx, all->res.width, all->res.height, "cub3d");
-	all->plr.pos_y = 9.5; all->plr.pos_x = 9.5;
-	all->plr.dir_y = -1; all->plr.dir_x = 0;
+	// all->plr.pos_y = 9.5; all->plr.pos_x = 9.5;
+	// all->plr.dir_y = -1; all->plr.dir_x = 0;
 	all->dir.plane_y = 0; all->dir.plane_x = 0.66;
 	all->mlx.time = 0;
 	all->mlx.frame_time = 0.004;

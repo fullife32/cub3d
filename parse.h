@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/28 18:25:26 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/03 03:25:30 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,8 @@ int		txr_parse(char c, char *line, t_txr *txr);
 
 int		res_parse(char *line, t_res *res);
 int		add_line(char *line, t_list	**first, t_list	**lst);
-int		map_parse(int fd, char *line, t_map *map);
-int		parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map);
+int		map_parse(int fd, char *line, t_map *map, t_plr *plr);
+int		parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map, t_plr *plr);
 
 void	clr_rgb(char c, int *rgb, t_clr *clr);
 int		clr_atoi(char c, char *line, t_clr *clr);

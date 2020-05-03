@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/25 16:15:24 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/03 03:42:38 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int	res_parse(char *line, t_res *res)
 	while (*line == ' ')
 		line++;
 	res->width = ft_atoi(line);
-	if (res->width > 1280)
-		res->width = 1280;
+	if (res->width > 1920)
+		res->width = 1920;
 	while (*line >= '0' && *line <= '9')
 		line++;
 	while (*line == ' ')
 		line++;
 	res->height = ft_atoi(line);
-	if (res->height > 720)
-		res->height = 720;
+	if (res->height > 1080)
+		res->height = 1080;
 	if (res->height <= 0 || res->width <= 0)
 		return (ERR);
 	return (OK);
@@ -48,11 +48,38 @@ int	add_line(char *line, t_list	**first, t_list	**lst)
 	return (OK);
 }
 
-int	map_parse(int fd, char *line, t_map *map)
+int	start_p(int y, char *line, t_plr *plr)
+{
+	int x;
+
+	x = 0;
+	while (line[x] != '\0')
+	{
+		if (line[x] == 'N' || line[x] == 'S' || line[x] == 'W' || line[x] == 'E')
+		{
+			if (plr->pos_x != 0)
+				return (ERR);
+			plr->pos_y = y + 0.5;
+			plr->pos_x = x + 0.5;
+		}
+		if (line[x] == 'N')
+			plr->dir_y = -1;
+		else if (line[x] == 'S')
+			plr->dir_y = 1;
+		else if (line[x] == 'W')
+			plr->dir_x = -1;
+		else if (line[x] == 'E')
+			plr->dir_x = 1;
+		x++;
+	}
+	return (OK);
+}
+
+int	map_parse(int fd, char *line, t_map *map, t_plr *plr)
 {
 	t_list	*first;
 	t_list	*lst;
-	int		i;
+	int		y;
 
 	first = NULL;
 	lst = NULL;
@@ -65,22 +92,24 @@ int	map_parse(int fd, char *line, t_map *map)
 	}
 	if (add_line(line, &first, &lst) == ERR)
 		return (ERR);
-	i = 0;
+	y = 0;
 	if ((map->map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL)
 		return (ERR);
 	lst = first;
 	while (lst != NULL)
 	{
-		map->map[i] = lst->content;
+		map->map[y] = lst->content;
+		if (start_p(y, map->map[y], plr) == ERR)
+			return (ERR);
 		lst = lst->next;
-		i++;
+		y++;
 	}
-	map->map[i] = NULL;
+	map->map[y] = NULL;
 	// ft_lstclear(&first, (void *)ft_lstdelone);
 	return (OK);
 }
 
-int	parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map)
+int	parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map, t_plr *plr)
 {
 	char	*line;
 	int		i;
@@ -101,7 +130,7 @@ int	parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map)
 				return (err(&line));
 		if (line[i] == '0' || line[i] == '1' || line[i] == '2')
 		{
-			if (map_parse(fd, line, map) == ERR)
+			if (map_parse(fd, line, map, plr) == ERR)
 				return (err(&line));
 			else
 				return (OK);
