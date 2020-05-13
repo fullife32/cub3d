@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/28 18:25:21 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/13 18:00:59 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	rc_hit(t_all *all);
 void	rc_line(t_all *all);
 
 int		key_press(int key, t_all *all);
-int		key_unpress(int key, t_all *all);
+int		key_release(int key, t_all *all);
 int		key_move(t_all *all);
 
 void	px_vline(t_all *all);

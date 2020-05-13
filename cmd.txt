@@ -1,3 +1,25 @@
-gcc -g -Wall -Wextra -Werror cub3d.c parse.c txr_parse.c clr_parse.c raycast.c get_next_line/*.c libft.a libmlx.dylib -o cub3d
+MacOs :
 
-gcc -g -Wall -Wextra -Werror cub3d.c parse.c txr_parse.c clr_parse.c raycast.c get_next_line/*.c libft.a libmlx_x86_64.a -L/usr/include/../lib -lXext -lX11 -lm -lbsd -o cub3d
+gcc -g -Wall -Wextra -Werror cub3d.c parse.c txr_parse.c clr_parse.c raycast.c get_next_line/*.c libft.a libmlx.dylib -o cub3d
+Linux :
+
+gcc -g -Wall -Wextra -Werror cub3d.c parse.c txr_parse.c clr_parse.c raycast.c get_next_line/*.c libft.a libmlx_Linux.a -L/usr/include/../lib -lXext -lX11 -lm -lbsd -o cub3d
+
+Replace in raycast.c :
+
+mlx_hook(all->mlx.win, 2, (1L<<0), key_press, all);
+mlx_hook(all->mlx.win, 3, (1L<<1), key_release, all);
+
+Replace in raycast.h :
+
+#include "minilibx_linux/mlx.h"
+
+&
+
+# define FW 119
+# define BW 115
+# define L 97
+# define R 100
+# define LR 65361
+# define RR 65363
+# define RUN 65505
