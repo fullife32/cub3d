@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/13 18:00:38 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/13 22:55:26 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,8 +222,8 @@ int		raycast(t_all *all)
 	all->mov.mov[LR] = FALSE;
 	all->mov.mov[RR] = FALSE;
 	all->mov.mov[RUN] = FALSE;
-	mlx_hook(all->mlx.win, 2, 0, key_press, all);
-	mlx_hook(all->mlx.win, 3, 0, key_release, all);
+	mlx_hook(all->mlx.win, 2, (1L<<0), key_press, all);
+	mlx_hook(all->mlx.win, 3, (1L<<1), key_release, all);
 	mlx_loop_hook(all->mlx.mlx, rc_loop, all);
 	mlx_loop(all->mlx.mlx);
 	return (OK);
