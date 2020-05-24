@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 00:32:33 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/24 18:20:39 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/24 20:03:43 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	txr_cpy(char c, char *line, int len, t_txr *txr)
 	else if (c == ' ')
 		ft_strlcpy(txr->spt, line, len + 1);
 	else if (c == 'F')
-		ft_strlcpy(txr->spt, line, len + 1);
+		ft_strlcpy(txr->f, line, len + 1);
 	else if (c == 'C')
-		ft_strlcpy(txr->spt, line, len + 1);
+		ft_strlcpy(txr->c, line, len + 1);
 }
 
 int		txr_malloc(char c, int len, t_txr *txr)
