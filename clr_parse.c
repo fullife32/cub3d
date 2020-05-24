@@ -6,29 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:03 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/05 17:34:43 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/24 18:07:09 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	clr_rgb(char c, int *rgb, t_clr *clr)
-{
-	if (c == 'F')
-	{
-		clr->f_r = rgb[0];
-		clr->f_g = rgb[1];
-		clr->f_b = rgb[2];
-	}
-	else if (c == 'C')
-	{
-		clr->c_r = rgb[0];
-		clr->c_g = rgb[1];
-		clr->c_b = rgb[2];
-	}
-}
-
-int		clr_atoi(char c, char *line, t_clr *clr)
+int		txr_atoi(char c, char *line, t_txr *txr)
 {
 	int	i;
 	int	rgb[3];
@@ -46,42 +30,10 @@ int		clr_atoi(char c, char *line, t_clr *clr)
 		if (i != 2 && *line++ != ',')
 			return (ERR);
 	}
-	clr_rgb(c, rgb, clr);
-	return (OK);
-}
-
-int		clr_malloc(char c, int len, t_clr *clr)
-{
+	// ajouter un checker de couleur
 	if (c == 'F')
-		if ((clr->floor = malloc(sizeof(char) * len + 1)) == NULL)
-			return (ERR);
-	if (c == 'C')
-		if ((clr->ceiling = malloc(sizeof(char) * len + 1)) == NULL)
-			return (ERR);
-	return (OK);
-}
-
-int		clr_parse(char c, char *line, t_clr *clr)
-{
-	int	len;
-
-	len = 0;
-	line++;
-	while (*line == ' ')
-		line++;
-	if (!(*line >= '0' && *line <= '9'))
-	{
-		while (*(line + len) != '\0' && *(line + len) != ' ')
-			len++;
-		if (clr_malloc(c, len, clr) == ERR)
-			return (ERR);
-		if (c == 'F')
-			ft_strlcpy(clr->floor, line, len);
-		else if (c == 'C')
-			ft_strlcpy(clr->ceiling, line, len);
-	}
-	else
-		if (clr_atoi(c, line, clr) == ERR)
-			return (ERR);
+		txr->f_rgb = 65536 * rgb[0] + 256 * rgb[1] + rgb[2];
+	else if (c == 'C')
+		txr->c_rgb = 65536 * rgb[0] + 256 * rgb[1] + rgb[2];
 	return (OK);
 }

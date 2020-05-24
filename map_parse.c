@@ -1,0 +1,83 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parse.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
+/*   Updated: 2020/05/24 18:17:08 by eassouli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "parse.h"
+
+int	add_line(char *line, t_list	**first, t_list	**lst)
+{
+	if ((*lst = ft_lstnew(line)) == NULL)
+		return (ERR);
+	ft_lstadd_back(first, *lst);
+	return (OK);
+}
+
+int	start_p(int y, char *line, t_plr *plr)
+{
+	int x;
+
+	x = 0;
+	while (line[x] != '\0')
+	{
+		if (line[x] == 'N' || line[x] == 'S'
+		|| line[x] == 'W' || line[x] == 'E')
+		{
+			if (plr->pos_x != 0)
+				return (ERR);
+			plr->pos_y = y + 0.5;
+			plr->pos_x = x + 0.5;
+		}
+		if (line[x] == 'N')
+			plr->dir_y = -1;
+		else if (line[x] == 'S')
+			plr->dir_y = 1;
+		else if (line[x] == 'W')
+			plr->dir_x = -1;
+		else if (line[x] == 'E')
+			plr->dir_x = 1;
+		x++;
+	}
+	return (OK);
+}
+// ajouter checker map (lignes vides/trop d'arguments)
+int	map_parse(int fd, char *line, t_map *map, t_plr *plr)
+{
+	t_list	*first;
+	t_list	*lst;
+	int		y;
+
+	first = NULL;
+	lst = NULL;
+	if (add_line(line, &first, &lst) == ERR)
+		return (ERR);
+	while (get_next_line(fd, &line) > 0)
+	{
+		if (add_line(line, &first, &lst) == ERR)
+		return (ERR);
+	}
+	if (add_line(line, &first, &lst) == ERR)
+		return (ERR);
+	y = 0;
+	if ((map->map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL)
+		return (ERR);
+	lst = first;
+	while (lst != NULL)
+	{
+		map->map[y] = lst->content;
+		if (start_p(y, map->map[y], plr) == ERR)
+			return (ERR);
+		lst = lst->next;
+		y++;
+	}
+	map->map[y] = NULL;
+	// ft_lstclear(&first, (void *)ft_lstdelone);
+	return (OK);
+}

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/03 03:25:30 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/24 16:19:37 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,42 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-#define ERR -1
-#define FALSE 0
-#define OK 1
+# define ERR -1
+# define FALSE 0
+# define OK 1
+
+# define FW 13
+# define BW 1
+# define L 0
+# define R 2
+# define LR 123
+# define RR 124
+# define RUN 257
 
 typedef struct	s_res
 {
-	int		width;
-	int		height;
+	int		w;
+	int		h;
 }				t_res;
 
 typedef struct	s_txr
 {
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	char	*sprite;
+	char	*n;
+	char	*s;
+	char	*w;
+	char	*e;
+	char	*spt;
+	char	*f;
+	char	*c;
+	int		f_rgb;
+	int		c_rgb;
 }				t_txr;
-
-typedef struct	s_clr
-{
-	int		f_r;
-	int		f_g;
-	int		f_b;
-	int		c_r;
-	int		c_g;
-	int		c_b;
-	char	*floor;
-	char	*ceiling;
-}				t_clr;
 
 typedef struct	s_map
 {
 	char	**map;
-	int		map_y;
-	int		map_x;
+	int		y;
+	int		x;
 	int		hit;
 	int		side;
 }				t_map;
@@ -61,7 +61,6 @@ typedef struct	s_mlx
 {
 	void	*mlx;
 	void	*win;
-	double	time;
 	int		x;
 	double	frame_time;
 }				t_mlx;
@@ -82,8 +81,8 @@ typedef struct	s_dir
 	double	plane_y;
 	double	oldplane_y;
 	double	plane_x;
-	double	camera_y;
-	double	camera_x;
+	double	cam_y;
+	double	cam_x;
 	double	raydir_y;
 	double	raydir_x;
 }				t_dir;
@@ -121,7 +120,6 @@ typedef struct	s_all
 {
 	t_res	res;
 	t_txr	txr;
-	t_clr	clr;
 	t_map	map;
 	t_mlx	mlx;
 	t_plr	plr;
@@ -131,21 +129,21 @@ typedef struct	s_all
 	t_mov	mov;
 }				t_all;
 
-void	init(t_res *res, t_txr *txr, t_clr *clr, t_map *map);
+void	init(t_all *all);
 
+int		res_parse(char *line, t_res *res);
+int		parse(int fd, t_res *res, t_txr *txr, t_map *map, t_plr *plr);
+
+int		dup_check(char c);
 void	txr_cpy(char c, char *line, int len, t_txr *txr);
 int		txr_malloc(char c, int len, t_txr *txr);
 int		txr_parse(char c, char *line, t_txr *txr);
 
-int		res_parse(char *line, t_res *res);
-int		add_line(char *line, t_list	**first, t_list	**lst);
-int		map_parse(int fd, char *line, t_map *map, t_plr *plr);
-int		parse(int fd, t_res *res, t_txr *txr, t_clr *clr, t_map *map, t_plr *plr);
+int		txr_atoi(char c, char *line, t_txr *txr);
 
-void	clr_rgb(char c, int *rgb, t_clr *clr);
-int		clr_atoi(char c, char *line, t_clr *clr);
-int		clr_malloc(char c, int len, t_clr *clr);
-int		clr_parse(char c, char *line, t_clr *clr);
+int		add_line(char *line, t_list	**first, t_list	**lst);
+int		start_p(int y, char *line, t_plr *plr);
+int		map_parse(int fd, char *line, t_map *map, t_plr *plr);
 
 int		raycast(t_all *all);
 

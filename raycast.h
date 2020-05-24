@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/13 18:00:59 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/24 15:39:01 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 #include "parse.h"
 #include "minilibx_mms/mlx.h"
 #include <math.h>
-
-# define FW 13
-# define BW 1
-# define L 0
-# define R 2
-# define LR 123
-# define RR 124
-# define RUN 257
 
 void	rc_dir(t_all *all);
 void	rc_dst(t_all *all);
