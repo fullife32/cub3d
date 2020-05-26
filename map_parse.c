@@ -6,11 +6,21 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/24 18:17:08 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/26 16:42:22 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
+// static int	error(int error)
+// {
+// 	write(1, "Error\n", 6);
+// 	if (error == -2)
+// 		write(1, "\n", 21);
+// 	else if (error == -3)
+// 		write(1, "\n", 21);
+// 	return (ERR);
+// }
 
 int	add_line(char *line, t_list	**first, t_list	**lst)
 {
@@ -30,7 +40,7 @@ int	start_p(int y, char *line, t_plr *plr)
 		if (line[x] == 'N' || line[x] == 'S'
 		|| line[x] == 'W' || line[x] == 'E')
 		{
-			if (plr->pos_x != 0)
+			if (plr->pos_y != -1)
 				return (ERR);
 			plr->pos_y = y + 0.5;
 			plr->pos_x = x + 0.5;
@@ -78,6 +88,8 @@ int	map_parse(int fd, char *line, t_map *map, t_plr *plr)
 		y++;
 	}
 	map->map[y] = NULL;
+	if (plr->pos_y == -1)
+		return (ERR);  // ajouter error position introuvable
 	// ft_lstclear(&first, (void *)ft_lstdelone);
 	return (OK);
 }

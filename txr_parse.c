@@ -6,16 +6,15 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 00:32:33 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/24 20:03:43 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/26 17:09:35 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static int	err(int error)
+static int	error(int error)
 {
-	if (error != ERR)
-		write(1, "Error\n", 6);
+	write(1, "Error\n", 6);
 	if (error == -2)
 		write(1, "Invalid texture argument\n", 25);
 	else if (error == -3)
@@ -23,7 +22,7 @@ static int	err(int error)
 	else if (error == -4)
 		write(1, "Invalid color\n", 14);
 	else if (error == -5)
-		write(1, "Mallocing textures failed\n", 26);
+		write(1, "Maocing textures failed\n", 26);
 	return (ERR);
 }
 
@@ -98,18 +97,18 @@ int		txr_parse(char c, char *line, t_txr *txr)
 	|| (c == 'S' && (*line != ' ' && *line != 'O'))
 	|| (c == 'E' && *line != 'A')
 	|| ((c == 'F' || c == 'C') && *line != ' '))
-		return (err(-2));
+		return (error(-2));
 	c = (c == 'S' && *line == ' ') ? ' ' : c;
 	c = (c == 'S' && *line == 'O') ? 'S' : c;
 	if (dup_check(c) == ERR)
-		return (err(-3));
+		return (error(-3));
 	line++;
 	while (*line == ' ')
 		line++;
 	if ((c == 'F' || c == 'C') && (*line >= '0' && *line <= '9'))
 	{
 		if (txr_atoi(c, line, txr) == ERR)
-			return (err(-4));
+			return (error(-4));
 	}
 	else
 	{

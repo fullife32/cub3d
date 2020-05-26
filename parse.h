@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/24 16:19:37 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/26 17:09:47 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-# define ERR -1
-# define FALSE 0
+# define CUB ".cub"
+
 # define OK 1
+# define FALSE 0
+# define ERR -1
+# define MISSING_CUB_FILE_ERR -2
+# define NOT_CUB_FILE_ERR -3
 
 # define FW 13
 # define BW 1
@@ -93,7 +97,7 @@ typedef struct	s_dst
 	double	sidedst_x;
 	double	deltadst_y;
 	double	deltadst_x;
-	double	wall_dst;
+	double	wa_dst;
 	int		step_y;
 	int		step_x;
 }				t_dst;
@@ -116,7 +120,7 @@ typedef struct	s_mov
 	char	mov[65536];
 }				t_mov;
 
-typedef struct	s_all
+typedef struct	s_a
 {
 	t_res	res;
 	t_txr	txr;
@@ -127,12 +131,12 @@ typedef struct	s_all
 	t_dst	dst;
 	t_img	img;
 	t_mov	mov;
-}				t_all;
+}				t_a;
 
-void	init(t_all *all);
+void	init(t_a *a);
 
 int		res_parse(char *line, t_res *res);
-int		parse(int fd, t_res *res, t_txr *txr, t_map *map, t_plr *plr);
+int		parse(int fd, t_a *a);
 
 int		dup_check(char c);
 void	txr_cpy(char c, char *line, int len, t_txr *txr);
@@ -145,6 +149,6 @@ int		add_line(char *line, t_list	**first, t_list	**lst);
 int		start_p(int y, char *line, t_plr *plr);
 int		map_parse(int fd, char *line, t_map *map, t_plr *plr);
 
-int		raycast(t_all *all);
+int		raycast(t_a *a);
 
 #endif

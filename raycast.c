@@ -6,210 +6,210 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/24 16:09:59 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/26 17:09:06 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
 
-void	rc_dir(t_all *all)
+void	rc_dir(t_a *a)
 {
-	all->dir.cam_x = 2 * all->mlx.x / (double)all->res.w - 1;
-	all->dir.raydir_y = all->plr.dir_y + all->dir.plane_y * all->dir.cam_x;
-	all->dir.raydir_x = all->plr.dir_x + all->dir.plane_x * all->dir.cam_x;
-	all->map.y = (int)all->plr.pos_y;
-	all->map.x = (int)all->plr.pos_x;
-	if (all->dir.raydir_x == 0)
-		all->dst.deltadst_y = 0;
-	else if (all->dir.raydir_y == 0)
-		all->dst.deltadst_y = 1;
+	a->dir.cam_x = 2 * a->mlx.x / (double)a->res.w - 1;
+	a->dir.raydir_y = a->plr.dir_y + a->dir.plane_y * a->dir.cam_x;
+	a->dir.raydir_x = a->plr.dir_x + a->dir.plane_x * a->dir.cam_x;
+	a->map.y = (int)a->plr.pos_y;
+	a->map.x = (int)a->plr.pos_x;
+	if (a->dir.raydir_x == 0)
+		a->dst.deltadst_y = 0;
+	else if (a->dir.raydir_y == 0)
+		a->dst.deltadst_y = 1;
 	else
-		all->dst.deltadst_y = fabs(1 / all->dir.raydir_y);
-	if (all->dir.raydir_y == 0)
-		all->dst.deltadst_x = 0;
-	else if (all->dir.raydir_x == 0)
-		all->dst.deltadst_x = 1;
+		a->dst.deltadst_y = fabs(1 / a->dir.raydir_y);
+	if (a->dir.raydir_y == 0)
+		a->dst.deltadst_x = 0;
+	else if (a->dir.raydir_x == 0)
+		a->dst.deltadst_x = 1;
 	else
-		all->dst.deltadst_x = fabs(1 / all->dir.raydir_x);
+		a->dst.deltadst_x = fabs(1 / a->dir.raydir_x);
 }
 
-void	rc_dst(t_all *all)
+void	rc_dst(t_a *a)
 {
-	if (all->dir.raydir_y < 0)
+	if (a->dir.raydir_y < 0)
 	{
-		all->dst.step_y = -1;
-		all->dst.sidedst_y = all->plr.pos_y - (double)all->map.y;
-		all->dst.sidedst_y *= all->dst.deltadst_y;
+		a->dst.step_y = -1;
+		a->dst.sidedst_y = a->plr.pos_y - (double)a->map.y;
+		a->dst.sidedst_y *= a->dst.deltadst_y;
 	}
 	else
 	{
-		all->dst.step_y = 1;
-		all->dst.sidedst_y = (double)all->map.y + 1.0 - all->plr.pos_y;
-		all->dst.sidedst_y *= all->dst.deltadst_y;
+		a->dst.step_y = 1;
+		a->dst.sidedst_y = (double)a->map.y + 1.0 - a->plr.pos_y;
+		a->dst.sidedst_y *= a->dst.deltadst_y;
 	}
-	if (all->dir.raydir_x < 0)
+	if (a->dir.raydir_x < 0)
 	{
-		all->dst.step_x = -1;
-		all->dst.sidedst_x = all->plr.pos_x - (double)all->map.x;
-		all->dst.sidedst_x *= all->dst.deltadst_x;
+		a->dst.step_x = -1;
+		a->dst.sidedst_x = a->plr.pos_x - (double)a->map.x;
+		a->dst.sidedst_x *= a->dst.deltadst_x;
 	}
 	else
 	{
-		all->dst.step_x = 1;
-		all->dst.sidedst_x = (double)all->map.x + 1.0 - all->plr.pos_x;
-		all->dst.sidedst_x *= all->dst.deltadst_x;
+		a->dst.step_x = 1;
+		a->dst.sidedst_x = (double)a->map.x + 1.0 - a->plr.pos_x;
+		a->dst.sidedst_x *= a->dst.deltadst_x;
 	}
 }
 
-void	rc_hit(t_all *all)
+void	rc_hit(t_a *a)
 {
-	all->map.hit = 0;
-	while (all->map.hit == 0)
+	a->map.hit = 0;
+	while (a->map.hit == 0)
 	{
-		if (all->dst.sidedst_y < all->dst.sidedst_x)
+		if (a->dst.sidedst_y < a->dst.sidedst_x)
 		{
-			all->dst.sidedst_y += all->dst.deltadst_y;
-			all->map.y += all->dst.step_y;
-			all->map.side = 0;
+			a->dst.sidedst_y += a->dst.deltadst_y;
+			a->map.y += a->dst.step_y;
+			a->map.side = 0;
 		}
 		else
 		{
-			all->dst.sidedst_x += all->dst.deltadst_x;
-			all->map.x += all->dst.step_x;
-			all->map.side = 1;
+			a->dst.sidedst_x += a->dst.deltadst_x;
+			a->map.x += a->dst.step_x;
+			a->map.side = 1;
 		}
-		if (all->map.map[all->map.y][all->map.x] == '1')
-			all->map.hit = 1;
+		if (a->map.map[a->map.y][a->map.x] == '1')
+			a->map.hit = 1;
 	}
 }
 
-void	rc_line(t_all *all)
+void	rc_line(t_a *a)
 {
-	if (all->map.side == 0)
-		all->dst.wall_dst = ((double)all->map.y - all->plr.pos_y + (1.0 - all->dst.step_y) / 2) / all->dir.raydir_y;
+	if (a->map.side == 0)
+		a->dst.wa_dst = ((double)a->map.y - a->plr.pos_y + (1.0 - a->dst.step_y) / 2) / a->dir.raydir_y;
 	else
-		all->dst.wall_dst = ((double)all->map.x - all->plr.pos_x + (1.0 - all->dst.step_x) / 2) / all->dir.raydir_x;
-	all->img.line_h = (int)(all->res.h / all->dst.wall_dst);
-	all->img.px_start = -all->img.line_h / 2 + all->res.h / 2;
-	if (all->img.px_start < 0)
-		all->img.px_start = 0;
-	all->img.px_end = all->img.line_h / 2 + all->res.h / 2;
-	if (all->img.px_end >= all->res.h)
-		all->img.px_end = all->res.h - 1;
-	all->img.color = (all->map.side == 0) ? 0xFF7F50 : 0xFF6347;
+		a->dst.wa_dst = ((double)a->map.x - a->plr.pos_x + (1.0 - a->dst.step_x) / 2) / a->dir.raydir_x;
+	a->img.line_h = (int)(a->res.h / a->dst.wa_dst);
+	a->img.px_start = -a->img.line_h / 2 + a->res.h / 2;
+	if (a->img.px_start < 0)
+		a->img.px_start = 0;
+	a->img.px_end = a->img.line_h / 2 + a->res.h / 2;
+	if (a->img.px_end >= a->res.h)
+		a->img.px_end = a->res.h - 1;
+	a->img.color = (a->map.side == 0) ? 0xFF7F50 : 0xFF6347;
 }
 
-void	px_vline(t_all	*all)
+void	px_vline(t_a	*a)
 {
 	int y;
 	int pos;
 
 	y = 0;
-	while (y < all->img.px_start)
+	while (y < a->img.px_start)
 	{
-		pos = (y * all->img.size_l + all->mlx.x * (all->img.bpp / 8));
-		*(unsigned int *)(all->img.img + pos) = all->txr.c_rgb;
+		pos = (y * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
+		*(unsigned int *)(a->img.img + pos) = a->txr.c_rgb;
 		y++;
 	}
-	while (all->img.px_start <= all->img.px_end)
+	while (a->img.px_start <= a->img.px_end)
 	{
-		pos = (all->img.px_start * all->img.size_l + all->mlx.x * (all->img.bpp / 8));
-		*(unsigned int *)(all->img.img + pos) = all->img.color;
-		all->img.px_start++;
+		pos = (a->img.px_start * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
+		*(unsigned int *)(a->img.img + pos) = a->img.color;
+		a->img.px_start++;
 	}
-	y = all->img.px_start;
-	while (y < all->res.h)
+	y = a->img.px_start;
+	while (y < a->res.h)
 	{
-		pos = (y * all->img.size_l + all->mlx.x * (all->img.bpp / 8));
-		*(unsigned int *)(all->img.img + pos) = all->txr.f_rgb;
+		pos = (y * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
+		*(unsigned int *)(a->img.img + pos) = a->txr.f_rgb;
 		y++;
 	}
 }
 
-int		key_press(int key, t_all *all)
+int		key_press(int key, t_a *a)
 {
-	all->mov.mov[key] = OK;
+	a->mov.mov[key] = OK;
 	return (OK);
 }
 
-int		key_release(int key, t_all *all)
+int		key_release(int key, t_a *a)
 {
-	all->mov.mov[key] = FALSE;
+	a->mov.mov[key] = FALSE;
 	return (OK);
 }
 
-int		key_move(t_all *all)
+int		key_move(t_a *a)
 {
-	if (all->mov.mov[FW] == OK)
+	if (a->mov.mov[FW] == OK)
 	{
-		if (all->map.map[(int)all->plr.pos_y][(int)(all->plr.pos_x + all->plr.dir_x * all->plr.move_spd)] != '1')
-			all->plr.pos_x += all->plr.dir_x * all->plr.move_spd;
-		if (all->map.map[(int)(all->plr.pos_y + all->plr.dir_y * all->plr.move_spd)][(int)all->plr.pos_x] != '1')
-			all->plr.pos_y += all->plr.dir_y * all->plr.move_spd;
+		if (a->map.map[(int)a->plr.pos_y][(int)(a->plr.pos_x + a->plr.dir_x * a->plr.move_spd)] != '1')
+			a->plr.pos_x += a->plr.dir_x * a->plr.move_spd;
+		if (a->map.map[(int)(a->plr.pos_y + a->plr.dir_y * a->plr.move_spd)][(int)a->plr.pos_x] != '1')
+			a->plr.pos_y += a->plr.dir_y * a->plr.move_spd;
 	}
-	if (all->mov.mov[BW] == OK)
+	if (a->mov.mov[BW] == OK)
 	{
-		if (all->map.map[(int)all->plr.pos_y][(int)(all->plr.pos_x - all->plr.dir_x * all->plr.move_spd)] != '1')
-			all->plr.pos_x -= all->plr.dir_x * all->plr.move_spd;
-		if (all->map.map[(int)(all->plr.pos_y - all->plr.dir_y * all->plr.move_spd)][(int)all->plr.pos_x] != '1')
-			all->plr.pos_y -= all->plr.dir_y * all->plr.move_spd;
+		if (a->map.map[(int)a->plr.pos_y][(int)(a->plr.pos_x - a->plr.dir_x * a->plr.move_spd)] != '1')
+			a->plr.pos_x -= a->plr.dir_x * a->plr.move_spd;
+		if (a->map.map[(int)(a->plr.pos_y - a->plr.dir_y * a->plr.move_spd)][(int)a->plr.pos_x] != '1')
+			a->plr.pos_y -= a->plr.dir_y * a->plr.move_spd;
 	}
-	if (all->mov.mov[LR] == OK)
+	if (a->mov.mov[LR] == OK)
 	{
-		all->plr.olddir_y = all->plr.dir_y;
-		all->plr.dir_y = all->plr.dir_y * cos(all->plr.rot_spd) - all->plr.dir_x * sin(all->plr.rot_spd);
-		all->plr.dir_x = all->plr.olddir_y * sin(all->plr.rot_spd) + all->plr.dir_x * cos(all->plr.rot_spd);
-		all->dir.oldplane_y = all->dir.plane_y;
-		all->dir.plane_y = all->dir.plane_y * cos(all->plr.rot_spd) - all->dir.plane_x * sin(all->plr.rot_spd);
-		all->dir.plane_x = all->dir.oldplane_y * sin(all->plr.rot_spd) + all->dir.plane_x * cos(all->plr.rot_spd);
+		a->plr.olddir_y = a->plr.dir_y;
+		a->plr.dir_y = a->plr.dir_y * cos(a->plr.rot_spd) - a->plr.dir_x * sin(a->plr.rot_spd);
+		a->plr.dir_x = a->plr.olddir_y * sin(a->plr.rot_spd) + a->plr.dir_x * cos(a->plr.rot_spd);
+		a->dir.oldplane_y = a->dir.plane_y;
+		a->dir.plane_y = a->dir.plane_y * cos(a->plr.rot_spd) - a->dir.plane_x * sin(a->plr.rot_spd);
+		a->dir.plane_x = a->dir.oldplane_y * sin(a->plr.rot_spd) + a->dir.plane_x * cos(a->plr.rot_spd);
 	}
-	if (all->mov.mov[RR] == OK)
+	if (a->mov.mov[RR] == OK)
 	{
-		all->plr.olddir_y = all->plr.dir_y;
-		all->plr.dir_y = all->plr.dir_y * cos(-all->plr.rot_spd) - all->plr.dir_x * sin(-all->plr.rot_spd);
-		all->plr.dir_x = all->plr.olddir_y * sin(-all->plr.rot_spd) + all->plr.dir_x * cos(-all->plr.rot_spd);
-		all->dir.oldplane_y = all->dir.plane_y;
-		all->dir.plane_y = all->dir.plane_y * cos(-all->plr.rot_spd) - all->dir.plane_x * sin(-all->plr.rot_spd);
-		all->dir.plane_x = all->dir.oldplane_y * sin(-all->plr.rot_spd) + all->dir.plane_x * cos(-all->plr.rot_spd);
+		a->plr.olddir_y = a->plr.dir_y;
+		a->plr.dir_y = a->plr.dir_y * cos(-a->plr.rot_spd) - a->plr.dir_x * sin(-a->plr.rot_spd);
+		a->plr.dir_x = a->plr.olddir_y * sin(-a->plr.rot_spd) + a->plr.dir_x * cos(-a->plr.rot_spd);
+		a->dir.oldplane_y = a->dir.plane_y;
+		a->dir.plane_y = a->dir.plane_y * cos(-a->plr.rot_spd) - a->dir.plane_x * sin(-a->plr.rot_spd);
+		a->dir.plane_x = a->dir.oldplane_y * sin(-a->plr.rot_spd) + a->dir.plane_x * cos(-a->plr.rot_spd);
 	}
-	if (all->mov.mov[RUN] == OK)
-		all->plr.move_spd = all->mlx.frame_time * 10.0;
-	if (all->mov.mov[RUN] == FALSE)
-		all->plr.move_spd = all->mlx.frame_time * 5.0;
+	if (a->mov.mov[RUN] == OK)
+		a->plr.move_spd = a->mlx.frame_time * 10.0;
+	if (a->mov.mov[RUN] == FALSE)
+		a->plr.move_spd = a->mlx.frame_time * 5.0;
 	return (OK);
 }
 
-int		rc_loop(t_all *all)
+int		rc_loop(t_a *a)
 {
-	key_move(all);
-	all->mlx.x = 0;
-	while (all->mlx.x < all->res.w)
+	key_move(a);
+	a->mlx.x = 0;
+	while (a->mlx.x < a->res.w)
 	{
-		// printf("%f\n", all->dst.sidedst_x);
-		// printf("%c\n", all->map->map[(int)all->plr.pos_y][(int)all->plr.pos_x]);
-		// printf("x = %d start = %d end = %d color %d\n", x, all->img.px_start, all->img.px_end, all->img.color);
+		// printf("%f\n", a->dst.sidedst_x);
+		// printf("%c\n", a->map->map[(int)a->plr.pos_y][(int)a->plr.pos_x]);
+		// printf("x = %d start = %d end = %d color %d\n", x, a->img.px_start, a->img.px_end, a->img.color);
 		
-		rc_dir(all);
-		rc_dst(all);
-		rc_hit(all);
-		rc_line(all);
-		px_vline(all);
-		all->mlx.x++;
+		rc_dir(a);
+		rc_dst(a);
+		rc_hit(a);
+		rc_line(a);
+		px_vline(a);
+		a->mlx.x++;
 	}
-	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->img.img_ptr, 0, 0);
-	mlx_string_put(all->mlx.mlx, all->mlx.win, 20, 20, 0xFFFFFF, ft_itoa(1 / all->mlx.frame_time));
+	mlx_put_image_to_window(a->mlx.mlx, a->mlx.win, a->img.img_ptr, 0, 0);
+	mlx_string_put(a->mlx.mlx, a->mlx.win, 20, 20, 0xFFFFFF, ft_itoa(1 / a->mlx.frame_time));
 	return (OK);
 }
 
-int		raycast(t_all *all)
+int		raycast(t_a *a)
 {
-	all->mlx.mlx = mlx_init();
-	all->mlx.win = mlx_new_window(all->mlx.mlx, all->res.w, all->res.h, "cub3d");
-	all->img.img_ptr = mlx_new_image(all->mlx.mlx, all->res.w, all->res.h);
-	all->img.img = mlx_get_data_addr(all->img.img_ptr, &all->img.bpp, &all->img.size_l, &all->img.endian);
-	mlx_hook(all->mlx.win, 2, (1L<<0), key_press, all);
-	mlx_hook(all->mlx.win, 3, (1L<<1), key_release, all);
-	mlx_loop_hook(all->mlx.mlx, rc_loop, all);
-	mlx_loop(all->mlx.mlx);
+	a->mlx.mlx = mlx_init();
+	a->mlx.win = mlx_new_window(a->mlx.mlx, a->res.w, a->res.h, "cub3d");
+	a->img.img_ptr = mlx_new_image(a->mlx.mlx, a->res.w, a->res.h);
+	a->img.img = mlx_get_data_addr(a->img.img_ptr, &a->img.bpp, &a->img.size_l, &a->img.endian);
+	mlx_hook(a->mlx.win, 2, (1L<<0), key_press, a);
+	mlx_hook(a->mlx.win, 3, (1L<<1), key_release, a);
+	mlx_loop_hook(a->mlx.mlx, rc_loop, a);
+	mlx_loop(a->mlx.mlx);
 	return (OK);
 }
