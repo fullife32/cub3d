@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/26 17:09:11 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/26 18:55:53 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RAYCAST_H
 
 #include "parse.h"
-#include "minilibx_mms/mlx.h"
+#include "../minilibx_mac/mlx.h"
 #include <math.h>
 
 void	rc_dir(t_a *a);

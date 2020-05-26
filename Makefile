@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/05/26 18:02:46 by eassouli         ###   ########.fr        #
+#    Updated: 2020/05/26 19:07:18 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS		=	get_next_line/get_next_line.c\
 				map_parse.c\
 				raycast.c
 
-LIBS		=	libft.a\
+LIBS		=	libft/libft.a\
 				libmlx.dylib
 
 PATH		= srcs/
@@ -32,9 +32,9 @@ NAME		= cub3d
 
 CC			= gcc
 
-FLAGS		= -Wall -Wextra -Werror -I $(HEADER)
+FLAGS		= -g -Wall -Wextra -Werror -I $(HEADER)
 
-HEADER		= include/.
+HEADER		= headers/.
 
 RM			= rm -f
 

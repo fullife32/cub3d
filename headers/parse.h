@@ -6,15 +6,15 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/26 17:09:47 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/26 18:56:03 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 #define PARSE_H
 
-#include "get_next_line/get_next_line.h"
-#include "libft/libft.h"
+#include "../srcs/get_next_line/get_next_line.h"
+#include "../libft/libft.h"
 #include <stdio.h>
 
 # define CUB ".cub"
