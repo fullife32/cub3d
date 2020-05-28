@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/26 17:33:38 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/29 00:40:13 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	parse(int fd, t_a *a)
 		while (line[i] == ' ')
 			i++;
 		if (line[i] == 'R')
-			if (res_parse(line + i, &a->res) == ERR)
+			if (res_parse(line + i, &a->res, &a->mlx) == ERR)
 				return (error(&line, -2));
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W'
 		|| line[i] == 'E' || line[i] == 'F' || line[i] == 'C')

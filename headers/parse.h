@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/26 18:56:03 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/29 00:40:26 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # define R 2
 # define LR 123
 # define RR 124
-# define RUN 257
 
 typedef struct	s_res
 {
@@ -135,7 +134,7 @@ typedef struct	s_a
 
 void	init(t_a *a);
 
-int		res_parse(char *line, t_res *res);
+int		res_parse(char *line, t_res *res, t_mlx *mlx);
 int		parse(int fd, t_a *a);
 
 int		dup_check(char c);

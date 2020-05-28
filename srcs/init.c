@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/26 17:18:10 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/29 00:51:24 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init(t_a *a)
 {
+	a->mlx.mlx = mlx_init();
 	a->res.h = 0;
 	a->res.w = 0;
 	a->txr.f_rgb = -1;
@@ -39,5 +40,4 @@ void	init(t_a *a)
 	a->mov.mov[R] = FALSE;
 	a->mov.mov[LR] = FALSE;
 	a->mov.mov[RR] = FALSE;
-	a->mov.mov[RUN] = FALSE;
 }

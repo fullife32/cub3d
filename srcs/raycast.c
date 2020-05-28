@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/26 17:09:06 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/29 00:50:45 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,10 +172,6 @@ int		key_move(t_a *a)
 		a->dir.plane_y = a->dir.plane_y * cos(-a->plr.rot_spd) - a->dir.plane_x * sin(-a->plr.rot_spd);
 		a->dir.plane_x = a->dir.oldplane_y * sin(-a->plr.rot_spd) + a->dir.plane_x * cos(-a->plr.rot_spd);
 	}
-	if (a->mov.mov[RUN] == OK)
-		a->plr.move_spd = a->mlx.frame_time * 10.0;
-	if (a->mov.mov[RUN] == FALSE)
-		a->plr.move_spd = a->mlx.frame_time * 5.0;
 	return (OK);
 }
 
@@ -203,7 +199,6 @@ int		rc_loop(t_a *a)
 
 int		raycast(t_a *a)
 {
-	a->mlx.mlx = mlx_init();
 	a->mlx.win = mlx_new_window(a->mlx.mlx, a->res.w, a->res.h, "cub3d");
 	a->img.img_ptr = mlx_new_image(a->mlx.mlx, a->res.w, a->res.h);
 	a->img.img = mlx_get_data_addr(a->img.img_ptr, &a->img.bpp, &a->img.size_l, &a->img.endian);

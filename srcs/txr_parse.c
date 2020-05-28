@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 00:32:33 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/26 17:09:35 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/29 00:47:46 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static int	error(int error)
 	if (error == -2)
 		write(1, "Invalid texture argument\n", 25);
 	else if (error == -3)
-		write(1, "Too many arguments\n", 27);
+		write(1, "Too many textures detected\n", 28);
 	else if (error == -4)
 		write(1, "Invalid color\n", 14);
 	else if (error == -5)
-		write(1, "Maocing textures failed\n", 26);
+		write(1, "Mallocing textures failed\n", 26);
 	return (ERR);
 }
 

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/26 17:31:56 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/29 00:55:10 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,18 @@ static int	error(int fd, int error, t_a *a)
 	if (error != ERR)
 		write(1, "Error\n", 7);
 	if (error == MISSING_CUB_FILE_ERR)
-		write(1, "Missing .cub file\n", 19);
+		write(1, ".cub file not found\n", 21);
 	else if (error == NOT_CUB_FILE_ERR)
-		write(1, "The second argument must be a .cub file\n", 41);
+		write(1, "The last argument must be a .cub file\n", 38);
 	if (error == ERR)
 		fp(fd, &a->txr, a);
 	return (ERR);
 }
 
-static int	cub_check(char *av)
+static int	cub_check(int fd, char *av, t_a *a)
 {
 	int	i;
 	int	j;
-	int	fd;
 
 	i = 0;
 	j = 3;
@@ -60,9 +59,13 @@ static int	cub_check(char *av)
 	while (av[i--] == CUB[j] && j != -1)
 		j--;
 	if (j == -1)
-		fd = open(av, O_RDONLY);
+	{
+		if ((fd = open(av, O_RDONLY)) == -1)
+			return (error(fd, MISSING_CUB_FILE_ERR, a));
+	}
 	else
-		fd = -1;
+		if ((fd = -1) == ERR)
+			return (error(fd, NOT_CUB_FILE_ERR, a));
 	return (fd);
 }
 
@@ -72,13 +75,15 @@ int		main(int ac, char **av)
 	t_a		a;
 
 	fd = 0;
-	init(&a);
-	if (ac < 2)
+	if (ac < 2 || ac > 3)
 		return (error(fd, MISSING_CUB_FILE_ERR, &a));
 	else if (ac == 2)
-		fd = cub_check(av[1]);
-	if (fd == -1)
-		return (error(fd, NOT_CUB_FILE_ERR, &a));
+		fd = cub_check(fd, av[1], &a);
+	else if (ac == 3)
+		fd = cub_check(fd, av[2], &a);
+	if (fd == ERR)
+		return (error(fd, ERR, &a));
+	init(&a);
 	if (parse(fd, &a) == ERR)
 		return (error(fd, ERR, &a));
 	// Display infos
