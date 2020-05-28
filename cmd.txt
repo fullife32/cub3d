@@ -17,4 +17,3 @@ Replace in raycast.h :
 # define R 100
 # define LR 65361
 # define RR 65363
-# define RUN 65505

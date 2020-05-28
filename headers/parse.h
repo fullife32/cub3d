@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/29 00:40:26 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/29 01:53:09 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct	s_img
 
 typedef struct	s_mov
 {
-	char	mov[65536];
+	char	mov[70000];
 }				t_mov;
 
 typedef struct	s_a

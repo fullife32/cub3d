@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/05/26 19:28:27 by eassouli         ###   ########.fr        #
+#    Updated: 2020/05/29 01:50:26 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,9 @@ NAME		= cub3d
 
 CC			= gcc
 
-FLAGS		= -g -Wall -Wextra -Werror -I $(HEADER)
+HEADER		= headers
 
-HEADER		= headers/.
+FLAGS		= -g -Wall -Wextra -Werror -I $(HEADER)
 
 RM			= rm -f
 

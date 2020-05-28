@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:33:18 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/29 00:45:54 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/29 01:51:55 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	res_parse(char *line, t_res *res, t_mlx *mlx)
 	line++;
 	while (*line == ' ')
 		line++;
-	mlx_get_screen_size(mlx->mlx, &w, &h);
+	// mlx_get_screen_size(mlx->mlx, &w, &h);
+	w = 20000; //remove
+	h = 20000; //remove
+	(void)mlx; //remove
 	res->w = ft_atoi(line);
 	if (res->w > w)
 		res->w = w;

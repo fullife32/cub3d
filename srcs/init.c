@@ -6,11 +6,12 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/29 00:51:24 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/05/29 01:50:47 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+#include "raycast.h"
 
 void	init(t_a *a)
 {
