@@ -6,13 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/29 00:55:10 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/06/15 19:42:40 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static int	fp(int fd, t_txr *txr, t_a *a)
+static int	fp(int fd, t_txr *txr)
 {
 	if (txr->n)
 		free(txr->n);
@@ -28,7 +28,6 @@ static int	fp(int fd, t_txr *txr, t_a *a)
 		free(txr->f);
 	if (txr->c)
 		free(txr->c);
-	init(a);
 	close (fd);
 	return (ERR);
 }
@@ -37,12 +36,14 @@ static int	error(int fd, int error, t_a *a)
 {
 	if (error != ERR)
 		write(1, "Error\n", 7);
-	if (error == MISSING_CUB_FILE_ERR)
+	if (error == MISSING_CUB_FILE)
 		write(1, ".cub file not found\n", 21);
-	else if (error == NOT_CUB_FILE_ERR)
+	else if (error == NOT_CUB_FILE)
 		write(1, "The last argument must be a .cub file\n", 38);
+	else if (error == MLX_INIT_FAIL)
+		write(1, "Initialization of MLX server failed\n", 37);
 	if (error == ERR)
-		fp(fd, &a->txr, a);
+		fp(fd, &a->txr);
 	return (ERR);
 }
 
@@ -61,11 +62,11 @@ static int	cub_check(int fd, char *av, t_a *a)
 	if (j == -1)
 	{
 		if ((fd = open(av, O_RDONLY)) == -1)
-			return (error(fd, MISSING_CUB_FILE_ERR, a));
+			return (error(fd, MISSING_CUB_FILE, a));
 	}
 	else
 		if ((fd = -1) == ERR)
-			return (error(fd, NOT_CUB_FILE_ERR, a));
+			return (error(fd, NOT_CUB_FILE, a));
 	return (fd);
 }
 
@@ -76,14 +77,15 @@ int		main(int ac, char **av)
 
 	fd = 0;
 	if (ac < 2 || ac > 3)
-		return (error(fd, MISSING_CUB_FILE_ERR, &a));
+		return (error(fd, MISSING_CUB_FILE, &a));
 	else if (ac == 2)
 		fd = cub_check(fd, av[1], &a);
 	else if (ac == 3)
 		fd = cub_check(fd, av[2], &a);
 	if (fd == ERR)
-		return (error(fd, ERR, &a));
-	init(&a);
+		return (error(fd, ERR, &a));	
+	if (init(&a) == ERR)
+		return (error(fd, MLX_INIT_FAIL, &a));
 	if (parse(fd, &a) == ERR)
 		return (error(fd, ERR, &a));
 	// Display infos

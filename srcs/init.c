@@ -6,16 +6,18 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/29 01:50:47 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/06/15 19:44:14 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "raycast.h"
 
-void	init(t_a *a)
+int	init(t_a *a)
 {
-	a->mlx.mlx = mlx_init();
+	if ((a->mlx.mlx = mlx_init()) == NULL)
+		return (ERR);
+	printf("%p", a->mlx.mlx);
 	a->res.h = 0;
 	a->res.w = 0;
 	a->txr.f_rgb = -1;
@@ -41,4 +43,5 @@ void	init(t_a *a)
 	a->mov.mov[R] = FALSE;
 	a->mov.mov[LR] = FALSE;
 	a->mov.mov[RR] = FALSE;
+	return (OK);
 }

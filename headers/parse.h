@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/29 01:53:09 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/06/15 19:33:54 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 # define OK 1
 # define FALSE 0
 # define ERR -1
-# define MISSING_CUB_FILE_ERR -2
-# define NOT_CUB_FILE_ERR -3
+# define MISSING_CUB_FILE -2
+# define NOT_CUB_FILE -3
+# define MLX_INIT_FAIL -4
 
 # define FW 13
 # define BW 1
@@ -132,7 +133,7 @@ typedef struct	s_a
 	t_mov	mov;
 }				t_a;
 
-void	init(t_a *a);
+int		init(t_a *a);
 
 int		res_parse(char *line, t_res *res, t_mlx *mlx);
 int		parse(int fd, t_a *a);
