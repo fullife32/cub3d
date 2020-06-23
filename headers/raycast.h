@@ -6,16 +6,94 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/06/15 19:56:20 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/06/22 16:34:23 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCAST_H
 # define RAYCAST_H
 
-#include "parse.h"
-#include "../minilibx_linux/mlx.h"
 #include <math.h>
+#include "../minilibx_linux/mlx.h"
+
+# define ESC 53
+# define FW 13
+# define BW 1
+# define L 0
+# define R 2
+# define LR 123
+# define RR 124
+
+typedef struct	s_mlx
+{
+	void	*ptr;
+	void	*win;
+	int		x;
+}				t_mlx;
+
+typedef struct	s_plr
+{
+	double	pos_x;
+	double	pos_y;
+	double	move_spd;
+	double	rot_spd;
+}				t_plr;
+
+typedef struct	s_dir
+{
+	double	x;
+	double	y;
+	double	old_x;
+	double	plane_x;
+	double	plane_y;
+	double	oldplane_x;
+	double	cam_x;
+	double	cam_y;
+	double	ray_x;
+	double	ray_y;
+}				t_dir;
+
+typedef struct	s_dst
+{
+	double	side_x;
+	double	side_y;
+	double	delta_x;
+	double	delta_y;
+	double	wall;
+	int		step_x;
+	int		step_y;
+}				t_dst;
+
+typedef struct	s_img
+{
+	int		line_h;
+	int		px_start;
+	int		px_end;
+	int		color;
+	void	*img_ptr;
+	int		bpp;
+	int		size_l;
+	int		endian;
+	char	*img;
+}				t_img;
+
+typedef struct	s_mov
+{
+	char	mov[70000];
+}				t_mov;
+
+typedef struct	s_a
+{
+	t_res	res;
+	t_txr	txr;
+	t_map	map;
+	t_mlx	mlx;
+	t_plr	plr;
+	t_dir	dir;
+	t_dst	dst;
+	t_img	img;
+	t_mov	mov;
+}				t_a;
 
 void	rc_dir(t_a *a);
 void	rc_dst(t_a *a);

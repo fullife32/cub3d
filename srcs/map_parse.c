@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/26 16:42:22 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/06/22 18:00:37 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	add_line(char *line, t_list	**first, t_list	**lst)
 	return (OK);
 }
 
-int	start_p(int y, char *line, t_plr *plr)
+int	start_p(int y, char *line, t_plr *plr, t_dir *dir)
 {
 	int x;
 
@@ -42,23 +42,35 @@ int	start_p(int y, char *line, t_plr *plr)
 		{
 			if (plr->pos_y != -1)
 				return (ERR);
-			plr->pos_y = y + 0.5;
 			plr->pos_x = x + 0.5;
+			plr->pos_y = y + 0.5;
 		}
 		if (line[x] == 'N')
-			plr->dir_y = -1;
+		{
+			dir->y = -1;
+			dir->plane_x = 1;
+		}
 		else if (line[x] == 'S')
-			plr->dir_y = 1;
+		{
+			dir->y = 1;
+			dir->plane_x = -1;
+		}
 		else if (line[x] == 'W')
-			plr->dir_x = -1;
+		{
+			dir->x = -1;
+			dir->plane_y = -1;
+		}
 		else if (line[x] == 'E')
-			plr->dir_x = 1;
+		{
+			dir->x = 1;
+			dir->plane_y = 1;
+		}
 		x++;
 	}
 	return (OK);
 }
 // ajouter checker map (lignes vides/trop d'arguments)
-int	map_parse(int fd, char *line, t_map *map, t_plr *plr)
+int	map_parse(int fd, char *line, t_map *map, t_plr *plr, t_dir *dir)
 {
 	t_list	*first;
 	t_list	*lst;
@@ -82,7 +94,7 @@ int	map_parse(int fd, char *line, t_map *map, t_plr *plr)
 	while (lst != NULL)
 	{
 		map->map[y] = lst->content;
-		if (start_p(y, map->map[y], plr) == ERR)
+		if (start_p(y, map->map[y], plr, dir) == ERR)
 			return (ERR);
 		lst = lst->next;
 		y++;

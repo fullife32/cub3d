@@ -6,16 +6,16 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/06/15 19:33:54 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/06/22 15:50:49 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 #define PARSE_H
 
-#include "../srcs/get_next_line/get_next_line.h"
-#include "../libft/libft.h"
 #include <stdio.h>
+#include "../libft/libft.h"
+#include "../srcs/get_next_line/get_next_line.h"
 
 # define CUB ".cub"
 
@@ -26,12 +26,8 @@
 # define NOT_CUB_FILE -3
 # define MLX_INIT_FAIL -4
 
-# define FW 13
-# define BW 1
-# define L 0
-# define R 2
-# define LR 123
-# define RR 124
+
+# define NOT_VALID_ARG -5
 
 typedef struct	s_res
 {
@@ -61,77 +57,7 @@ typedef struct	s_map
 	int		side;
 }				t_map;
 
-typedef struct	s_mlx
-{
-	void	*mlx;
-	void	*win;
-	int		x;
-	double	frame_time;
-}				t_mlx;
-
-typedef struct	s_plr
-{
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	olddir_y;
-	double	move_spd;
-	double	rot_spd;
-}				t_plr;
-
-typedef struct	s_dir
-{
-	double	plane_y;
-	double	oldplane_y;
-	double	plane_x;
-	double	cam_y;
-	double	cam_x;
-	double	raydir_y;
-	double	raydir_x;
-}				t_dir;
-
-typedef struct	s_dst
-{
-	double	sidedst_y;
-	double	sidedst_x;
-	double	deltadst_y;
-	double	deltadst_x;
-	double	wa_dst;
-	int		step_y;
-	int		step_x;
-}				t_dst;
-
-typedef struct	s_img
-{
-	int		line_h;
-	int		px_start;
-	int		px_end;
-	int		color;
-	void	*img_ptr;
-	int		bpp;
-	int		size_l;
-	int		endian;
-	char	*img;
-}				t_img;
-
-typedef struct	s_mov
-{
-	char	mov[70000];
-}				t_mov;
-
-typedef struct	s_a
-{
-	t_res	res;
-	t_txr	txr;
-	t_map	map;
-	t_mlx	mlx;
-	t_plr	plr;
-	t_dir	dir;
-	t_dst	dst;
-	t_img	img;
-	t_mov	mov;
-}				t_a;
+#include "raycast.h"
 
 int		init(t_a *a);
 
@@ -146,8 +72,8 @@ int		txr_parse(char c, char *line, t_txr *txr);
 int		txr_atoi(char c, char *line, t_txr *txr);
 
 int		add_line(char *line, t_list	**first, t_list	**lst);
-int		start_p(int y, char *line, t_plr *plr);
-int		map_parse(int fd, char *line, t_map *map, t_plr *plr);
+int		start_p(int y, char *line, t_plr *plr, t_dir *dir);
+int		map_parse(int fd, char *line, t_map *map, t_plr *plr, t_dir *dir);
 
 int		raycast(t_a *a);
 
