@@ -16,13 +16,19 @@
 #include <math.h>
 #include "../minilibx_linux/mlx.h"
 
-# define ESC 53
-# define FW 13
-# define BW 1
-# define L 0
-# define R 2
-# define LR 123
-# define RR 124
+# define ESC 65307
+# define FW 119
+# define BW 115
+# define L 97
+# define R 100
+# define LR 65361
+# define RR 65363
+
+# define MOTION_NOTIFY_MASK  (1L << 13),
+# define STRUCTURE_NOTIFY_MASK  (1L << 17)
+
+# define MOTION_NOTIFY_CODE 06
+# define STRUCTURE_NOTIFY_CODE 17
 
 typedef struct	s_mlx
 {
@@ -105,7 +111,9 @@ int		key_release(int key, t_a *a);
 int		key_move(t_a *a);
 
 void	px_vline(t_a *a);
+int		destroy(t_a *a);
 int		rc_loop(t_a *a);
+int		sp_set(t_a *a);
 int		raycast(t_a *a);
 
 # endif

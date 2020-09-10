@@ -11,43 +11,48 @@
 # **************************************************************************** #
 
 SRCS		=	get_next_line/get_next_line.c\
-get_next_line/get_next_line_utils.c\
-cub3d.c\
-init.c\
-parse.c\
-res_parse.c\
-txr_parse.c\
-clr_parse.c\
-map_parse.c\
-raycast.c
+				get_next_line/get_next_line_utils.c\
+				cub3d.c\
+				init.c\
+				parse.c\
+				res_parse.c\
+				txr_parse.c\
+				clr_parse.c\
+				map_parse.c\
+				raycast.c
 
-LIBS		= libft/libft.a\
-libmlx.dylib
+LIBS		=	libft/libft.a\
+				libmlx.a
 
-PATH		= srcs/
+PATH		=	srcs/
 
-OBJS		= $(addprefix $(PATH), $(SRCS:.c=.o))
+OBJS		=	$(addprefix $(PATH), $(SRCS))
 
-NAME		= cub3d
+NAME		=	cub3D
 
-CC			= gcc
+CC			=	/usr/bin/clang
 
-HEADER		= headers
+HEADER		=	headers
 
-FLAGS		= -g -Wall -Wextra -Werror -I $(HEADER)
+FLAGS		=	-g -Wall -Wextra -Werror -I $(HEADER) -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 
-RM			= rm -f
+RM			=	/bin/rm -f
+
+MAKE		=	/usr/bin/make
+
+libft		=	libft
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
+			cd $(LIBFT) && $(MAKE) re && $(MAKE) clean
 			$(CC) -o $(NAME) $(FLAGS) $(OBJS) $(LIBS)
 
 %.o:		%.c
-			$(CC) $(FLAGS) -o $@ -c $<
+			$(CC) $(FLAGS) -o $@
 	
 clean:
-			$(RM) $(OBJS)
+			$(RM) srcs/libft/libft.a
 
 fclean:		clean
 			$(RM) $(NAME)
