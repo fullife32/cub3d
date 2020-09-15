@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/06/22 18:00:37 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/09/15 11:20:16 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	start_p(int y, char *line, t_plr *plr, t_dir *dir)
 				return (ERR);
 			plr->pos_x = x + 0.5;
 			plr->pos_y = y + 0.5;
+			plr->vpos = {y, x};
 		}
 		if (line[x] == 'N')
 		{
@@ -69,7 +70,7 @@ int	start_p(int y, char *line, t_plr *plr, t_dir *dir)
 	}
 	return (OK);
 }
-// ajouter checker map (lignes vides/trop d'arguments)
+
 int	map_parse(int fd, char *line, t_map *map, t_plr *plr, t_dir *dir)
 {
 	t_list	*first;
@@ -103,5 +104,7 @@ int	map_parse(int fd, char *line, t_map *map, t_plr *plr, t_dir *dir)
 	if (plr->pos_y == -1)
 		return (ERR);  // ajouter error position introuvable
 	// ft_lstclear(&first, (void *)ft_lstdelone);
+	if (map_leak(map, plr) == ERR)
+		return (ERR);
 	return (OK);
 }

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "raycast.h" //move
+#include "raycast.h"
 
 int	res_parse(char *line, t_res *res, t_mlx *mlx)
 {

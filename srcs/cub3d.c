@@ -42,6 +42,8 @@ static int	error(int fd, int error, t_a *a)
 		write(1, "The last argument must be a .cub file\n", 38);
 	else if (error == MLX_INIT_FAIL)
 		write(1, "Initialization of MLX server failed\n", 37);
+	else if (error == MUSIC_FILE_FAIL)
+		write(1, "Music file name/path is incorrect\n", 35);
 	if (error == ERR)
 		fp(fd, &a->txr);
 	return (ERR);
@@ -78,16 +80,16 @@ int		main(int ac, char **av)
 	fd = 0;
 	if (ac < 2 || ac > 3)
 		return (error(fd, MISSING_CUB_FILE, &a));
-	else if (ac == 2)
+	else if (ac == 2 || ac == 3)
 		fd = cub_check(fd, av[1], &a);
-	else if (ac == 3)
-		fd = cub_check(fd, av[2], &a);
 	if (fd == ERR)
-		return (error(fd, ERR, &a));	
+		return (error(fd, ERR, &a));
 	if (init(&a) == ERR)
 		return (error(fd, MLX_INIT_FAIL, &a));
 	if (parse(fd, &a) == ERR)
 		return (error(fd, ERR, &a));
+	if (play_music("sounds/bfg10k.wav") == MUSIC_FILE_FAIL)
+		return(error(fd, MUSIC_FILE_FAIL, &a));
 	// Display infos
 	printf("\nRES :\nwidth = %d\nheight = %d\n", a.res.w, a.res.h);
 	printf("\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n", a.txr.n, a.txr.s, a.txr.w, a.txr.e, a.txr.spt);

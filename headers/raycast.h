@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/06/22 16:34:23 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/09/15 11:19:06 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_plr
 {
 	double	pos_x;
 	double	pos_y;
+	t_vec	vpos;
 	double	move_spd;
 	double	rot_spd;
 }				t_plr;
@@ -88,6 +89,28 @@ typedef struct	s_mov
 	char	mov[70000];
 }				t_mov;
 
+typedef struct	s_atx
+{
+	void	*ptr;
+	int		bpp;
+	int		size_l;
+	int		endian;
+	char	*img;
+}				t_atx;
+
+typedef struct	s_test
+{
+	int		texWidth;
+	int		texHeight;
+	int		texNum;
+	double	wallX;
+	int		tex;
+	int		texX;
+	int		texY;
+	double	step;
+	double	texPos;
+}				t_test;
+
 typedef struct	s_a
 {
 	t_res	res;
@@ -99,6 +122,11 @@ typedef struct	s_a
 	t_dst	dst;
 	t_img	img;
 	t_mov	mov;
+	t_atx	ntx;
+	t_atx	stx;
+	t_atx	wtx;
+	t_atx	etx;
+	t_test	test;
 }				t_a;
 
 void	rc_dir(t_a *a);

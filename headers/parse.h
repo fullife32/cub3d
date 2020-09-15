@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/06/22 15:50:49 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/09/15 11:19:18 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ typedef struct	s_map
 	int		hit;
 	int		side;
 }				t_map;
+
+typedef struct	s_vec
+{
+	int		x;
+	int		y;
+}				t_vec;
 
 #include "raycast.h"
 

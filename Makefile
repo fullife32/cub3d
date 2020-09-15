@@ -21,7 +21,7 @@ SRCS		=	get_next_line/get_next_line.c\
 				map_parse.c\
 				raycast.c
 
-LIBS		=	libft/libft.a\
+LIBS		=	srcs/libft/libft.a\
 				libmlx.a
 
 PATH		=	srcs/

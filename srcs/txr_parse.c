@@ -92,7 +92,6 @@ int		txr_parse(char c, char *line, t_txr *txr)
 
 	len = 0;
 	line++;
-	// A (peut etre) supprimer
 	if ((c == 'N' && *line != 'O') || (c == 'W' && *line != 'E')
 	|| (c == 'S' && (*line != ' ' && *line != 'O'))
 	|| (c == 'E' && *line != 'A')
