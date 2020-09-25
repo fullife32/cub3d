@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "stack.h"
 #include "parse.h"
+#include "raycast.h"
 
 // static int	error(int error)
 // {
@@ -44,7 +46,6 @@ int	start_p(int y, char *line, t_plr *plr, t_dir *dir)
 				return (ERR);
 			plr->pos_x = x + 0.5;
 			plr->pos_y = y + 0.5;
-			plr->vpos = {y, x};
 		}
 		if (line[x] == 'N')
 		{

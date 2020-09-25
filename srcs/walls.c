@@ -13,6 +13,18 @@
 #include "parse.h"
 #include "raycast.h"
 
+void	wall_set(t_a *a)
+{	
+	if (a->map.side == 1 && a->dst.step_y == 1)
+		a->img.color = 0xFF0000; //NORD ROUGE
+	else if (a->map.side == 1 && a->dst.step_y == -1)
+		a->img.color = 0x0000FF; //SUD BLEU
+	else if (a->map.side == 0 && a->dst.step_x == -1)
+		a->img.color = 0x00FF00; //EST VERT
+	else if (a->map.side == 0 && a->dst.step_x == 1)
+		a->img.color = 0xFFFFFF; //OUEST BLANC
+}
+
 int		tx_set(t_a *a)
 {
 	a->ntx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.n, &a->img.px_start, &a->img.px_end);

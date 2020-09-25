@@ -41,7 +41,6 @@ typedef struct	s_plr
 {
 	double	pos_x;
 	double	pos_y;
-	t_vec	vpos;
 	double	move_spd;
 	double	rot_spd;
 }				t_plr;
@@ -141,9 +140,9 @@ int		key_release(int key, t_a *a);
 int		key_move(t_a *a);
 
 void	px_vline(t_a *a);
+int		tx_set(t_a *a);
 int		destroy(t_a *a);
 int		rc_loop(t_a *a);
-int		sp_set(t_a *a);
 int		raycast(t_a *a);
 
 # endif

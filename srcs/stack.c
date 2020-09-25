@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/stack.h"
+#include "../headers/stack.h"
 
 t_frame	*stack_init(t_vec pos)
 {

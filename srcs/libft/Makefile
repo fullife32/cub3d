@@ -59,18 +59,18 @@ OBJS		= $(SRCS:.c=.o)
 
 NAME		= libft.a
 
-CC			= gcc
+CC			= /usr/bin/clang
 
 FLAGS		= -Wall -Wextra -Werror -I $(HEADER)
 
 HEADER		= .
 
-RM			= rm -f
+RM			= /bin/rm -f
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	ar rc $(NAME) $(OBJS)
+	/usr/bin/ar rc $(NAME) $(OBJS)
 
 %.o:		%.c
 	$(CC) $(FLAGS) -o $@ -c $<

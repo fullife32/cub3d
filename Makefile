@@ -19,8 +19,8 @@ SRCS		=	get_next_line/get_next_line.c\
 				txr_parse.c\
 				clr_parse.c\
 				map_parse.c\
-				map_cpy.c\
-				floodfill.c\
+				map_leak.c\
+				flood_fill.c\
 				stack.c\
 				raycast.c\
 				raycasting.c\
@@ -47,7 +47,7 @@ RM			=	/bin/rm -f
 
 MAKE		=	/usr/bin/make
 
-libft		=	libft
+LIBFT		=	srcs/libft
 
 all:		$(NAME)
 

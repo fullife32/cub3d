@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "stack.h"
 #include "parse.h"
 #include "raycast.h"
 
@@ -58,10 +59,12 @@ int	map_leak(t_map *map, t_plr *plr)
 {
 	char	**cmap;
 	int		closed;
+	t_vec	vpos;
 
 	if ((cmap = map_cpy(map)) == NULL)
 		return (ERR);
-	closed = flood_fill(cmap, plr->vpos, map->x, map->y);
+	vpos = (t_vec){plr->pos_x - 0.5, plr->pos_y - 0.5};
+	closed = flood_fill(cmap, vpos, map->x, map->y);
 
 	if (closed == ERR)
 	{

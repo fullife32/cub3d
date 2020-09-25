@@ -17,7 +17,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../libft/libft.h"
+#include "../srcs/libft/libft.h"
 #include "../srcs/get_next_line/get_next_line.h"
 
 # define CUB ".cub"
@@ -62,12 +62,6 @@ typedef struct	s_map
 	int		hit;
 	int		side;
 }				t_map;
-
-typedef struct	s_vec
-{
-	int		x;
-	int		y;
-}				t_vec;
 
 #include "raycast.h"
 
