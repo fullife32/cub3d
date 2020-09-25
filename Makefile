@@ -52,7 +52,7 @@ LIBFT		=	srcs/libft
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			cd $(LIBFT) && $(MAKE) re && $(MAKE) clean
+			@cd $(LIBFT) && $(MAKE) re && $(MAKE) clean
 			$(CC) -o $(NAME) $(FLAGS) $(OBJS) $(LIBS)
 
 %.o:		%.c
