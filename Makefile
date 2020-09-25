@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/06/23 14:43:20 by eassouli         ###   ########.fr        #
+#    Updated: 2020/09/25 15:33:50 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,14 @@ SRCS		=	get_next_line/get_next_line.c\
 				txr_parse.c\
 				clr_parse.c\
 				map_parse.c\
-				raycast.c
+				map_cpy.c\
+				floodfill.c\
+				stack.c\
+				raycast.c\
+				raycasting.c\
+				walls.c\
+				keys.c\
+				music.c
 
 LIBS		=	srcs/libft/libft.a\
 				libmlx.a

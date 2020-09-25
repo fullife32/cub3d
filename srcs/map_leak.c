@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/09/15 17:57:13 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/09/25 15:02:26 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ char	**map_cpy(t_map *map)
 
 	line = 0;
 	map_dim(map);
-	if ((cmap = malloc(sizeof(char **) * map->y + 1) == NULL)
+	if ((cmap = malloc(sizeof(char **) * map->y + 1)) == NULL)
 		return (NULL);
 	while (line < map->y)
 	{
 		cmap[line] = ft_strdup(map->map[line]);
 		line++;
 	}
-	m_cp[line] = NULL;
+	cmap[line] = NULL;
 	return (cmap);
 	
 }
@@ -64,9 +64,13 @@ int	map_leak(t_map *map, t_plr *plr)
 	closed = flood_fill(cmap, plr->vpos, map->x, map->y);
 
 	if (closed == ERR)
+	{
+		ft_putstr_fd("--- MAP IS NOT PROPERLY CLOSED ---\n", 1);
 		return (ERR);
+	}
 	for (int z = 0; z < map->y; z++)
 		printf("%s\n", cmap[z]);
 	ft_putstr_fd("--- MAP IS CLOSED ---\n", 1);
+	free_map(cmap);
 	return (OK);
 }

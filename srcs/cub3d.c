@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/06/15 19:42:40 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:52:31 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int		main(int ac, char **av)
 		return (error(fd, MLX_INIT_FAIL, &a));
 	if (parse(fd, &a) == ERR)
 		return (error(fd, ERR, &a));
+	// Creer fonction pour loop musiques
 	if (play_music("sounds/bfg10k.wav") == MUSIC_FILE_FAIL)
 		return(error(fd, MUSIC_FILE_FAIL, &a));
 	// Display infos
