@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/09/25 14:54:33 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/01 15:00:45 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,8 @@ typedef struct	s_atx
 
 typedef struct	s_test
 {
-	int		texWidth;
-	int		texHeight;
-	int		texNum;
+	int		texdim;
+	t_atx	tx;
 	double	wallX;
 	int		tex;
 	int		texX;
@@ -132,7 +131,7 @@ void	rc_dir(t_a *a);
 void	rc_dst(t_a *a);
 void	rc_hit(t_a *a);
 void	rc_line(t_a *a);
-void	wall_set(t_a *a);
+t_atx	wall_set(t_a *a);
 void	free_map(char **map);
 
 int		key_press(int key, t_a *a);
