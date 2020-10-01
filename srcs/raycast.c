@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/09/25 15:10:47 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/09/25 21:27:25 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,36 @@ void	rc_line(t_a *a)
 	a->img.px_end = a->img.line_h / 2 + a->res.h / 2;
 	if (a->img.px_end >= a->res.h)
 		a->img.px_end = a->res.h - 1;
-	wall_set(a);
+	wall_set(a); // Supprimer quand texture pretes
+	// Ajout texture par position du mur et orientation
+	
+	a->test.texNum = a->map.map[a->map.y][a->map.x];
+	if (a->map.side == 0)
+		a->test.wallX = a->plr.pos_y + a->dst.wall * a->dir.y;
+	else
+		a->test.wallX = a->plr.pos_x + a->dst.wall * a->dir.x;
+	a->test.wallX -= floor(a->test.wallX);
+	a->test.texX = (int)(a->test.wallX * (double)a->test.texWidth);
+	if (a->map.side == 0 && a->dir.ray_x > 0)
+		a->test.texX = a->test.texWidth - a->test.texX - 1;
+	if (a->map.side == 1 && a->dir.ray_y < 0)
+		a->test.texX = a->test.texWidth - a->test.texX - 1;
+	a->test.step = 1.0 * a->test.texHeight / a->img.line_h;
+	a->test.texPos = (a->img.px_start - a->res.h / 2 + a->img.line_h / 2) * a->test.step;
 }
+
+           // How much to increase the texture coordinate per screen pixel
+      double step = 1.0 * texHeight / lineHeight;
+      // Starting texture coordinate
+      double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
+      for(int y = drawStart; y<drawEnd; y++)
+      {
+        // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+        int texY = (int)texPos & (texHeight - 1);
+        texPos += step;
+        Uint32 color = texture[texNum][texHeight * texY + texX];
+        //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+        if(side == 1) color = (color >> 1) & 8355711;
+        buffer[y][x] = color;
+      }
+    }
