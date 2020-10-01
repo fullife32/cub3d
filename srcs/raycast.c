@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/01 15:18:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/01 15:38:37 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,5 @@ void	rc_line(t_a *a)
 	if (a->map.side == 1 && a->dir.ray_y < 0)
 		a->test.texX = a->test.texdim - a->test.texX - 1;
 	a->test.step = 1.0 * a->test.texdim / a->img.line_h;
-	a->test.texPos = ((a->img.px_start * a->img.size_l + a->mlx.x * (a->img.bpp / 8)) - a->res.h / 2 + a->img.line_h / 2) * a->test.step;
+	a->test.texPos = (a->img.px_start - a->res.h / 2 + a->img.line_h / 2) * a->test.step;
 }

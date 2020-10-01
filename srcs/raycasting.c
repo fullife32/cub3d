@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/01 15:17:07 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/01 15:41:36 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ void	px_vline(t_a *a)
 	{
 		pos = (a->img.px_start * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
 		a->test.texY = (int)a->test.texPos & (a->test.texdim - 1);
-		a->test.texPos += a->test.step;
-		a->img.color = tx.img[a->test.texdim * a->test.texY + a->test.texX];
+		// a->img.color = tx.img[a->test.texdim * a->test.texY + a->test.texX];
+		a->img.color = tx.img[a->test.texdim * a->test.texX + a->test.texY];
 		*(unsigned int *)(a->img.img + pos) = a->img.color;
+		a->test.texPos += a->test.step;
 		a->img.px_start++;
 	}
 	y = a->img.px_start;
