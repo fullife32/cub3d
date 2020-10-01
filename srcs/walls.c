@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:28:48 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/01 14:35:46 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/01 15:16:25 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ t_atx	wall_set(t_a *a)
 		return (a->stx); //SUD
 	else if (a->map.side == 0 && a->dst.step_x == -1)
 		return (a->etx); //EST
-	else if (a->map.side == 0 && a->dst.step_x == 1)
-		return (a->wtx); //OUEST
+	return (a->wtx); //OUEST
 }
 
 /*void	wall_set(t_a *a)

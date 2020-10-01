@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/01 15:12:20 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/01 15:17:07 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,6 @@ void	px_vline(t_a *a)
 		y++;
 	}
 }
-
-    //   for(int y = drawStart; y<drawEnd; y++)
-    //   {
-    //     // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-    //     int texY = (int)texPos & (texHeight - 1);
-    //     texPos += step;
-    //     Uint32 color = texture[texNum][texHeight * texY + texX];
-    //     //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
-    //     if(side == 1) color = (color >> 1) & 8355711;
-    //     buffer[y][x] = color;
-    //   }
-    // }
-
-
 
 int		destroy(t_a *a)
 {
