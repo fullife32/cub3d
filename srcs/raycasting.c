@@ -15,6 +15,7 @@
 
 void	px_vline(t_a *a)
 {
+	int		c;
 	int		y;
 	int		pos;
 	t_atx	tx;
@@ -31,17 +32,16 @@ void	px_vline(t_a *a)
 	while (a->img.px_start <= a->img.px_end)
 	{
 		pos = (a->img.px_start * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
-		*(unsigned int *)(a->img.img + pos) = a->img.color;
+		*(unsigned int *)(a->img.img + pos) = c;
 		a->img.px_start++;
 	}
 	*/
 	while (a->img.px_start <= a->img.px_end)
 	{
 		pos = (a->img.px_start * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
-		a->test.texY = (int)a->test.texPos & (a->test.texdim - 1);
-		// a->img.color = tx.img[a->test.texdim * a->test.texY + a->test.texX];
-		a->img.color = tx.img[a->test.texdim * a->test.texX + a->test.texY];
-		*(unsigned int *)(a->img.img + pos) = a->img.color;
+		a->test.texY = (int)a->test.texPos & (tx.size_l - 1);
+		c = tx.img[a->test.texY + a->test.texX * (tx.bpp / 8)];
+		*(unsigned int *)(a->img.img + pos) = c;
 		a->test.texPos += a->test.step;
 		a->img.px_start++;
 	}
@@ -76,7 +76,6 @@ int		rc_loop(t_a *a)
 		a->mlx.x++;
 	}
 	mlx_put_image_to_window(a->mlx.ptr, a->mlx.win, a->img.img_ptr, 0, 0);
-	// mlx_string_put(a->mlx.ptr, a->mlx.win, 20, 20, 0xFFFFFF, ft_itoa(1 / 0.008));
 	return (OK);
 }
 

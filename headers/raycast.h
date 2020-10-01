@@ -94,7 +94,7 @@ typedef struct	s_atx
 	int		bpp;
 	int		size_l;
 	int		endian;
-	char	*img;
+	int		*img;
 }				t_atx;
 
 typedef struct	s_test
