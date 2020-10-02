@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/01 15:38:37 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/02 13:58:01 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ void	rc_line(t_a *a)
 	
 	a->test.tx = wall_set(a);
 	if (a->map.side == 0)
-		a->test.wallX = a->plr.pos_y + a->dst.wall * a->dir.y;
+		a->test.wallX = a->plr.pos_y + a->dst.wall + a->dir.y;
 	else if (a->map.side == 1)
-		a->test.wallX = a->plr.pos_x + a->dst.wall * a->dir.x;
+		a->test.wallX = a->plr.pos_x + a->dst.wall + a->dir.x;
 	a->test.wallX -= floor(a->test.wallX);
 	a->test.texX = (int)(a->test.wallX * (double)a->test.texdim);
 	if ((a->map.side == 0 && a->dir.ray_x > 0)
