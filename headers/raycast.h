@@ -102,7 +102,6 @@ typedef struct	s_test
 	int		texdim;
 	t_atx	tx;
 	double	wallX;
-	int		tex;
 	int		texX;
 	int		texY;
 	double	step;

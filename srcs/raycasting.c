@@ -39,8 +39,8 @@ void	px_vline(t_a *a)
 	while (a->img.px_start <= a->img.px_end)
 	{
 		pos = (a->img.px_start * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
-		a->test.texY = (int)a->test.texPos & (tx.size_l - 1);
-		c = tx.img[a->test.texY + a->test.texX * (tx.bpp / 8)];
+		a->test.texY = (int)a->test.texPos & (a->test.texdim - 1);
+		c = tx.img[a->test.texY * (tx.size_l / 4) + a->test.texX * (tx.bpp / 8)];
 		*(unsigned int *)(a->img.img + pos) = c;
 		a->test.texPos += a->test.step;
 		a->img.px_start++;

@@ -51,7 +51,5 @@ int		tx_set(t_a *a)
 	a->wtx.img = (int *)mlx_get_data_addr(a->wtx.ptr, &a->wtx.bpp, &a->etx.size_l, &a->wtx.endian);
 	if (a->ntx.img == 0 || a->stx.img == 0 || a->etx.img == 0 || a->wtx.img == 0)
 		return (ERR);
-	// ft_putstr_fd(a->wtx.img, 1);
-	ft_putstr_fd("\n", 1);
 	return (OK);
 }
