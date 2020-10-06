@@ -107,9 +107,9 @@ void	rc_line(t_a *a)
 	a->tex.wall_x -= floor(a->tex.wall_x);
 	a->tex.x = (int)(a->tex.wall_x * (double)(a->tex.dim));
 	if (a->map.side == 0 && a->dir.ray_x < 0)
-		a->tex.x = a->tex.dim / 4 - a->tex.x - 1;
+		a->tex.x = a->tex.dim - a->tex.x - 1;
 	if (a->map.side == 1 && a->dir.ray_y > 0)
-		a->tex.x = a->tex.dim / 4 - a->tex.x - 1;
+		a->tex.x = a->tex.dim - a->tex.x - 1;
 	a->tex.step = 1.0 * a->tex.dim / a->img.line_h;
 	a->tex.pos = (a->img.px_start - a->res.h / 2 + a->img.line_h / 2) * a->tex.step;
 }
