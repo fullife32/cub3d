@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/02 13:58:01 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/06 16:19:18 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,17 +99,17 @@ void	rc_line(t_a *a)
 		a->img.px_end = a->res.h - 1;
 	// Ajout texture par position du mur et orientation
 	
-	a->test.tx = wall_set(a);
+	a->tex.tx = wall_set(a);
 	if (a->map.side == 0)
-		a->test.wallX = a->plr.pos_y + a->dst.wall * a->dir.ray_y;
+		a->tex.wall_x = a->plr.pos_y + a->dst.wall * a->dir.ray_y;
 	else
-		a->test.wallX = a->plr.pos_x + a->dst.wall * a->dir.ray_x;
-	a->test.wallX -= floor(a->test.wallX);
-	a->test.texX = (int)(a->test.wallX * (double)(a->test.texdim));
+		a->tex.wall_x = a->plr.pos_x + a->dst.wall * a->dir.ray_x;
+	a->tex.wall_x -= floor(a->tex.wall_x);
+	a->tex.x = (int)(a->tex.wall_x * (double)(a->tex.dim));
 	// if (a->map.side == 0 && a->dir.ray_x > 0)
 	// 	a->test.texX = a->test.texdim / 4 - a->test.texX - 1;
 	// if (a->map.side == 1 && a->dir.ray_y < 0)
 	// 	a->test.texX = a->test.texdim / 4 - a->test.texX - 1;
-	a->test.step = 1.0 * a->test.texdim / a->img.line_h;
-	a->test.texPos = (a->img.px_start - a->res.h / 2 + a->img.line_h / 2) * a->test.step;
+	a->tex.step = 1.0 * a->tex.dim / a->img.line_h;
+	a->tex.pos = (a->img.px_start - a->res.h / 2 + a->img.line_h / 2) * a->tex.step;
 }

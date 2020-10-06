@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:28:48 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/01 15:16:25 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/06 16:19:22 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ t_atx	wall_set(t_a *a)
 
 int		tx_set(t_a *a)
 {
-	a->test.texdim = 64;
-	a->ntx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.n, &a->test.texdim, &a->test.texdim);
-	a->stx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.s, &a->test.texdim, &a->test.texdim);
-	a->etx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.e, &a->test.texdim, &a->test.texdim);
-	a->wtx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.w, &a->test.texdim, &a->test.texdim);
+	a->tex.dim = 64;
+	a->ntx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.n, &a->tex.dim, &a->tex.dim);
+	a->stx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.s, &a->tex.dim, &a->tex.dim);
+	a->etx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.e, &a->tex.dim, &a->tex.dim);
+	a->wtx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.w, &a->tex.dim, &a->tex.dim);
 	if (a->ntx.ptr == 0 || a->stx.ptr == 0 || a->etx.ptr == 0 || a->wtx.ptr == 0)
 		return (ERR);
 	a->ntx.img = (int *)mlx_get_data_addr(a->ntx.ptr, &a->ntx.bpp, &a->ntx.size_l, &a->ntx.endian);

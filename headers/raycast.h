@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/01 15:00:45 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/06 16:19:27 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,16 @@ typedef struct	s_atx
 	int		*img;
 }				t_atx;
 
-typedef struct	s_test
+typedef struct	s_tex
 {
-	int		texdim;
+	int		dim;
 	t_atx	tx;
-	double	wallX;
-	int		texX;
-	int		texY;
+	double	wall_x;
+	int		x;
+	int		y;
 	double	step;
-	double	texPos;
-}				t_test;
+	double	pos;
+}				t_tex;
 
 typedef struct	s_a
 {
@@ -123,7 +123,7 @@ typedef struct	s_a
 	t_atx	stx;
 	t_atx	wtx;
 	t_atx	etx;
-	t_test	test;
+	t_tex	tex;
 }				t_a;
 
 void	rc_dir(t_a *a);

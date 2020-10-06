@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/01 15:41:36 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/06 16:19:19 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	px_vline(t_a *a)
 	t_atx	tx;
 
 	y = 0;
-	tx = a->test.tx;
+	tx = a->tex.tx;
 	while (y < a->img.px_start)
 	{
 		pos = (y * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
@@ -39,10 +39,10 @@ void	px_vline(t_a *a)
 	while (a->img.px_start <= a->img.px_end)
 	{
 		pos = (a->img.px_start * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
-		a->test.texY = (int)a->test.texPos & (a->test.texdim - 1);
-		c = tx.img[a->test.texY * (tx.size_l / 4) + a->test.texX];
+		a->tex.y = (int)a->tex.pos & (a->tex.dim - 1);
+		c = tx.img[a->tex.y * (tx.size_l / 4) + a->tex.x];
 		*(unsigned int *)(a->img.img + pos) = c;
-		a->test.texPos += a->test.step;
+		a->tex.pos += a->tex.step;
 		a->img.px_start++;
 	}
 	y = a->img.px_start;
