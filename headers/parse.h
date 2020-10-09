@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/09/25 15:08:12 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/09 15:01:36 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ int		floodfill_map(char *line, int i, char trg, char rep);
 
 int		raycast(t_a *a);
 
-int		play_music(const char *music_name);
+int		play_music();
 
 #endif

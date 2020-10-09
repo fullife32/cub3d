@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/09/25 14:52:31 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/09 15:01:02 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int		main(int ac, char **av)
 	if (parse(fd, &a) == ERR)
 		return (error(fd, ERR, &a));
 	// Creer fonction pour loop musiques
-	// if (play_music("sounds/bfg10k.wav") == MUSIC_FILE_FAIL)
-	// 	return(error(fd, MUSIC_FILE_FAIL, &a));
+	if (play_music() == MUSIC_FILE_FAIL)
+		return(error(fd, MUSIC_FILE_FAIL, &a));
 	// Display infos
 	printf("\nRES :\nwidth = %d\nheight = %d\n", a.res.w, a.res.h);
 	printf("\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n", a.txr.n, a.txr.s, a.txr.w, a.txr.e, a.txr.spt);

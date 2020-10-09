@@ -6,23 +6,14 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:07:34 by eassouli          #+#    #+#             */
-/*   Updated: 2020/09/25 15:07:35 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/09 14:58:12 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int		play_music(const char *music_name)
+int		play_music(void)
 {
-	char	*command;
-
-	if (!(command = ft_strjoin("aplay ", music_name)))
-		return (ERR);
-	else
-	{
-		command = ft_strjoin(command, " &");
-		system(command);
-		free(command);
-		return (OK);
-	}
+	system("sh ./sounds/music.sh & > /dev/null");
+	return (OK);
 }
