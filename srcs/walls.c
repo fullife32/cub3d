@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:28:48 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/06 16:19:22 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/14 18:23:13 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,38 @@
 t_atx	wall_set(t_a *a)
 {	
 	if (a->map.side == 1 && a->dst.step_y == 1)
-		return (a->ntx); //NORD
+		return (a->north_txr); //NORD
 	else if (a->map.side == 1 && a->dst.step_y == -1)
-		return (a->stx); //SUD
+		return (a->south_txr); //SUD
 	else if (a->map.side == 0 && a->dst.step_x == -1)
-		return (a->etx); //EST
-	return (a->wtx); //OUEST
+		return (a->east_txr); //EST
+	return (a->west_txr); //OUEST
 }
-
-/*void	wall_set(t_a *a)
-{	
-	if (a->map.side == 1 && a->dst.step_y == 1)
-		a->img.color = 0xFF0000; //NORD ROUGE
-	else if (a->map.side == 1 && a->dst.step_y == -1)
-		a->img.color = 0x0000FF; //SUD BLEU
-	else if (a->map.side == 0 && a->dst.step_x == -1)
-		a->img.color = 0x00FF00; //EST VERT
-	else if (a->map.side == 0 && a->dst.step_x == 1)
-		a->img.color = 0xFFFFFF; //OUEST BLANC
-}*/
 
 int		tx_set(t_a *a)
 {
 	a->tex.dim = 64;
-	a->ntx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.n, &a->tex.dim, &a->tex.dim);
-	a->stx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.s, &a->tex.dim, &a->tex.dim);
-	a->etx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.e, &a->tex.dim, &a->tex.dim);
-	a->wtx.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.w, &a->tex.dim, &a->tex.dim);
-	if (a->ntx.ptr == 0 || a->stx.ptr == 0 || a->etx.ptr == 0 || a->wtx.ptr == 0)
+	a->north_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.north,
+	&a->tex.dim, &a->tex.dim);
+	a->south_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.south,
+	&a->tex.dim, &a->tex.dim);
+	a->east_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.east,
+	&a->tex.dim, &a->tex.dim);
+	a->west_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.west,
+	&a->tex.dim, &a->tex.dim);
+	if (a->north_txr.ptr == 0 || a->south_txr.ptr == 0 || a->east_txr.ptr == 0
+	|| a->west_txr.ptr == 0)
 		return (ERR);
-	a->ntx.img = (int *)mlx_get_data_addr(a->ntx.ptr, &a->ntx.bpp, &a->ntx.size_l, &a->ntx.endian);
-	a->stx.img = (int *)mlx_get_data_addr(a->stx.ptr, &a->stx.bpp, &a->stx.size_l, &a->stx.endian);
-	a->etx.img = (int *)mlx_get_data_addr(a->etx.ptr, &a->etx.bpp, &a->wtx.size_l, &a->etx.endian);
-	a->wtx.img = (int *)mlx_get_data_addr(a->wtx.ptr, &a->wtx.bpp, &a->etx.size_l, &a->wtx.endian);
-	if (a->ntx.img == 0 || a->stx.img == 0 || a->etx.img == 0 || a->wtx.img == 0)
+	a->north_txr.img = (int *)mlx_get_data_addr(a->north_txr.ptr,
+	&a->north_txr.bpp, &a->north_txr.size_l, &a->north_txr.endian);
+	a->south_txr.img = (int *)mlx_get_data_addr(a->south_txr.ptr,
+	&a->south_txr.bpp, &a->south_txr.size_l, &a->south_txr.endian);
+	a->east_txr.img = (int *)mlx_get_data_addr(a->east_txr.ptr,
+	&a->east_txr.bpp, &a->west_txr.size_l, &a->east_txr.endian);
+	a->west_txr.img = (int *)mlx_get_data_addr(a->west_txr.ptr,
+	&a->west_txr.bpp, &a->east_txr.size_l, &a->west_txr.endian);
+	if (a->north_txr.img == 0 || a->south_txr.img == 0 || a->east_txr.img == 0
+	|| a->west_txr.img == 0)
 		return (ERR);
 	return (OK);
 }

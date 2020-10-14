@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/09 15:01:36 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/14 17:26:43 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ typedef struct	s_res
 
 typedef struct	s_txr
 {
-	char	*n;
-	char	*s;
-	char	*w;
-	char	*e;
-	char	*spt;
-	char	*f;
-	char	*c;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	char	*sprite;
+	char	*floor;
+	char	*ceiling;
 	int		f_rgb;
 	int		c_rgb;
 }				t_txr;

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/06 16:19:27 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/14 19:15:45 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,16 @@ typedef struct	s_tex
 	double	pos;
 }				t_tex;
 
+typedef struct	s_spr
+{
+	double	x;
+	double	y;
+	double	*z_buff;
+	int		*order;
+	double	*dist;
+	int		amount;
+}				t_spr;
+
 typedef struct	s_a
 {
 	t_res	res;
@@ -119,11 +129,13 @@ typedef struct	s_a
 	t_dst	dst;
 	t_img	img;
 	t_mov	mov;
-	t_atx	ntx;
-	t_atx	stx;
-	t_atx	wtx;
-	t_atx	etx;
+	t_atx	north_txr;
+	t_atx	south_txr;
+	t_atx	west_txr;
+	t_atx	east_txr;
+	t_atx	spr_txr;
 	t_tex	tex;
+	t_spr	spr;
 }				t_a;
 
 void	rc_dir(t_a *a);
@@ -142,5 +154,10 @@ int		tx_set(t_a *a);
 int		destroy(t_a *a);
 int		rc_loop(t_a *a);
 int		raycast(t_a *a);
+
+int		sprite_init(t_a *a);
+int		sprite_add(t_spr *spr, double new_dist);
+void	sprite_sort(t_spr *spr);
+void	sprite_free(t_spr *spr);
 
 # endif

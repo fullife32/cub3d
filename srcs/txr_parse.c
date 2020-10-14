@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 00:32:33 by eassouli          #+#    #+#             */
-/*   Updated: 2020/05/29 00:47:46 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/14 17:41:56 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,43 +29,43 @@ static int	error(int error)
 void	txr_cpy(char c, char *line, int len, t_txr *txr)
 {
 	if (c == 'N')
-		ft_strlcpy(txr->n, line, len + 1);
+		ft_strlcpy(txr->north, line, len + 1);
 	else if (c == 'S')
-		ft_strlcpy(txr->s, line, len + 1);
+		ft_strlcpy(txr->south, line, len + 1);
 	else if (c == 'W')
-		ft_strlcpy(txr->w, line, len + 1);
+		ft_strlcpy(txr->west, line, len + 1);
 	else if (c == 'E')
-		ft_strlcpy(txr->e, line, len + 1);
+		ft_strlcpy(txr->east, line, len + 1);
 	else if (c == ' ')
-		ft_strlcpy(txr->spt, line, len + 1);
+		ft_strlcpy(txr->sprite, line, len + 1);
 	else if (c == 'F')
-		ft_strlcpy(txr->f, line, len + 1);
+		ft_strlcpy(txr->floor, line, len + 1);
 	else if (c == 'C')
-		ft_strlcpy(txr->c, line, len + 1);
+		ft_strlcpy(txr->ceiling, line, len + 1);
 }
 
 int		txr_malloc(char c, int len, t_txr *txr)
 {
 	if (c == 'N')
-		if ((txr->n = malloc(sizeof(char) * len + 1)) == NULL)
+		if ((txr->north = malloc(sizeof(char) * len + 1)) == NULL)
 			return (ERR);
 	if (c == 'S')
-		if ((txr->s = malloc(sizeof(char) * len + 1)) == NULL)
+		if ((txr->south = malloc(sizeof(char) * len + 1)) == NULL)
 			return (ERR);
 	if (c == 'W')
-		if ((txr->w = malloc(sizeof(char) * len + 1)) == NULL)
+		if ((txr->west = malloc(sizeof(char) * len + 1)) == NULL)
 			return (ERR);
 	if (c == 'E')
-		if ((txr->e = malloc(sizeof(char) * len + 1)) == NULL)
+		if ((txr->east = malloc(sizeof(char) * len + 1)) == NULL)
 			return (ERR);
 	if (c == ' ')
-		if ((txr->spt = malloc(sizeof(char) * len + 1)) == NULL)
+		if ((txr->sprite = malloc(sizeof(char) * len + 1)) == NULL)
 			return (ERR);
 	if (c == 'F')
-		if ((txr->f = malloc(sizeof(char) * len + 1)) == NULL)
+		if ((txr->floor = malloc(sizeof(char) * len + 1)) == NULL)
 			return (ERR);
 	if (c == 'C')
-		if ((txr->c = malloc(sizeof(char) * len + 1)) == NULL)
+		if ((txr->ceiling = malloc(sizeof(char) * len + 1)) == NULL)
 			return (ERR);
 	return (OK);
 }
@@ -97,8 +97,8 @@ int		txr_parse(char c, char *line, t_txr *txr)
 	|| (c == 'E' && *line != 'A')
 	|| ((c == 'F' || c == 'C') && *line != ' '))
 		return (error(-2));
-	c = (c == 'S' && *line == ' ') ? ' ' : c;
 	c = (c == 'S' && *line == 'O') ? 'S' : c;
+	c = (c == 'S' && *line == ' ') ? ' ' : c;
 	if (dup_check(c) == ERR)
 		return (error(-3));
 	line++;

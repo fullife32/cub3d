@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/06/22 16:34:15 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/14 17:26:51 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	init_txr(t_a *a)
 {
 	a->txr.f_rgb = -1;
 	a->txr.c_rgb = -1;
-	a->txr.n = 0;
-	a->txr.s = 0;
-	a->txr.w = 0;
-	a->txr.e = 0;
-	a->txr.spt = 0;
-	a->txr.f = 0;
-	a->txr.c = 0;
+	a->txr.north = 0;
+	a->txr.south = 0;
+	a->txr.west = 0;
+	a->txr.east = 0;
+	a->txr.sprite = 0;
+	a->txr.floor = 0;
+	a->txr.ceiling = 0;
 }
 
 void	init_dir(t_a *a)
