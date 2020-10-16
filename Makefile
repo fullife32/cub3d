@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/10/14 18:16:33 by eassouli         ###   ########.fr        #
+#    Updated: 2020/10/16 17:00:28 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,11 @@ SRCS		=	get_next_line/get_next_line.c\
 				flood_fill.c\
 				stack.c\
 				raycast.c\
-				raycasting.c\
+				raycast2.c\
+				display.c\
 				walls.c\
 				spr_cfg.c\
+				spr_sort.c\
 				keys.c\
 				music.c
 

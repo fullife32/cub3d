@@ -6,11 +6,12 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/14 19:24:22 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/16 16:37:29 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+#include "raycast.h"
 
 int		sprite_init(t_a *a)
 {
@@ -56,35 +57,30 @@ int		sprite_add(t_spr *spr, double new_dist)
 	return (OK);
 }
 
-void	sprite_sort(t_spr *spr) // create order
+int		sprite_order(t_spr *spr)
 {
 	int		i;
-	int		order_tmp;
-	double	dist_tmp;
 
-	i = 0;
+	if ((spr->order = malloc(sizeof(int) * spr->amount + 1)) == 0)
+		return (ERR);
 	while (i < spr->amount)
 	{
-		if (spr->dist[i] > spr->dist[i + 1])
-		{
-			dist_tmp = spr->dist[i];
-			spr->dist[i] = spr->dist[i + 1];
-			spr->dist[i + 1] = dist_tmp;
-			order_tmp = spr->order[i];
-			spr->order[i] = spr->order[i + 1];
-			spr->order[i + 1] = order_tmp;
-			i = 0;
-		}
+		spr->order[i] = i;
 		i++;
 	}
+	spr->order[i] = '\0';
+	return (OK);
 }
 
 void	sprite_free(t_spr *spr)
 {
 	if (spr->z_buff)
 		free(spr->z_buff);
+	spr->z_buff = 0;
 	if (spr->dist)
 		free(spr->dist);
+	spr->dist = 0;
 	if (spr->order)
 		free(spr->order);
+	spr->order = 0;
 }

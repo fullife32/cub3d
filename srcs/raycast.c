@@ -5,109 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/14 17:48:54 by eassouli         ###   ########.fr       */
+/*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
+/*   Updated: 2020/10/16 17:03:06 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "raycast.h"
 
-void	rc_dir(t_a *a)
+int		destroy(t_a *a)
 {
-	a->dir.cam_x = 2 * a->mlx.x / (double)a->res.w - 1;
-	a->dir.ray_x = a->dir.x + a->dir.plane_x * a->dir.cam_x;
-	a->dir.ray_y = a->dir.y + a->dir.plane_y * a->dir.cam_x;
-	a->map.x = (int)a->plr.pos_x;
-	a->map.y = (int)a->plr.pos_y;
-	if (a->dir.ray_y == 0)
-		a->dst.delta_x = 0;
-	else if (a->dir.ray_x == 0)
-		a->dst.delta_x = 1;
-	else
-		a->dst.delta_x = fabs(1 / a->dir.ray_x);
-	if (a->dir.ray_x == 0)
-		a->dst.delta_y = 0;
-	else if (a->dir.ray_y == 0)
-		a->dst.delta_y = 1;
-	else
-		a->dst.delta_y = fabs(1 / a->dir.ray_y);
+	system("kill -9 $(pidof aplay)");
+	mlx_destroy_window(a->mlx.ptr, a->mlx.win);
+	free_map(a->map.map);
+	exit(OK); // Ne pas juste exit mais return error
 }
 
-void	rc_dst(t_a *a)
+int		rc_loop(t_a *a)
 {
-	if (a->dir.ray_x < 0)
+	key_move(a);
+	a->mlx.x = 0;
+	while (a->mlx.x < a->res.w)
 	{
-		a->dst.step_x = -1;
-		a->dst.side_x = a->plr.pos_x - (double)a->map.x;
-		a->dst.side_x *= a->dst.delta_x;
+		rc_dir(a);
+		rc_dst(a);
+		rc_hit(a);
+		rc_line(a);
+		draw_lines(a);
+		a->mlx.x++;
 	}
-	else
-	{
-		a->dst.step_x = 1;
-		a->dst.side_x = (double)a->map.x + 1.0 - a->plr.pos_x;
-		a->dst.side_x *= a->dst.delta_x;
-	}
-	if (a->dir.ray_y < 0)
-	{
-		a->dst.step_y = -1;
-		a->dst.side_y = a->plr.pos_y - (double)a->map.y;
-		a->dst.side_y *= a->dst.delta_y;
-	}
-	else
-	{
-		a->dst.step_y = 1;
-		a->dst.side_y = (double)a->map.y + 1.0 - a->plr.pos_y;
-		a->dst.side_y *= a->dst.delta_y;
-	}
+	mlx_put_image_to_window(a->mlx.ptr, a->mlx.win, a->img.img_ptr, 0, 0);
+	return (OK);
 }
 
-void	rc_hit(t_a *a)
+int		image_loader(t_a *a)
 {
-	a->map.hit = 0;
-	while (a->map.hit == 0)
-	{
-		if (a->dst.side_x < a->dst.side_y)
-		{
-			a->dst.side_x += a->dst.delta_x;
-			a->map.x += a->dst.step_x;
-			a->map.side = 0;
-		}
-		else
-		{
-			a->dst.side_y += a->dst.delta_y;
-			a->map.y += a->dst.step_y;
-			a->map.side = 1;
-		}
-		if (a->map.map[a->map.y][a->map.x] == '1')
-			a->map.hit = 1;
-	}
+	if (tx_set(a) == ERR)
+		return(ERR);
+	a->mlx.win = mlx_new_window(a->mlx.ptr, a->res.w, a->res.h, "cub3D");
+	a->img.img_ptr = mlx_new_image(a->mlx.ptr, a->res.w, a->res.h);
+	a->img.img = mlx_get_data_addr(a->img.img_ptr, &a->img.bpp, &a->img.size_l, &a->img.endian);
+	return (OK);
 }
 
-void	rc_line(t_a *a)
+int		raycast(t_a *a)
 {
-	if (a->map.side == 0)
-		a->dst.wall = ((double)a->map.x - a->plr.pos_x + (1.0 - a->dst.step_x) / 2) / a->dir.ray_x;
-	else
-		a->dst.wall = ((double)a->map.y - a->plr.pos_y + (1.0 - a->dst.step_y) / 2) / a->dir.ray_y;
-	a->img.line_h = (int)(a->res.h / a->dst.wall);
-	a->img.px_start = -a->img.line_h / 2 + a->res.h / 2;
-	if (a->img.px_start < 0)
-		a->img.px_start = 0;
-	a->img.px_end = a->img.line_h / 2 + a->res.h / 2;
-	if (a->img.px_end >= a->res.h)
-		a->img.px_end = a->res.h - 1;
-	a->tex.tx = wall_set(a);
-	if (a->map.side == 0)
-		a->tex.wall_x = a->plr.pos_y + a->dst.wall * a->dir.ray_y;
-	else
-		a->tex.wall_x = a->plr.pos_x + a->dst.wall * a->dir.ray_x;
-	a->tex.wall_x -= floor(a->tex.wall_x);
-	a->tex.x = (int)(a->tex.wall_x * (double)(a->tex.dim));
-	if (a->map.side == 0 && a->dir.ray_x < 0)
-		a->tex.x = a->tex.dim - a->tex.x - 1;
-	if (a->map.side == 1 && a->dir.ray_y > 0)
-		a->tex.x = a->tex.dim - a->tex.x - 1;
-	a->tex.step = 1.0 * a->tex.dim / a->img.line_h;
-	a->tex.pos = (a->img.px_start - a->res.h / 2 + a->img.line_h / 2) * a->tex.step;
+	image_loader(a);
+	mlx_hook(a->mlx.win, 2, (1L<<0), key_press, a);
+	mlx_hook(a->mlx.win, 3, (1L<<1), key_release, a);
+	mlx_hook(a->mlx.win, 17, (1L<<5), destroy, a); // voir macro (peut etre)
+	mlx_hook(a->mlx.win, STRUCTURE_NOTIFY_CODE, STRUCTURE_NOTIFY_MASK, destroy, a);
+	mlx_loop_hook(a->mlx.ptr, rc_loop, a);
+	mlx_loop(a->mlx.ptr);
+	return (OK);
 }
