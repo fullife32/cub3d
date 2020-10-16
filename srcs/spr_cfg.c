@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/16 16:37:29 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/16 17:07:52 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		sprite_add(t_spr *spr, double new_dist)
 	int		i;
 	double	*dist_tmp;
 
+	i = 0;
 	spr->amount++;
 	if (spr->dist)
 	{
@@ -61,6 +62,7 @@ int		sprite_order(t_spr *spr)
 {
 	int		i;
 
+	i = 0;
 	if ((spr->order = malloc(sizeof(int) * spr->amount + 1)) == 0)
 		return (ERR);
 	while (i < spr->amount)
