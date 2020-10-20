@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/16 17:03:27 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/20 15:16:49 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ typedef struct	s_tex
 
 typedef struct	s_spr
 {
+	int		pos_x;
+	int		pos_y;
 	double	x;
 	double	y;
 	double	*z_buff;
@@ -142,14 +144,18 @@ void	rc_dir(t_a *a);
 void	rc_dst(t_a *a);
 void	rc_hit(t_a *a);
 void	rc_line(t_a *a);
+void	rc_tex(t_a *a);
 t_atx	wall_set(t_a *a);
 void	free_map(char **map);
+
+void	draw_ceiling(t_a *a);
+void	draw_walls(t_a *a);
+void	draw_floor(t_a *a);
 
 int		key_press(int key, t_a *a);
 int		key_release(int key, t_a *a);
 int		key_move(t_a *a);
 
-void	draw_lines(t_a *a);
 int		tx_set(t_a *a);
 int		destroy(t_a *a);
 int		rc_loop(t_a *a);

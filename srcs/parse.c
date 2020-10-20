@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/06/19 17:22:10 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/20 15:31:55 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	parse(int fd, t_a *a)
 	while (get_next_line(fd, &line) > 0)
 	{
 		i = 0;
+		
 		while (line[i] == ' ')
 			i++;
 		if (line[i] == 'R')
@@ -59,9 +60,12 @@ int	parse(int fd, t_a *a)
 			if (dup_check('c') != 8)
 				return (error(&line, -3));
 			if (map_parse(fd, line, &a->map, &a->plr, &a->dir) == ERR)
-				return (error(&line, ERR));
+				return (error(&line, ERR)); // add error if empty lines then something again
 			else
+			{
+				sprite_list(a);
 				return (OK);
+			}
 		}
 		else if (line[i] != ' ' && line[i])
 			return (error(&line, NOT_VALID_ARG));

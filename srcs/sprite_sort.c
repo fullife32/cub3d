@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:37:40 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/16 16:45:55 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/20 14:21:13 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sprite_sort(t_spr *spr)
 {
 	int	i;
 	int	j;
-	int	min;
+	int	max;
 
 	i = 0;
 	while (i < spr->amount - 1)
@@ -42,10 +42,10 @@ void	sprite_sort(t_spr *spr)
 		j = i + 1;
 		while (j < spr->amount)
 		{
-			if (spr->dist[j] < spr->dist[min])
-				min = j;
+			if (spr->dist[j] > spr->dist[max])
+				max = j;
 		}
-		sprite_swap(spr, min, i);
+		sprite_swap(spr, max, i);
 		i++;
 	}
 }

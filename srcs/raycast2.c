@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   raycast2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/14 17:48:54 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/20 14:25:26 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ void	rc_line(t_a *a)
 	a->img.px_end = a->img.line_h / 2 + a->res.h / 2;
 	if (a->img.px_end >= a->res.h)
 		a->img.px_end = a->res.h - 1;
+}
+
+void	rc_tex(t_a *a)
+{
 	a->tex.tx = wall_set(a);
 	if (a->map.side == 0)
 		a->tex.wall_x = a->plr.pos_y + a->dst.wall * a->dir.ray_y;
@@ -110,4 +114,10 @@ void	rc_line(t_a *a)
 		a->tex.x = a->tex.dim - a->tex.x - 1;
 	a->tex.step = 1.0 * a->tex.dim / a->img.line_h;
 	a->tex.pos = (a->img.px_start - a->res.h / 2 + a->img.line_h / 2) * a->tex.step;
+	a->spr.z_buff[a->mlx.x] = a->dst.wall;
+}
+
+int		rc_spr(t_a *a)
+{
+	
 }

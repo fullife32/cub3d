@@ -1,17 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spr_cfg.c                                          :+:      :+:    :+:   */
+/*   sprite_cfg.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/16 17:07:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/20 15:42:33 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "raycast.h"
+
+int		sprite_list(t_a *a)
+{
+	
+}
 
 int		sprite_init(t_a *a)
 {
@@ -23,7 +28,7 @@ int		sprite_init(t_a *a)
 	&a->spr_txr.bpp, &a->spr_txr.size_l, &a->spr_txr.endian);
 	if (a->spr_txr.img == 0)
 		return (ERR);
-	if ((a->spr.z_buff = malloc(sizeof(double) * (a->res.w + 1))) == 0)
+	if ((a->spr.z_buff = malloc(sizeof(double) * (a->res.w + 1))) == NULL)
 		return (ERR);
 	a->spr.amount = 0; //maybe change place
 	return (OK);
@@ -38,7 +43,7 @@ int		sprite_add(t_spr *spr, double new_dist)
 	spr->amount++;
 	if (spr->dist)
 	{
-		if ((dist_tmp = malloc(sizeof(double) * (spr->amount + 1))) == 0)
+		if ((dist_tmp = malloc(sizeof(double) * (spr->amount + 1))) == NULL)
 			return (ERR);
 		while (i < spr->amount - 1)
 		{
@@ -49,7 +54,7 @@ int		sprite_add(t_spr *spr, double new_dist)
 	}
 	else
 	{
-		if ((dist_tmp = malloc(sizeof(double) * (spr->amount + 1))) == 0)
+		if ((dist_tmp = malloc(sizeof(double) * (spr->amount + 1))) == NULL)
 			return (ERR);
 	}
 	dist_tmp[i++] = new_dist;
@@ -63,7 +68,7 @@ int		sprite_order(t_spr *spr)
 	int		i;
 
 	i = 0;
-	if ((spr->order = malloc(sizeof(int) * spr->amount + 1)) == 0)
+	if ((spr->order = malloc(sizeof(int) * spr->amount + 1)) == NULL)
 		return (ERR);
 	while (i < spr->amount)
 	{

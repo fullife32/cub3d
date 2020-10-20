@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:05:04 by eassouli          #+#    #+#             */
-/*   Updated: 2020/09/25 15:14:19 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/20 15:45:35 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int		key_press(int key, t_a *a)
 {
-	// ft_putnbr_fd(key, 1);
 	a->mov.mov[key] = OK;
 	return (OK);
 }
