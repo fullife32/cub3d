@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/10/27 11:39:27 by eassouli         ###   ########.fr        #
+#    Updated: 2020/10/27 11:42:02 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCS		=	get_next_line/get_next_line.c\
 				parse/parse_color.c\
 				parse/parse_map.c\
 				parse/parse_resolution.c\
-				parseparse_texture.c\
+				parse/parse_texture.c\
 				parse/parse.c\
 				sprite/sprite_list.c\
 				sprite/sprite_sort.c\
