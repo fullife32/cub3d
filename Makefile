@@ -6,19 +6,22 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/10/20 15:42:02 by eassouli         ###   ########.fr        #
+#    Updated: 2020/10/27 11:39:27 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
+				parse/parse_color.c\
+				parse/parse_map.c\
+				parse/parse_resolution.c\
+				parseparse_texture.c\
+				parse/parse.c\
+				sprite/sprite_list.c\
+				sprite/sprite_sort.c\
+				sprite/sprite.c\
 				cub3d.c\
 				init.c\
-				parse.c\
-				res_parse.c\
-				txr_parse.c\
-				clr_parse.c\
-				map_parse.c\
 				map_leak.c\
 				flood_fill.c\
 				stack.c\
@@ -26,8 +29,6 @@ SRCS		=	get_next_line/get_next_line.c\
 				raycast2.c\
 				display.c\
 				walls.c\
-				sprite_cfg.c\
-				sprite_sort.c\
 				keys.c\
 				music.c
 

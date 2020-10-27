@@ -6,17 +6,12 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/20 15:42:33 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/27 11:29:55 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "raycast.h"
-
-int		sprite_list(t_a *a)
-{
-	
-}
 
 int		sprite_init(t_a *a)
 {
@@ -81,6 +76,12 @@ int		sprite_order(t_spr *spr)
 
 void	sprite_free(t_spr *spr)
 {
+	if (spr->pos_x)
+		free(spr->pos_x);
+	spr->pos_x = 0;
+	if (spr->pos_y)
+		free(spr->pos_y);
+	spr->pos_y = 0;
 	if (spr->z_buff)
 		free(spr->z_buff);
 	spr->z_buff = 0;
