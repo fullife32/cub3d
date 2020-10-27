@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/27 12:09:26 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/27 12:14:58 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,5 @@ int	init(t_a *a)
 	init_dir(a);
 	init_plr(a);
 	init_mov(a);
-	if (sprite_init(a) == ERR)
-		return (ERR);	
 	return (OK);
 }
