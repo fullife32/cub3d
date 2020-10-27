@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite_cfg.c                                       :+:      :+:    :+:   */
+/*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/27 11:29:55 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/27 12:08:42 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		sprite_init(t_a *a)
 		return (ERR);
 	if ((a->spr.z_buff = malloc(sizeof(double) * (a->res.w + 1))) == NULL)
 		return (ERR);
-	a->spr.amount = 0; //maybe change place
+	a->spr.amount = 0;
 	return (OK);
 }
 

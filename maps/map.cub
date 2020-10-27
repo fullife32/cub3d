@@ -5,7 +5,7 @@ SO ./textures/walls/purplestone.xpm
 WE ./textures/walls/greystone.xpm
 EA ./textures/walls/bluestone.xpm
 
-S ./textures/sprites/sprite.xpm
+S ./textures/sprites/barrel.xpm
 F 112,128,144
 C 0,191,255
 
