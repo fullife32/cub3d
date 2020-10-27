@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/27 11:23:53 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/27 11:43:58 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,10 +160,5 @@ int		tx_set(t_a *a);
 int		destroy(t_a *a);
 int		rc_loop(t_a *a);
 int		raycast(t_a *a);
-
-int		sprite_init(t_a *a);
-int		sprite_add(t_spr *spr, double new_dist);
-void	sprite_sort(t_spr *spr);
-void	sprite_free(t_spr *spr);
 
 # endif
