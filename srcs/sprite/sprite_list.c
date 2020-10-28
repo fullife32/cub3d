@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 11:30:07 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 16:32:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 16:43:42 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	sprite_pos(t_a *a)
 int		sprite_list(t_a *a)
 {
 	sprite_count(a);
-	if ((a->spr.pos_x = malloc(sizeof(int) * (a->spr.amount + 1))) == NULL)
+	if ((a->spr.pos_x = malloc(sizeof(double) * (a->spr.amount + 1))) == NULL)
 		return (ERR);
-	if ((a->spr.pos_y = malloc(sizeof(int) * (a->spr.amount + 1))) == NULL)
+	if ((a->spr.pos_y = malloc(sizeof(double) * (a->spr.amount + 1))) == NULL)
 		return (ERR);
 	sprite_pos(a);
 	return (OK);

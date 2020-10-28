@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 14:29:29 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 16:42:34 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ typedef struct	s_tex
 
 typedef struct	s_spr
 {
-	int		*pos_x;
-	int		*pos_y;
+	double	*pos_x;
+	double	*pos_y;
 	double	*z_buff;
 	int		*order;
 	double	*dist;
