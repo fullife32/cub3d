@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 14:25:15 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 15:11:46 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 15:18:56 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	sprite_raycast(t_a *a)
 	i = 0;
 	sprite_dist(a);
 	sprite_sort(&a->spr);
-	while (i < a->spr.amount - 1)
+	while (i < a->spr.amount)
 	{
 		a->spr.spriteX = a->spr.pos_x[a->spr.order[i]] - a->plr.pos_x;
 		a->spr.spriteY = a->spr.pos_y[a->spr.order[i]] - a->plr.pos_y;
