@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 11:30:07 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 12:44:43 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 12:56:25 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		sprite_init(t_a *a)
 		return (ERR);
 	if ((a->spr.order = malloc(sizeof(int) * a->spr.amount + 1)) == NULL)
 		return (ERR);
-	a->spr.amount = 0;
 	return (OK);
 }
 
@@ -39,6 +38,7 @@ void	sprite_count(t_a *a)
 	int	x;
 
 	y = 0;
+	a->spr.amount = 0;
 	while (a->map.map[y])
 	{
 		x = 0;
@@ -81,8 +81,6 @@ void	sprite_pos(t_a *a)
 
 int		sprite_list(t_a *a)
 {
-	int	count;
-
 	sprite_count(a);
 	if ((a->spr.pos_x = malloc(sizeof(int) * (a->spr.amount + 1))) == NULL)
 		return (ERR);
