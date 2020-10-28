@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 14:35:58 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 16:09:13 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		rc_loop(t_a *a)
 		draw_floor(a);
 		a->mlx.x++;
 	}
-	sprite_raycast(a);
+	// sprite_raycast(a);
 	mlx_put_image_to_window(a->mlx.ptr, a->mlx.win, a->img.img_ptr, 0, 0);
 	return (OK);
 }
