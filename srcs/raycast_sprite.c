@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 14:25:15 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 15:02:54 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 15:07:39 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ void	sprite_raycast(t_a *a)
 	{
 		a->spr.spriteX = a->spr.pos_x[a->spr.order[i]] - a->plr.pos_x;
 		a->spr.spriteY = a->spr.pos_y[a->spr.order[i]] - a->plr.pos_y;
-		a->spr.invDet = 1.0;
-		// a->spr.invDet = 1.0 / (a->dir.plane_x * a->dir.y
-		// - a->dir.x * a->dir.plane_y);
+		a->spr.invDet = 1.0 / (a->dir.plane_x * a->dir.y
+		- a->dir.x * a->dir.plane_y);
 		a->spr.transformX = a->spr.invDet * (a->dir.y * a->spr.spriteX
 		- a->dir.x * a->spr.spriteY);
 		a->spr.transformY = a->spr.invDet * (-a->dir.plane_y * a->spr.spriteX
