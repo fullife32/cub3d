@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/27 11:47:09 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 12:52:11 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	rc_tex(t_a *a)
 	a->spr.z_buff[a->mlx.x] = a->dst.wall;
 }
 
-// int		rc_spr(t_a *a)
-// {
-	
-// }
+void	rc_spr(t_a *a)
+{
+	sprite_dist(a);
+}

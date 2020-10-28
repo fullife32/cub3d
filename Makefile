@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/10/27 11:42:02 by eassouli         ###   ########.fr        #
+#    Updated: 2020/10/28 12:46:43 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ SRCS		=	get_next_line/get_next_line.c\
 				parse/parse_texture.c\
 				parse/parse.c\
 				sprite/sprite_list.c\
-				sprite/sprite_sort.c\
-				sprite/sprite.c\
+				sprite/sprite_dist.c\
 				cub3d.c\
 				init.c\
 				map_leak.c\

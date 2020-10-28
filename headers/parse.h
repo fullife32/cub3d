@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/27 11:51:45 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 12:44:04 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,9 @@ int		raycast(t_a *a);
 
 int		play_music();
 
-int		sprite_count(t_a *a);
+int		sprite_init(t_a *a);
+void	sprite_count(t_a *a);
 void	sprite_pos(t_a *a);
 int		sprite_list(t_a *a);
-
-void	sprite_swap(t_spr *spr, int min, int i);
-void	sprite_sort(t_spr *spr);
-
-int		sprite_init(t_a *a);
-int		sprite_add(t_spr *spr, double new_dist);
-int		sprite_order(t_spr *spr);
-void	sprite_free(t_spr *spr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/27 11:43:58 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 12:51:50 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,11 @@ void	rc_dst(t_a *a);
 void	rc_hit(t_a *a);
 void	rc_line(t_a *a);
 void	rc_tex(t_a *a);
+void	rc_spr(t_a *a);
+
 t_atx	wall_set(t_a *a);
+int		tx_set(t_a *a);
+
 void	free_map(char **map);
 
 void	draw_ceiling(t_a *a);
@@ -156,9 +160,13 @@ int		key_press(int key, t_a *a);
 int		key_release(int key, t_a *a);
 int		key_move(t_a *a);
 
-int		tx_set(t_a *a);
 int		destroy(t_a *a);
 int		rc_loop(t_a *a);
 int		raycast(t_a *a);
+
+void	sprite_swap(t_spr *spr, int min, int i);
+void	sprite_sort(t_spr *spr);
+void	sprite_dist(t_a *a);
+void	sprite_free(t_spr *spr);
 
 # endif
