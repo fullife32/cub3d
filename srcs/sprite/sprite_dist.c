@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 13:31:09 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 14:03:41 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	sprite_dist(t_a *a)
 	}
 	a->spr.dist[i] = '\0';
 	a->spr.order[i] = '\0';
-	sprite_sort(&a->spr);
 }
 
 void	sprite_free(t_spr *spr)
