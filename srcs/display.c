@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:57:15 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 16:05:41 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 16:12:05 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	draw_sprite(t_a *a)
 				d = y * 256 - a->res.h * 128 + a->spr.spriteHeight * 128;
 				a->tex.y = ((d * a->tex.dim) / a->spr.spriteHeight) / 256;
 				color = a->spr_txr.img[a->tex.y * (a->spr_txr.size_l) + a->tex.x];
-				if ((color & 0x000000) != 0)
+				if ((color & 0xFFFFFF) != 0)
 					*(unsigned int *)(a->img.img + pos) = color;
 				y++;
 			}
