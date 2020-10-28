@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 14:25:15 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 15:10:47 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 15:11:46 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	sprite_raycast(t_a *a)
 		a->spr.spriteY = a->spr.pos_y[a->spr.order[i]] - a->plr.pos_y;
 		a->spr.invDet = 1.0 / (a->dir.plane_x * a->dir.y
 		- a->dir.x * a->dir.plane_y);
-		a->spr.transformY = a->spr.invDet * (a->dir.y * a->spr.spriteX
+		a->spr.transformX = a->spr.invDet * (a->dir.y * a->spr.spriteX
 		- a->dir.x * a->spr.spriteY);
-		a->spr.transformX = a->spr.invDet * (-a->dir.plane_y * a->spr.spriteX
+		a->spr.transformY = a->spr.invDet * (-a->dir.plane_y * a->spr.spriteX
 		+ a->dir.plane_x * a->spr.spriteY);
 		a->spr.spriteScreenX = (int)((a->res.w / 2)
 		* (1 + a->spr.transformX / a->spr.transformY));
