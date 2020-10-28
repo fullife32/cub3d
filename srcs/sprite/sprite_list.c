@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 11:30:07 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 16:20:24 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 16:20:54 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	sprite_pos(t_a *a)
 		{
 			if (a->map.map[y][x] == '2')
 			{
-				a->spr.pos_x[i] = x + 0.5;
-				a->spr.pos_y[i] = y + 0.5;
+				a->spr.pos_x[i] = x - 0.5;
+				a->spr.pos_y[i] = y - 0.5;
 				i++;
 			}
 			x++;
