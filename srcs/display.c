@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:57:15 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 16:22:59 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 16:39:10 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	draw_sprite(t_a *a)
 	stripe = a->spr.drawStartX;
 	while (stripe < a->spr.drawEndX)
 	{
-		a->tex.x = (int)(256 * (stripe - (-a->spr.spriteWidth / 2
+		a->tex.x = (256 * (stripe - (-a->spr.spriteWidth / 2
 		+ a->spr.spriteScreenX)) * a->tex.dim / a->spr.spriteWidth) / 256;
 		if (a->spr.transformY > 0 && stripe > 0 && stripe < a->res.w
 		&& a->spr.transformY < a->spr.z_buff[stripe])

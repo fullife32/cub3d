@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 16:36:58 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 16:37:50 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	sprite_dist(t_a *a)
 	i = 0;
 	while (i < a->spr.amount)
 	{
-		a->spr.dist[i] = (a->map.x - a->spr.pos_x[i])
-		* (a->map.x - a->spr.pos_x[i]) + (a->map.y - a->spr.pos_y[i])
-		* (a->map.y - a->spr.pos_y[i]);
+		a->spr.dist[i] = (a->plr.pos_x - a->spr.pos_x[i])
+		* (a->plr.pos_x - a->spr.pos_x[i]) + (a->plr.pos_y - a->spr.pos_y[i])
+		* (a->plr.pos_y - a->spr.pos_y[i]);
 		a->spr.order[i] = i;
 		i++;
 	}
