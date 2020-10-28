@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 21:00:24 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 21:08:34 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ typedef struct	s_tex
 	int		dim;
 	t_atx	tx;
 	double	wall_x;
-	double	x;
-	double	y;
+	int		x;
+	int		y;
 	double	step;
 	double	pos;
 }				t_tex;
