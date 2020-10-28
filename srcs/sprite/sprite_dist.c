@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 12:59:57 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/28 13:02:50 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	sprite_sort(t_spr *spr)
 		{
 			if (spr->dist[j] > spr->dist[max])
 				max = j;
+			j++;
 		}
 		sprite_swap(spr, max, i);
 		i++;
