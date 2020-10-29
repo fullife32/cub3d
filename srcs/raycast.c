@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 14:38:37 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 14:42:20 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		rc_loop(t_a *a)
 	{
 		rec_px(a);
 		close(a->bmp.fd);
-		destroy(&a);
+		destroy(a);
 		return (OK);
 	}
 	mlx_put_image_to_window(a->mlx.ptr, a->mlx.win, a->img.img_ptr, 0, 0);
