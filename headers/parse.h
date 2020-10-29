@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 12:44:04 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 14:36:34 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "../srcs/get_next_line/get_next_line.h"
 
 # define CUB ".cub"
+# define SAVE "--save"
 
 # define OK 1
 # define FALSE 0
@@ -30,6 +31,7 @@
 # define MLX_INIT_FAIL -4
 # define MAP_NOT_CLOSED -5
 # define MUSIC_FILE_FAIL -6
+# define BMP_FAIL -7
 
 
 # define NOT_VALID_ARG -10

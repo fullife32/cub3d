@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 21:08:34 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 14:26:25 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,20 @@ typedef struct	s_spr
 	int		drawEndX;
 }				t_spr;
 
+typedef struct	s_bmp
+{
+	int		fd;
+	int		sign;
+	int		size;
+	int		rsv;
+	int		offset;
+	int		dib_size_h;
+	int		dib_height;
+	int		dib_width;
+	int		dib_clr_pln;
+	int		dib_bpp;
+}				t_bmp;
+
 typedef struct	s_a
 {
 	t_res	res;
@@ -149,6 +163,7 @@ typedef struct	s_a
 	t_atx	spr_txr;
 	t_tex	tex;
 	t_spr	spr;
+	t_bmp	bmp;
 }				t_a;
 
 void	rc_dir(t_a *a);
@@ -183,5 +198,9 @@ void	sprite_free(t_spr *spr);
 void	sprite_height(t_a *a);
 void	sprite_width(t_a *a);
 void	sprite_raycast(t_a *a);
+
+void	init_bmp(t_a *a);
+int		rec_bmp_h(t_a *a);
+int		rec_px(t_a *a);
 
 # endif

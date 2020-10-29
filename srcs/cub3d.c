@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/14 17:26:42 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 14:40:28 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,15 @@ static int	cub_check(int fd, char *av, t_a *a)
 	return (fd);
 }
 
+int		save_check(char *av, t_a *a)
+{
+	if (av != SAVE)
+		return (ERR);
+	if (rec_bmp_h(a) != OK)
+		return (BMP_FAIL);
+	return (OK);
+}
+
 int		main(int ac, char **av)
 {
 	int		fd;
@@ -88,9 +97,15 @@ int		main(int ac, char **av)
 		return (error(fd, MLX_INIT_FAIL, &a));
 	if (parse(fd, &a) == ERR)
 		return (error(fd, ERR, &a));
+	if (ac == 3)
+	{
+		if ((save_check(av[2], &a)) != OK)
+			return (BMP_FAIL);
+	}
 	// Creer fonction pour loop musiques
 	if (play_music() == MUSIC_FILE_FAIL)
 		return(error(fd, MUSIC_FILE_FAIL, &a));
+
 	// Display infos
 	printf("\nRES :\nwidth = %d\nheight = %d\n", a.res.w, a.res.h);
 	printf("\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n", a.txr.north, a.txr.south, a.txr.west, a.txr.east, a.txr.sprite);
@@ -100,6 +115,7 @@ int		main(int ac, char **av)
 	for (int i = 0; a.map.map[i] != NULL; i++)
 		printf("|%s| %d\n", a.map.map[i], i);
 	// Display infos
+	
 	raycast(&a);
 	close(fd);
 	return (0);

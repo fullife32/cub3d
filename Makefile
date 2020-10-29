@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/10/28 14:28:41 by eassouli         ###   ########.fr        #
+#    Updated: 2020/10/29 14:41:35 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS		=	get_next_line/get_next_line.c\
 				display.c\
 				walls.c\
 				keys.c\
-				music.c
+				music.c\
+				bitmap.c
 
 LIBS		=	srcs/libft/libft.a\
 				libmlx.a
