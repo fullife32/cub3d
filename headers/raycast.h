@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 16:43:53 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 18:36:33 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define LR 65361
 # define RR 65363
 
-# define MOTION_NOTIFY_MASK  (1L << 13),
-# define STRUCTURE_NOTIFY_MASK  (1L << 17)
+# define MOTION_NOTIFY_MASK (1L << 13),
+# define STRUCTURE_NOTIFY_MASK (1L << 17)
 
 # define MOTION_NOTIFY_CODE 06
 # define STRUCTURE_NOTIFY_CODE 17
@@ -184,6 +184,10 @@ void	draw_sprite(t_a *a);
 
 int		key_press(int key, t_a *a);
 int		key_release(int key, t_a *a);
+
+void	key_front(t_a *a);
+void	key_side(t_a *a);
+void	key_rotate(t_a *a);
 int		key_move(t_a *a);
 
 int		destroy(t_a *a);
