@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 16:40:07 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:40:48 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		main(int ac, char **av)
 		printf("|%s| %d\n", a.map.map[i], i);
 	// Display infos
 	raycast(&a);
-	image_loader(a);
+	image_loader(&a);
 	mlx_hook(a.mlx.win, 2, (1L<<0), key_press, &a);
 	mlx_hook(a.mlx.win, 3, (1L<<1), key_release, &a);
 	mlx_hook(a.mlx.win, 17, (1L<<5), destroy, &a); // voir macro (peut etre)

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 16:39:26 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:40:55 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ int		image_loader(t_a *a)
 
 int		raycast(t_a *a)
 {
-	
+	(void)a;
 	return (OK);
 }
