@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 14:40:28 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 14:46:20 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,15 @@ static int	cub_check(int fd, char *av, t_a *a)
 
 int		save_check(char *av, t_a *a)
 {
-	if (av != SAVE)
-		return (ERR);
+	int	i;
+
+	i = 0;
+	while (SAVE[i] && av[i])
+	{
+		if (SAVE[i] != av[i])
+			return (BMP_FAIL);
+		i++;
+	}
 	if (rec_bmp_h(a) != OK)
 		return (BMP_FAIL);
 	return (OK);
