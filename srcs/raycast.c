@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 16:35:16 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:39:26 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,6 @@ int		image_loader(t_a *a)
 
 int		raycast(t_a *a)
 {
-	image_loader(a);
-	mlx_hook(a->mlx.win, 2, (1L<<0), key_press, a);
-	mlx_hook(a->mlx.win, 3, (1L<<1), key_release, a);
-	mlx_hook(a->mlx.win, 17, (1L<<5), destroy, a); // voir macro (peut etre)
-	mlx_hook(a->mlx.win, STRUCTURE_NOTIFY_CODE, STRUCTURE_NOTIFY_MASK, destroy, a);
-	mlx_loop_hook(a->mlx.ptr, rc_loop, a);
-	mlx_loop(a->mlx.ptr);
+	
 	return (OK);
 }
