@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/10/29 18:37:08 by eassouli         ###   ########.fr        #
+#    Updated: 2020/10/29 18:39:19 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS		=	get_next_line/get_next_line.c\
 				display.c\
 				walls.c\
 				keys_move.c\
-				keys_press.c\
+				keys_bind.c\
 				music.c\
 				bitmap.c
 
