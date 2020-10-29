@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 14:26:25 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:43:53 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ int		key_move(t_a *a);
 int		destroy(t_a *a);
 int		rc_loop(t_a *a);
 int		raycast(t_a *a);
+int		image_loader(t_a *a);
 
 void	sprite_swap(t_spr *spr, int min, int i);
 void	sprite_sort(t_spr *spr);
