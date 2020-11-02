@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/02 16:52:45 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/02 17:17:21 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int		destroy(t_a *a)
 {
-	system("kill -9 $(pidof aplay)");
+	// system("kill -9 $(pidof aplay)");
 	mlx_destroy_window(a->mlx.ptr, a->mlx.win);
 	free_map(a->map.map);
 	exit(OK); // Ne pas juste exit mais return error
