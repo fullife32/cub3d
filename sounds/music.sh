@@ -6,12 +6,12 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 14:59:10 by eassouli          #+#    #+#              #
-#    Updated: 2020/10/09 14:59:12 by eassouli         ###   ########.fr        #
+#    Updated: 2020/11/02 17:00:12 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
 while pidof ./cub3D > /dev/null == true ; do
-	aplay --quiet ./sounds/bfg10k.wav
+	aplay --quiet ./sounds/bfg10k.wav ; echo $?
 done

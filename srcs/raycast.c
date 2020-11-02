@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 16:40:55 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/02 16:52:45 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,5 @@ int		image_loader(t_a *a)
 	a->mlx.win = mlx_new_window(a->mlx.ptr, a->res.w, a->res.h, "cub3D");
 	a->img.img_ptr = mlx_new_image(a->mlx.ptr, a->res.w, a->res.h);
 	a->img.img = mlx_get_data_addr(a->img.img_ptr, &a->img.bpp, &a->img.size_l, &a->img.endian);
-	return (OK);
-}
-
-int		raycast(t_a *a)
-{
-	(void)a;
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 16:40:48 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/02 16:57:40 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,15 @@ int		main(int ac, char **av)
 	fd = 0;
 	if (ac < 2 || ac > 3)
 		return (error(fd, MISSING_CUB_FILE, &a));
-	else if (ac == 2 || ac == 3)
-		fd = cub_check(fd, av[1], &a);
-	if (fd == ERR)
+	if ((fd = cub_check(fd, av[1], &a)) == ERR)
 		return (error(fd, ERR, &a));
 	if (init(&a) == ERR)
 		return (error(fd, MLX_INIT_FAIL, &a));
 	if (parse(fd, &a) == ERR)
 		return (error(fd, ERR, &a));
-	if (ac == 3)
-	{
-		if ((save_check(av[2], &a)) != OK)
-			return (BMP_FAIL);
-	}
+	if ((ac == 3 && save_check(av[2], &a)) != OK)
+		return (BMP_FAIL);
+	
 	// Creer fonction pour loop musiques
 	if (play_music() == MUSIC_FILE_FAIL)
 		return(error(fd, MUSIC_FILE_FAIL, &a));
@@ -122,7 +118,6 @@ int		main(int ac, char **av)
 	for (int i = 0; a.map.map[i] != NULL; i++)
 		printf("|%s| %d\n", a.map.map[i], i);
 	// Display infos
-	raycast(&a);
 	image_loader(&a);
 	mlx_hook(a.mlx.win, 2, (1L<<0), key_press, &a);
 	mlx_hook(a.mlx.win, 3, (1L<<1), key_release, &a);
@@ -130,6 +125,5 @@ int		main(int ac, char **av)
 	mlx_hook(a.mlx.win, STRUCTURE_NOTIFY_CODE, STRUCTURE_NOTIFY_MASK, destroy, &a);
 	mlx_loop_hook(a.mlx.ptr, rc_loop, &a);
 	mlx_loop(a.mlx.ptr);
-	close(fd);
-	return (0);
+	return (OK);
 }
