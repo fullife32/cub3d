@@ -13,8 +13,5 @@
 #!/bin/bash
 
 while pidof ./cub3D > /dev/null == true ; do
-	ret='aplay --quiet ./sounds/bfg10k.wav' ;
-	if [ ret != 1 ] ; then
-		exit
-	fi
+	aplay --quiet ./sounds/bfg10k.wav
 done

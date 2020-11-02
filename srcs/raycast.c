@@ -15,7 +15,7 @@
 
 int		destroy(t_a *a)
 {
-	// system("kill -9 $(pidof aplay)");
+	system("kill -9 $(pidof aplay)");
 	mlx_destroy_window(a->mlx.ptr, a->mlx.win);
 	free_map(a->map.map);
 	exit(OK); // Ne pas juste exit mais return error
