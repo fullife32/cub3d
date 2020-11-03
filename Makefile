@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/11/03 15:34:01 by eassouli         ###   ########.fr        #
+#    Updated: 2020/11/03 15:39:47 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,14 +61,14 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			@cd $(LIBFT) && $(MAKE) re && $(MAKE) clean
-			@cd $(LIBMLX) && $(MAKE) clean && $(MAKE)
+			@cd $(LIBMLX) && ./configure clean && ./configure
 			$(CC) -o $(NAME) $(FLAGS) $(OBJS) $(LIBS)
 
 %.o:		%.c
 			$(CC) $(FLAGS) -o $@
 	
 clean:
-			$(RM) srcs/libft/libft.a
+			$(RM) $(LIBS)
 
 fclean:		clean
 			$(RM) $(NAME)
