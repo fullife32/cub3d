@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/10/29 18:39:19 by eassouli         ###   ########.fr        #
+#    Updated: 2020/11/03 15:34:01 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRCS		=	get_next_line/get_next_line.c\
 				bitmap.c
 
 LIBS		=	srcs/libft/libft.a\
-				libmlx.a
+				minilib_linux/libmlx.a
 
 PATH		=	srcs/
 
@@ -55,10 +55,13 @@ MAKE		=	/usr/bin/make
 
 LIBFT		=	srcs/libft
 
+LIBMLX		=	minilibx_linux
+
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			@cd $(LIBFT) && $(MAKE) re && $(MAKE) clean
+			@cd $(LIBMLX) && $(MAKE) clean && $(MAKE)
 			$(CC) -o $(NAME) $(FLAGS) $(OBJS) $(LIBS)
 
 %.o:		%.c
