@@ -35,7 +35,7 @@ SRCS		=	get_next_line/get_next_line.c\
 				bitmap.c
 
 LIBS		=	srcs/libft/libft.a\
-				minilib_linux/libmlx.a
+				minilibx_linux/libmlx.a
 
 PATH		=	srcs/
 
