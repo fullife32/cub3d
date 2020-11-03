@@ -6,9 +6,13 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/11/03 15:57:14 by eassouli         ###   ########.fr        #
+#    Updated: 2020/11/03 17:13:12 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+NAME		=	cub3D
+
+PATH		=	srcs/
 
 SRCS		=	get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
@@ -34,28 +38,22 @@ SRCS		=	get_next_line/get_next_line.c\
 				music.c\
 				bitmap.c
 
-LIBS		=	srcs/libft/libft.a\
-				minilibx_linux/libmlx.a
-
-PATH		=	srcs/
-
 OBJS		=	$(addprefix $(PATH), $(SRCS))
 
-NAME		=	cub3D
+LIBFT		=	srcs/libft
+
+MAKE		=	/usr/bin/make
 
 CC			=	/usr/bin/clang
+
+LIBS		=	srcs/libft/libft.a\
+				minilibx_linux/libmlx.a
 
 HEADER		=	headers
 
 FLAGS		=	-g -Wall -Wextra -Werror -I $(HEADER) -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 
 RM			=	/bin/rm -f
-
-MAKE		=	/usr/bin/make
-
-LIBFT		=	srcs/libft
-
-LIBMLX		=	minilibx_linux
 
 all:		$(NAME)
 
@@ -74,4 +72,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re
