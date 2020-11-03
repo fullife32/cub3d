@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/11/03 15:41:16 by eassouli         ###   ########.fr        #
+#    Updated: 2020/11/03 15:47:08 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ CC			=	/usr/bin/clang
 
 HEADER		=	headers
 
-FLAGS		=	-g -Wall -Wextra -Werror -I $(HEADER) -L/usr/include/../lib -lXext -lm -lbsd
+FLAGS		=	-g -Wall -Wextra -Werror -I $(HEADER) -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 
 RM			=	/bin/rm -f
 
@@ -61,7 +61,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			@cd $(LIBFT) && $(MAKE) re && $(MAKE) clean
-			@cd $(LIBMLX) && ./configure clean && ./configure
+			make -C $(LIBMLX) && mv $(LIBMLX)/libmlx.a . && make -C $(LIBMLX) clean
 			$(CC) -o $(NAME) $(FLAGS) $(OBJS) $(LIBS)
 
 %.o:		%.c
