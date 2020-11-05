@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/20 15:31:55 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/05 17:48:08 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	parse(int fd, t_a *a)
 		{
 			if (dup_check('c') != 8)
 				return (error(&line, -3));
-			if (map_parse(fd, line, &a->map, &a->plr, &a->dir) == ERR)
+			if (map_parse(fd, line, a) == ERR)
 				return (error(&line, ERR)); // add error if empty lines then something again
 			else
 			{

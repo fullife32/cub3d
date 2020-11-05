@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 14:36:34 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/05 17:47:34 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		txr_atoi(char c, char *line, t_txr *txr);
 
 int		add_line(char *line, t_list	**first, t_list	**lst);
 int		start_p(int y, char *line, t_plr *plr, t_dir *dir);
-int		map_parse(int fd, char *line, t_map *map, t_plr *plr, t_dir *dir);
+int		map_parse(int fd, char *line, t_a *a);
 int		floodfill_map(char *line, int i, char trg, char rep);
 
 int		raycast(t_a *a);

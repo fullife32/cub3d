@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parse.c                                        :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/20 15:24:48 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/05 17:47:07 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // 	return (ERR);
 // }
 
-int	add_line(char *line, t_list	**first, t_list	**lst)
+int	add_line(char *line, t_list **first, t_list **lst)
 {
 	if ((*lst = ft_lstnew(line)) == NULL)
 		return (ERR);
@@ -34,7 +34,7 @@ int	add_line(char *line, t_list	**first, t_list	**lst)
 
 int	start_p(int y, char *line, t_plr *plr, t_dir *dir)
 {
-	int x;
+	int		x;
 
 	x = 0;
 	while (line[x] != '\0')
@@ -47,32 +47,20 @@ int	start_p(int y, char *line, t_plr *plr, t_dir *dir)
 			plr->pos_x = x + 0.5;
 			plr->pos_y = y + 0.5;
 		}
-		if (line[x] == 'N')
-		{
-			dir->y = -1;
-			dir->plane_x = 1;
-		}
-		else if (line[x] == 'S')
-		{
-			dir->y = 1;
-			dir->plane_x = -1;
-		}
-		else if (line[x] == 'W')
-		{
-			dir->x = -1;
-			dir->plane_y = -1;
-		}
-		else if (line[x] == 'E')
-		{
-			dir->x = 1;
-			dir->plane_y = 1;
-		}
+		dir->y = (line[x] == 'N') ? -1 : dir->y;
+		dir->plane_x = (line[x] == 'N') ? 1 : dir->plane_x;
+		dir->y = (line[x] == 'S') ? 1 : dir->y;
+		dir->plane_x = (line[x] == 'S') ? -1 : dir->plane_x;
+		dir->x = (line[x] == 'W') ? -1 : dir->x;
+		dir->plane_y = (line[x] == 'W') ? -1 : dir->plane_y;
+		dir->x = (line[x] == 'E') ? 1 : dir->x;
+		dir->plane_y = (line[x] == 'E') ? 1 : dir->plane_y;
 		x++;
 	}
 	return (OK);
 }
 
-int	map_parse(int fd, char *line, t_map *map, t_plr *plr, t_dir *dir)
+int	map_parse(int fd, char *line, t_a *a)
 {
 	t_list	*first;
 	t_list	*lst;
@@ -90,22 +78,22 @@ int	map_parse(int fd, char *line, t_map *map, t_plr *plr, t_dir *dir)
 	if (add_line(line, &first, &lst) == ERR)
 		return (ERR);
 	y = 0;
-	if ((map->map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL)
+	if ((a->map.map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL)
 		return (ERR);
 	lst = first;
 	while (lst != NULL)
 	{
-		map->map[y] = lst->content;
-		if (start_p(y, map->map[y], plr, dir) == ERR)
+		a->map.map[y] = lst->content;
+		if (start_p(y, a->map.map[y], &(a->plr), &(a->dir)) == ERR)
 			return (ERR);
 		lst = lst->next;
 		y++;
 	}
-	map->map[y] = NULL;
-	if (plr->pos_y == -1)
+	a->map.map[y] = NULL;
+	if (a->plr.pos_y == -1)
 		return (ERR);  // ajouter error position introuvable
 	// ft_lstclear(&first, (void *)ft_lstdelone);
-	if (map_leak(map, plr) == ERR)
+	if (map_leak(&(a->map), &(a->plr)) == ERR)
 		return (ERR);
 	return (OK);
 }
