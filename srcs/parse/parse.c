@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/05 17:48:08 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/10 15:22:38 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ int	parse(int fd, t_a *a)
 			if (map_parse(fd, line, a) == ERR)
 				return (error(&line, ERR)); // add error if empty lines then something again
 			else
-			{
-				sprite_list(a);
-				return (OK);
-			}
+				return (sprite_list(a));
 		}
 		else if (line[i] != ' ' && line[i])
 			return (error(&line, NOT_VALID_ARG));
