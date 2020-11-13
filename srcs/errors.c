@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:25:53 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:26:26 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	error_res(int error, t_a *a)
 
 void	error(int error, t_a *a)
 {
+	(void)a;
+	
 	if (error != ERR)
 		write(1, "Error\n", 7);
 	if (error == MISSING_CUB_FILE)
