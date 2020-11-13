@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   txr_parse.c                                        :+:      :+:    :+:   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 00:32:33 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/14 17:41:56 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:43:28 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-
-static int	error(int error)
-{
-	write(1, "Error\n", 6);
-	if (error == -2)
-		write(1, "Invalid texture argument\n", 25);
-	else if (error == -3)
-		write(1, "Too many textures detected\n", 28);
-	else if (error == -4)
-		write(1, "Invalid color\n", 14);
-	else if (error == -5)
-		write(1, "Mallocing textures failed\n", 26);
-	return (ERR);
-}
 
 void	txr_cpy(char c, char *line, int len, t_txr *txr)
 {
@@ -86,7 +72,7 @@ int	dup_check(char c)
 	return (i);
 }
 
-int		txr_parse(char c, char *line, t_txr *txr)
+void	txr_parse(char c, char *line, t_a *a)
 {
 	int	len;
 
@@ -96,26 +82,25 @@ int		txr_parse(char c, char *line, t_txr *txr)
 	|| (c == 'S' && (*line != ' ' && *line != 'O'))
 	|| (c == 'E' && *line != 'A')
 	|| ((c == 'F' || c == 'C') && *line != ' '))
-		return (error(-2));
+		error(-2, a);
 	c = (c == 'S' && *line == 'O') ? 'S' : c;
 	c = (c == 'S' && *line == ' ') ? ' ' : c;
 	if (dup_check(c) == ERR)
-		return (error(-3));
+		error(-3, a);
 	line++;
 	while (*line == ' ')
 		line++;
 	if ((c == 'F' || c == 'C') && (*line >= '0' && *line <= '9'))
 	{
-		if (txr_atoi(c, line, txr) == ERR)
-			return (error(-4));
+		if (txr_atoi(c, line, &a->txr) == ERR)
+			error(-4, a);
 	}
 	else
 	{
 		while (*(line + len) != '\0' && *(line + len) != ' ')
 			len++;
-		if (txr_malloc(c, len + 1, txr) == ERR)
-			return (-5);
-		txr_cpy(c, line, len, txr);
+		if (txr_malloc(c, len + 1, &a->txr) == ERR)
+			error(-5, a);
+		txr_cpy(c, line, len, &a->txr);
 	}
-	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 14:27:03 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:48:30 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	init_mov(t_a *a)
 int	init(t_a *a)
 {
 	if ((a->mlx.ptr = mlx_init()) == NULL)
-		return (ERR);
+		error(MLX_INIT_FAIL, a);
 	a->res.h = 0;
 	a->res.w = 0;
 	init_txr(a);
@@ -65,5 +65,4 @@ int	init(t_a *a)
 	init_plr(a);
 	init_mov(a);
 	init_bmp(a); // Maybe move place
-	return (OK);
 }

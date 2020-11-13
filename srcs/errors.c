@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 15:16:58 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:17:35 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,49 @@ int	fp(t_txr *txr)
 	return (ERR);
 }
 
+void	error_map(int error)
+{
+	write(1, "Error\n", 6);
+	if (error == -2)
+		write(1, "\n", 21);
+	else if (error == -3)
+		write(1, "\n", 21);
+}
+
+void	error_txr(int error)
+{
+	write(1, "Error\n", 6);
+	if (error == -2)
+		write(1, "Invalid texture argument\n", 25);
+	else if (error == -3)
+		write(1, "Too many textures detected\n", 28);
+	else if (error == -4)
+		write(1, "Invalid color\n", 14);
+	else if (error == -5)
+		write(1, "Mallocing textures failed\n", 26);
+}
+
+void	error_res(int error, t_a *a)
+{
+	if (error == ERR)
+	{
+		if (a->mlx.line)
+			free(a->mlx.line);
+		a->mlx.line = NULL;
+	}
+	else
+		write(1, "Error\n", 6);
+	if (error == -2) // A changer en macro
+		write(1, "Incorrect resolution\n", 21);
+	else if (error == -3)
+		write(1, "Not enough arguments\n", 21);
+	else if (error == -4)
+		write(1, "Map not found\n", 14);
+	else if (error == NOT_VALID_ARG)
+		write(1, "Incorrect argument entered\n", 28);
+	return (ERR);
+}
+
 void	error(int error, t_a *a)
 {
 	if (error != ERR)
@@ -54,7 +97,8 @@ void	error(int error, t_a *a)
 	else if (error == MUSIC_FILE_FAIL)
 		write(1, "Music file name/path is incorrect\n", 35);
 	if (error == ERR)
-		fp(fd, &a->txr);
+		fp(&a->txr); // a changer
+	if (a->mlx.fd > 0)
 	if (error == OK)
 		exit(0);
 	exit(-1);

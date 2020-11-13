@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   res_parse.c                                        :+:      :+:    :+:   */
+/*   parse_resolution.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:33:18 by eassouli          #+#    #+#             */
-/*   Updated: 2020/06/22 16:12:28 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:33:47 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "raycast.h"
 
-int	res_parse(char *line, t_res *res, t_mlx *mlx)
+void	res_parse(t_a *a)
 {
 	int	w;
 	int h;
 
-	if (dup_check(*line) == ERR)
-		return (ERR);
-	line++;
-	while (*line == ' ')
-		line++;
-	mlx_get_screen_size(mlx->ptr, &w, &h);
-	res->w = ft_atoi(line);
-	if (res->w > w)
-		res->w = w;
-	while (*line >= '0' && *line <= '9')
-		line++;
-	while (*line == ' ')
-		line++;
-	res->h = ft_atoi(line);
-	if (res->h > h)
-		res->h = h;
-	while (*line >= '0' && *line <= '9')
-		line++;
-	res->w = (*line != '\0') ? 0 : res->w;
-	if (res->w <= 0 || res->h <= 0)
-		return (ERR);
-	return (OK);
+	if (dup_check(*a->mlx.line) == ERR)
+		error(-2, a);
+	a->mlx.line++;
+	while (*a->mlx.line == ' ')
+		a->mlx.line++;
+	mlx_get_screen_size(a->mlx.ptr, &w, &h);
+	a->res.w = ft_atoi(a->mlx.line);
+	if (a->res.w > w)
+		a->res.w = w;
+	while (*a->mlx.line >= '0' && *a->mlx.line <= '9')
+		a->mlx.line++;
+	while (*a->mlx.line == ' ')
+		a->mlx.line++;
+	a->res.h = ft_atoi(a->mlx.line);
+	if (a->res.h > h)
+		a->res.h = h;
+	while (*a->mlx.line >= '0' && *a->mlx.line <= '9')
+		a->mlx.line++;
+	a->res.w = (*a->mlx.line != '\0') ? 0 : a->res.w;
+	if (a->res.w <= 0 || a->res.h <= 0)
+		error(-2, a);
 }

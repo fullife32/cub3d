@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 15:37:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:19:51 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_mlx
 	void	*win;
 	int		x;
 	int		fd;
+	char	*line;
 }				t_mlx;
 
 typedef struct	s_plr

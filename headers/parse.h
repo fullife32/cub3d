@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 15:31:44 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:11:01 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,21 @@ int		init(t_a *a);
 void	cub_check(char *av, t_a *a);
 void	save_check(char *av, t_a *a);
 
-int		res_parse(char *line, t_res *res, t_mlx *mlx);
-int		parse(t_a *a);
+void	free_line(char **line);
+void	parse(t_a *a);
+
+void	res_parse(t_a *a);
 
 int		dup_check(char c);
 void	txr_cpy(char c, char *line, int len, t_txr *txr);
 int		txr_malloc(char c, int len, t_txr *txr);
-int		txr_parse(char c, char *line, t_txr *txr);
+void	txr_parse(char c, char *line, t_a *a);
 
 int		txr_atoi(char c, char *line, t_txr *txr);
 
 int		add_line(char *line, t_list	**first, t_list	**lst);
 int		start_p(int y, char *line, t_plr *plr, t_dir *dir);
-int		map_parse(int fd, char *line, t_a *a);
+void	map_parse(t_a *a);
 int		floodfill_map(char *line, int i, char trg, char rep);
 
 int		raycast(t_a *a);

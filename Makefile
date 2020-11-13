@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/11/13 15:24:40 by eassouli         ###   ########.fr        #
+#    Updated: 2020/11/13 17:16:35 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ clean:
 			$(RM) srcs/libft/libft.a
 
 fclean:		clean
-			$(RM) $(NAME)
+			$(RM) $(NAME) #add bmp delete
 
 re:			fclean all
 

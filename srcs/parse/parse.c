@@ -6,67 +6,47 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 15:05:24 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:10:49 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static int	error(char **line, int error)
+void	free_line(char **line)
 {
-	if (error == ERR)
-	{
-		if (*line)
-			free(*line);
-		*line = NULL;
-	}
-	else
-		write(1, "Error\n", 6);
-	if (error == -2) // A changer en macro
-		write(1, "Incorrect resolution\n", 21);
-	else if (error == -3)
-		write(1, "Not enough arguments\n", 21);
-	else if (error == -4)
-		write(1, "Map not found\n", 14);
-	else if (error == NOT_VALID_ARG)
-		write(1, "Incorrect argument entered\n", 28);
-	return (ERR);
+	if (*line)
+		free(*line);
+	*line = NULL;
+	line = NULL; 
 }
 
-int	parse(t_a *a)
+void	parse(t_a *a)
 {
-	char	*line;
 	int		i;
 	
-	while (get_next_line(a->mlx.fd, &line) > 0)
+	while (get_next_line(a->mlx.fd, &a->mlx.line) > 0)
 	{
 		i = 0;
-		
-		while (line[i] == ' ')
+		while (a->mlx.line[i] == ' ')
 			i++;
-		if (line[i] == 'R')
-		{
-			if (res_parse(line + i, &a->res, &a->mlx) == ERR)
-				return (error(&line, -2));
-		}
-		else if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W'
-		|| line[i] == 'E' || line[i] == 'F' || line[i] == 'C')
-		{
-			if (txr_parse(line[i], line + i, &a->txr) == ERR)
-				return (error(&line, ERR));
-		}
-		else if (line[i] == '0' || line[i] == '1' || line[i] == '2')
+		if (a->mlx.line[i] == 'R')
+			res_parse(a);
+		else if (a->mlx.line[i] == 'N' || a->mlx.line[i] == 'S'
+		|| a->mlx.line[i] == 'W' || a->mlx.line[i] == 'E'
+		|| a->mlx.line[i] == 'F' || a->mlx.line[i] == 'C')
+			txr_parse(a->mlx.line[i], a->mlx.line + i, a);
+		else if (a->mlx.line[i] == '0' || a->mlx.line[i] == '1'
+		|| a->mlx.line[i] == '2')
 		{
 			if (dup_check('c') != 8)
-				return (error(&line, -3));
-			if (map_parse(a->mlx.fd, line, a) == ERR)
-				return (error(&line, ERR)); // add error if empty lines then something again
-			else
-				return (sprite_list(a));
+				error(-3, a);
+			map_parse(a); // add error if empty lines then something again
+			sprite_list(a);
+			return;
 		}
-		else if (line[i] != ' ' && line[i])
-			return (error(&line, NOT_VALID_ARG));
-		error(&line, ERR);
+		else if (a->mlx.line[i] != ' ' && a->mlx.line[i])
+			error(NOT_VALID_ARG, a);
+		free_line (&a->mlx.line);
 	}
-	return (error(&line, -4));
+	error(-4, a);
 }
