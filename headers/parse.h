@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/05 17:47:34 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:31:44 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,16 @@ typedef struct	s_map
 
 #include "raycast.h"
 
+int		fp(t_txr *txr);
+void	error(int error, t_a *a);
+
 int		init(t_a *a);
 
+void	cub_check(char *av, t_a *a);
+void	save_check(char *av, t_a *a);
+
 int		res_parse(char *line, t_res *res, t_mlx *mlx);
-int		parse(int fd, t_a *a);
+int		parse(t_a *a);
 
 int		dup_check(char c);
 void	txr_cpy(char c, char *line, int len, t_txr *txr);
@@ -86,7 +92,7 @@ int		floodfill_map(char *line, int i, char trg, char rep);
 
 int		raycast(t_a *a);
 
-int		play_music();
+void	play_music();
 
 int		sprite_init(t_a *a);
 void	sprite_count(t_a *a);

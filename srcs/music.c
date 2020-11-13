@@ -6,14 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:07:34 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/09 14:58:12 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:22:42 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int		play_music(void)
+void	play_music(void)
 {
 	system("sh ./sounds/music.sh & > /dev/null");
-	return (OK);
 }

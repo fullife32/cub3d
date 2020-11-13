@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 14:46:26 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:16:58 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		destroy(t_a *a)
 	exit(OK); // Ne pas juste exit mais return error
 }
 
-int	fp(int fd, t_txr *txr)
+int	fp(t_txr *txr)
 {
 	if (txr->north)
 		free(txr->north);
@@ -41,7 +41,7 @@ int	fp(int fd, t_txr *txr)
 	return (ERR);
 }
 
-int	error(int fd, int error, t_a *a)
+void	error(int error, t_a *a)
 {
 	if (error != ERR)
 		write(1, "Error\n", 7);
@@ -55,5 +55,7 @@ int	error(int fd, int error, t_a *a)
 		write(1, "Music file name/path is incorrect\n", 35);
 	if (error == ERR)
 		fp(fd, &a->txr);
-	return (ERR);
+	if (error == OK)
+		exit(0);
+	exit(-1);
 }

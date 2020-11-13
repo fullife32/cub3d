@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 18:36:33 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:37:52 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,18 @@
 # define LR 65361
 # define RR 65363
 
-# define MOTION_NOTIFY_MASK (1L << 13),
-# define STRUCTURE_NOTIFY_MASK (1L << 17)
+// # define MOTION_NOTIFY_MASK (1L << 13),
+// # define STRUCTURE_NOTIFY_MASK (1L << 17)
 
-# define MOTION_NOTIFY_CODE 06
-# define STRUCTURE_NOTIFY_CODE 17
+// # define MOTION_NOTIFY_CODE 06
+// # define STRUCTURE_NOTIFY_CODE 17
 
 typedef struct	s_mlx
 {
 	void	*ptr;
 	void	*win;
 	int		x;
+	int		fd;
 }				t_mlx;
 
 typedef struct	s_plr

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/10 15:22:38 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:05:24 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static int	error(char **line, int error)
 	return (ERR);
 }
 
-int	parse(int fd, t_a *a)
+int	parse(t_a *a)
 {
 	char	*line;
 	int		i;
 	
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(a->mlx.fd, &line) > 0)
 	{
 		i = 0;
 		
@@ -59,7 +59,7 @@ int	parse(int fd, t_a *a)
 		{
 			if (dup_check('c') != 8)
 				return (error(&line, -3));
-			if (map_parse(fd, line, a) == ERR)
+			if (map_parse(a->mlx.fd, line, a) == ERR)
 				return (error(&line, ERR)); // add error if empty lines then something again
 			else
 				return (sprite_list(a));

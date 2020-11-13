@@ -6,71 +6,26 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 14:55:55 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:37:01 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static int	cub_check(int fd, char *av, t_a *a)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 3;
-	while (av[i])
-		i++;
-	i--;
-	while (av[i--] == CUB[j] && j != -1)
-		j--;
-	if (j == -1)
-	{
-		if ((fd = open(av, O_RDONLY)) == -1)
-			return (error(fd, MISSING_CUB_FILE, a));
-	}
-	else
-		if ((fd = -1) == ERR)
-			return (error(fd, NOT_CUB_FILE, a));
-	return (fd);
-}
-
-int		save_check(char *av, t_a *a)
-{
-	int	i;
-
-	i = 0;
-	while (SAVE[i] && av[i])
-	{
-		if (SAVE[i] != av[i])
-			return (BMP_FAIL);
-		i++;
-	}
-	if (rec_bmp_h(a) != OK)
-		return (BMP_FAIL);
-	return (OK);
-}
-
 int		main(int ac, char **av)
 {
-	int		fd;
 	t_a		a;
 
-	fd = 0;
 	if (ac < 2 || ac > 3)
-		return (error(fd, MISSING_CUB_FILE, &a));
-	if ((fd = cub_check(fd, av[1], &a)) == ERR)
-		return (error(fd, ERR, &a));
-	if (init(&a) == ERR)
-		return (error(fd, MLX_INIT_FAIL, &a));
-	if (parse(fd, &a) == ERR)
-		return (error(fd, ERR, &a));
-	if (ac == 3 && (save_check(av[2], &a) != OK))
-		return (BMP_FAIL);
-	
-	// Creer fonction pour loop musiques
-	if (play_music() == MUSIC_FILE_FAIL)
-		return(error(fd, MUSIC_FILE_FAIL, &a));
+		error(MISSING_CUB_FILE, &a);
+	cub_check(av[1], &a);
+	init(&a); // retour d'erreur dans init
+	parse(&a);
+	if (ac == 3)
+		save_check(av[2], &a);
+	image_loader(&a);
+	if (a.bmp.fd == 0)
+		play_music();
 
 	// Display infos
 	printf("\nRES :\nwidth = %d\nheight = %d\n", a.res.w, a.res.h);
@@ -81,11 +36,11 @@ int		main(int ac, char **av)
 	for (int i = 0; a.map.map[i] != NULL; i++)
 		printf("|%s| %d\n", a.map.map[i], i);
 	// Display infos
-	image_loader(&a);
+	
 	mlx_hook(a.mlx.win, 2, (1L<<0), key_press, &a);
 	mlx_hook(a.mlx.win, 3, (1L<<1), key_release, &a);
 	mlx_hook(a.mlx.win, 17, (1L<<5), destroy, &a); // voir macro (peut etre)
-	mlx_hook(a.mlx.win, STRUCTURE_NOTIFY_CODE, STRUCTURE_NOTIFY_MASK, destroy, &a);
+	mlx_hook(a.mlx.win, 17, (1L<<17), destroy, &a);
 	mlx_loop_hook(a.mlx.ptr, rc_loop, &a);
 	mlx_loop(a.mlx.ptr);
 	return (OK);
