@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 15:48:30 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:20:11 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	init_mov(t_a *a)
 	a->mov.mov[RR] = FALSE;
 }
 
-int	init(t_a *a)
+void	init(t_a *a)
 {
 	if ((a->mlx.ptr = mlx_init()) == NULL)
 		error(MLX_INIT_FAIL, a);

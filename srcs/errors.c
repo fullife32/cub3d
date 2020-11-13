@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:17:35 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:21:10 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	error_res(int error, t_a *a)
 		write(1, "Map not found\n", 14);
 	else if (error == NOT_VALID_ARG)
 		write(1, "Incorrect argument entered\n", 28);
-	return (ERR);
 }
 
 void	error(int error, t_a *a)

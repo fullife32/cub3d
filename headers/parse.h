@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:11:01 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:20:24 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct	s_map
 int		fp(t_txr *txr);
 void	error(int error, t_a *a);
 
-int		init(t_a *a);
+void	init(t_a *a);
 
 void	cub_check(char *av, t_a *a);
 void	save_check(char *av, t_a *a);
