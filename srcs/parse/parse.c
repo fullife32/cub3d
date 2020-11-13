@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:44:49 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:45:12 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	free_line(char **line)
 {
-	ft_putstr_fd(*line, 1);
 	if (*line)
 		free(*line);
 	*line = NULL;
@@ -46,7 +45,7 @@ void	parse(t_a *a)
 		}
 		else if (a->mlx.line[i] != ' ' && a->mlx.line[i])
 			error(NOT_VALID_ARG, a);
-		free_line(&a->mlx.line);
+		// free_line(&a->mlx.line);
 	}
 	error(-4, a);
 }
