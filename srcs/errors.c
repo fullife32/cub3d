@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:21:10 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:25:53 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,8 @@ void	error(int error, t_a *a)
 		write(1, "Initialization of MLX server failed\n", 37);
 	else if (error == MUSIC_FILE_FAIL)
 		write(1, "Music file name/path is incorrect\n", 35);
-	if (error == ERR)
-		fp(&a->txr); // a changer
-	if (a->mlx.fd > 0)
+	// if (error == ERR)
+	// 	fp(&a->txr); // a changer
 	if (error == OK)
 		exit(0);
 	exit(-1);

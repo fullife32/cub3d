@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:10:49 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:23:44 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	free_line(char **line)
 	if (*line)
 		free(*line);
 	*line = NULL;
-	line = NULL; 
 }
 
 void	parse(t_a *a)
