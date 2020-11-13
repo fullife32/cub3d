@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/11/03 17:15:09 by eassouli         ###   ########.fr        #
+#    Updated: 2020/11/13 14:56:32 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCS		=	get_next_line/get_next_line.c\
 				keys_move.c\
 				keys_bind.c\
 				music.c\
-				bitmap.c
+				bitmap.c\
+				errors.c
 
 OBJS		=	$(addprefix $(PATH), $(SRCS))
 
