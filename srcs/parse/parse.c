@@ -6,17 +6,17 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:46:16 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:50:01 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	free_line(char **line)
+void	free_line(t_a *a)
 {
-	if (*line)
-		free(*line);
-	*line = NULL;
+	if (a->mlx.line)
+		free(a->mlx.line);
+	a->mlx.line = NULL;
 }
 
 void	parse(t_a *a)
@@ -45,8 +45,7 @@ void	parse(t_a *a)
 		}
 		else if (a->mlx.line[i] != ' ' && a->mlx.line[i])
 			error(NOT_VALID_ARG, a);
-		free_line(&a->mlx.line);
+		free_line(a);
 	}
-	free_line(&a->mlx.line);
 	error(-4, a);
 }
