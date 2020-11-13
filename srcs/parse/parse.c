@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:43:58 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:44:49 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_line(char **line)
 {
-	printf("%s", *line);
+	ft_putstr_fd(*line, 1);
 	if (*line)
 		free(*line);
 	*line = NULL;
