@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:50:14 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:56:02 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	init(t_a *a);
 void	cub_check(char *av, t_a *a);
 void	save_check(char *av, t_a *a);
 
-void	free_line(t_a *a);
+void	free_line(char **line);
 void	parse(t_a *a);
 
 void	res_parse(t_a *a);
