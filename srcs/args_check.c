@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 15:28:36 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/24 17:42:01 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ void	save_check(char *av, t_a *a)
 			error(BMP_FAIL, a);
 		i++;
 	}
-	if (rec_bmp_h(a) != OK)
-		error(BMP_FAIL, a);
+	a->bmp.fd = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 14:19:36 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/29 14:26:34 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/25 01:12:09 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 #include "raycast.h"
 
 /*
-** Créer une structure pour enregistrer l'image em .bmp & prendre en compte
-** --save a la fin dans le parsing
+** Create a structure for the .bmp file created when --save is used in the 3rd
+** argument of the program.
 **
-** Ici, nous allons créer un DIB (device-dependant bitmap), car facile à
-** utiliser et est lisible par la plupart des visualiseurs/éditeurs d'images.
-** Pour ce faire, on va éditer les caractéristiques de son header dans la
-** partie dib de la structure.
+** In that case, we make a DIB (device-dependant bitmap) file, because it is
+** easier to use and is readeable by most of the image editors/visualizers.
+** First, we will edit its header's components in the dib part of the structure.
 **
-** - la taille de son header (sur 4 octets) est de 28 en hexadécimal -> 40 en
-** décimal
-** - les résolutions sont les mêmes que pour l'image
-** - le nombre de plans (sur 2 octets) est toujours à 1
-** - le bpp est en 32 bits
+** - header's size (4 bytes) is 28 en hexadecimal -> 40 in decimal
+** - resolution of the header is the same than for the image
+** - the number of color planes (2 bytes) is always 1
+** - the bpp is in 32 bits
 */
 
 void	init_bmp(t_a *a)
@@ -44,8 +42,7 @@ void	init_bmp(t_a *a)
 }
 
 /*
-** donner les indications d'initialisation de la structure a enregistrer pour
-** le .bmp
+** record the initialization of the .bmp structure's file
 */
 
 int		rec_bmp_h(t_a *a)
@@ -70,33 +67,35 @@ int		rec_bmp_h(t_a *a)
 	return (OK);
 }
 
-int		rec_px(t_a *a)
+void	rec_px(t_a *a)
 {
-	int	i;
 	int	j;
 	int	pos;
 
 	j = 0;
-	while (j < a->res.h)
+	while (j <= a->res.h)
 	{
-		i = a->res.w;
 		pos = a->res.w * (a->res.h - j);
-		while (i-- > 0)
-		{
-			write(a->bmp.fd, &a->img.img[4 * pos], 4);
-			pos++;
-		}
+		write(a->bmp.fd, &a->img.img[4 * pos], 4 * a->res.w);
 		j++;
 	}
-	return (OK);
 }
 
-// int	rec_bmp(t_a a)
+// int	rec_bmp(t_a *a)
 // {
-// 	raycast(&a);
-// 	rec_bmp_h(&a);
-// 	rec_px(&a);
-// 	close(a.bmp.fd);
-// 	destroy(&a);
-// 	return (OK);
+// 	init_bmp(a);
+// 	if (rec_bmp_h(a) == BMP_FAIL)
+// 	{
+// 		write(1, "Some issues happened when creating the .bmp file", 49);
+// 		return (ERR);
+// 	}
+// 	else
+// 	{
+// 		image_loader(a);
+// 		rc_loop(a);
+// 		rec_px(a);
+// 		close(a->bmp.fd);
+// 		fp(a->mlx.fd, &a->txr);
+// 		return (OK);
+// 	}
 // }

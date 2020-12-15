@@ -6,15 +6,15 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:03:16 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/10 17:00:53 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "parse.h"
 #include "raycast.h"
+#include "stack.h"
 
-int	add_line(char *line, t_list **first, t_list **lst)
+int		add_line(char *line, t_list **first, t_list **lst) // free liste en cas d'erreur avant error
 {
 	if ((*lst = ft_lstnew(line)) == NULL)
 		return (ERR);
@@ -22,7 +22,21 @@ int	add_line(char *line, t_list **first, t_list **lst)
 	return (OK);
 }
 
-int	start_p(int y, char *line, t_plr *plr, t_dir *dir)
+int		map_char(char *line)
+{
+	int		x;
+
+	x = 0;
+	while (line[x] != '\0')
+	{
+		if (ft_strchr("NSWE012 ", line[x]) == NULL)
+			return (ERR);
+		x++;
+	}
+	return (OK);
+}
+
+int		start_p(int y, char *line, t_plr *plr, t_dir *dir)
 {
 	int		x;
 
@@ -58,17 +72,17 @@ void	map_parse(t_a *a)
 
 	first = NULL;
 	lst = NULL;
-	if (add_line(a->mlx.line, &first, &lst) == ERR)
+	if (add_line(*a->mlx.line, &first, &lst) == ERR)
 		error(-1, a);
-	while (get_next_line(a->mlx.fd, &a->mlx.line) > 0)
+	while (get_next_line(a->mlx.fd, a->mlx.line) > 0)
 	{
-		if (add_line(a->mlx.line, &first, &lst) == ERR)
+		if (add_line(*a->mlx.line, &first, &lst) == ERR)
 		error(-1, a);
 	}
-	if (add_line(a->mlx.line, &first, &lst) == ERR)
+	if (add_line(*a->mlx.line, &first, &lst) == ERR)
 		error(-1, a);
 	y = 0;
-	if ((a->map.map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL)
+	if ((a->map.map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL) //verif free
 		error(-1, a);
 	lst = first;
 	while (lst != NULL)
@@ -76,12 +90,14 @@ void	map_parse(t_a *a)
 		a->map.map[y] = lst->content;
 		if (start_p(y, a->map.map[y], &(a->plr), &(a->dir)) == ERR)
 			error(-1, a);
+		if (map_char(a->map.map[y]) == ERR)
+			error(-1, a);
 		lst = lst->next;
 		y++;
 	}
 	a->map.map[y] = NULL;
 	if (a->plr.pos_y == -1)
-		error(-1, a);  // ajouter error position introuvable
+		error(-1, a); // ajouter error position introuvable
 	// ft_lstclear(&first, (void *)ft_lstdelone);
 	if (map_leak(&(a->map), &(a->plr)) == ERR)
 		error(-1, a);

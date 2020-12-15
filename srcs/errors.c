@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:26:26 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:46:18 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,54 @@
 #include "raycast.h"
 #include "stack.h"
 
-int		destroy(t_a *a)
+int		destroy(t_a *a) // destroy aussi image fenetre
 {
-	system("kill -9 $(pidof aplay) > /dev/null");
-	mlx_destroy_window(a->mlx.ptr, a->mlx.win);
+	if (a->bmp.fd == 0)
+		system("kill -9 $(pidof aplay) >> /dev/null");
+	if (a->mlx.win)
+		mlx_destroy_window(a->mlx.ptr, a->mlx.win);
+	if (a->img.img_ptr)
+		mlx_destroy_image(a->mlx.ptr, a->img.img_ptr);
 	free_map(a->map.map);
 	exit(OK); // Ne pas juste exit mais return error
 }
 
-int	fp(t_txr *txr)
+void	error_raycast(int error)
 {
-	if (txr->north)
-		free(txr->north);
-	if (txr->south)
-		free(txr->south);
-	if (txr->west)
-		free(txr->west);
-	if (txr->east)
-		free(txr->east);
-	if (txr->sprite)
-		free(txr->sprite);
-	if (txr->floor)
-		free(txr->floor);
-	if (txr->ceiling)
-		free(txr->ceiling);
-	return (ERR);
+	if (error == BMP_FAIL)
+		write(1, "Some issues happened when creating the .bmp file", 49);
+}
+
+void	free_parse(t_a *a)
+{
+	if (*a->mlx.line)
+		free(*a->mlx.line);
+	*a->mlx.line = NULL;
+	if (a->mlx.line)
+		free(a->mlx.line);
+	a->mlx.line = NULL;
+}
+
+void	free_txr(t_a *a)
+{
+	if (a->txr.north)
+		free(a->txr.north);
+	if (a->txr.south)
+		free(a->txr.south);
+	if (a->txr.west)
+		free(a->txr.west);
+	if (a->txr.east)
+		free(a->txr.east);
+	if (a->txr.sprite)
+		free(a->txr.sprite);
+	if (a->txr.floor)
+		free(a->txr.floor);
+	if (a->txr.ceiling)
+		free(a->txr.ceiling);
 }
 
 void	error_map(int error)
 {
-	write(1, "Error\n", 6);
 	if (error == -2)
 		write(1, "\n", 21);
 	else if (error == -3)
@@ -52,7 +70,6 @@ void	error_map(int error)
 
 void	error_txr(int error)
 {
-	write(1, "Error\n", 6);
 	if (error == -2)
 		write(1, "Invalid texture argument\n", 25);
 	else if (error == -3)
@@ -63,16 +80,8 @@ void	error_txr(int error)
 		write(1, "Mallocing textures failed\n", 26);
 }
 
-void	error_res(int error, t_a *a)
+void	error_res(int error)
 {
-	if (error == ERR)
-	{
-		if (a->mlx.line)
-			free(a->mlx.line);
-		a->mlx.line = NULL;
-	}
-	else
-		write(1, "Error\n", 6);
 	if (error == -2) // A changer en macro
 		write(1, "Incorrect resolution\n", 21);
 	else if (error == -3)
@@ -97,9 +106,5 @@ void	error(int error, t_a *a)
 		write(1, "Initialization of MLX server failed\n", 37);
 	else if (error == MUSIC_FILE_FAIL)
 		write(1, "Music file name/path is incorrect\n", 35);
-	// if (error == ERR)
-	// 	fp(&a->txr); // a changer
-	if (error == OK)
-		exit(0);
 	exit(-1);
 }

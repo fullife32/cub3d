@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 16:19:51 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:49:10 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_mlx
 	void	*win;
 	int		x;
 	int		fd;
-	char	*line;
+	char	**line;
 }				t_mlx;
 
 typedef struct	s_plr
@@ -208,6 +208,6 @@ void	sprite_raycast(t_a *a);
 
 void	init_bmp(t_a *a);
 int		rec_bmp_h(t_a *a);
-int		rec_px(t_a *a);
+void	rec_px(t_a *a);
 
 # endif

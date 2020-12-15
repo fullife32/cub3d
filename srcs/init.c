@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 17:24:16 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/24 17:39:10 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	init_mov(t_a *a)
 void	init(t_a *a)
 {
 	if ((a->mlx.ptr = mlx_init()) == NULL)
-		error (MLX_INIT_FAIL, a);
+		error(MLX_INIT_FAIL, a);
+	if ((a->mlx.line = malloc(sizeof(char **))) == NULL)
+		error(-1, a); //don't forget to free this if error or normal and create macro
 	a->res.h = 0;
 	a->res.w = 0;
 	init_txr(a);
@@ -64,5 +66,5 @@ void	init(t_a *a)
 	init_dir(a);
 	init_plr(a);
 	init_mov(a);
-	init_bmp(a); // Maybe move place
+	a->bmp.fd = 0;
 }

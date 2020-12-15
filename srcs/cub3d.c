@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 15:37:01 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:12:31 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int		main(int ac, char **av)
 	image_loader(&a);
 	if (a.bmp.fd == 0)
 		play_music();
+	else
+		rc_loop(&a);
+	
 
 	// Display infos
 	printf("\nRES :\nwidth = %d\nheight = %d\n", a.res.w, a.res.h);

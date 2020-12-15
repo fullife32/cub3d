@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 14:42:49 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:10:05 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ int		rc_loop(t_a *a)
 	sprite_raycast(a);
 	if (a->bmp.fd > 0)
 	{
+		init_bmp(a);
+		if (rec_bmp_h(a) == BMP_FAIL)
+			error(BMP_FAIL, a);
 		rec_px(a);
 		close(a->bmp.fd);
-		destroy(a);
-		return (OK);
+		destroy(a); // faire en sorte que destroy fasse tous les free necessaires
 	}
 	mlx_put_image_to_window(a->mlx.ptr, a->mlx.win, a->img.img_ptr, 0, 0);
 	return (OK);
