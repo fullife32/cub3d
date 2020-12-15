@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 00:32:33 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/13 16:43:28 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/15 16:54:21 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,25 +82,25 @@ void	txr_parse(char c, char *line, t_a *a)
 	|| (c == 'S' && (*line != ' ' && *line != 'O'))
 	|| (c == 'E' && *line != 'A')
 	|| ((c == 'F' || c == 'C') && *line != ' '))
-		error(-2, a);
+		error(NOT_VALID_TXR, a);
 	c = (c == 'S' && *line == 'O') ? 'S' : c;
 	c = (c == 'S' && *line == ' ') ? ' ' : c;
 	if (dup_check(c) == ERR)
-		error(-3, a);
+		error(TOO_MANY_TXR, a);
 	line++;
 	while (*line == ' ')
 		line++;
 	if ((c == 'F' || c == 'C') && (*line >= '0' && *line <= '9'))
 	{
 		if (txr_atoi(c, line, &a->txr) == ERR)
-			error(-4, a);
+			error(NOT_VALID_COLOR, a);
 	}
 	else
 	{
 		while (*(line + len) != '\0' && *(line + len) != ' ')
 			len++;
 		if (txr_malloc(c, len + 1, &a->txr) == ERR)
-			error(-5, a);
+			error(MALLOC_FAIL_TXR, a);
 		txr_cpy(c, line, len, &a->txr);
 	}
 }

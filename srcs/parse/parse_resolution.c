@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:33:18 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/24 13:44:39 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/15 16:42:05 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	res_parse(t_a *a)
 
 	line = *a->mlx.line;
 	if (dup_check(*line) == ERR)
-		error(-2, a);
+		error(TOO_MANY_RES, a);
 	line++;
 	while (*line == ' ')
 		line++;
@@ -40,5 +40,5 @@ void	res_parse(t_a *a)
 		line++;
 	a->res.w = (*line != '\0') ? 0 : a->res.w;
 	if (a->res.w <= 0 || a->res.h <= 0)
-		error(-2, a);
+		error(NOT_VALID_RES, a);
 }

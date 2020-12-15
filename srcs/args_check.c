@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/24 17:42:01 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/15 16:33:26 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	cub_check(char *av, t_a *a)
 	if (j == -1)
 	{
 		if ((a->mlx.fd = open(av, O_RDONLY)) == -1)
-			error(MISSING_CUB_FILE, a);
+			error(MISS_CUB_FILE, a);
 	}
 	else
 		if ((a->mlx.fd = -1) == ERR)

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/10 17:00:53 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/15 17:30:52 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,32 +73,31 @@ void	map_parse(t_a *a)
 	first = NULL;
 	lst = NULL;
 	if (add_line(*a->mlx.line, &first, &lst) == ERR)
-		error(-1, a);
+		error(MALLOC_FAIL_MAP, a);
 	while (get_next_line(a->mlx.fd, a->mlx.line) > 0)
 	{
 		if (add_line(*a->mlx.line, &first, &lst) == ERR)
-		error(-1, a);
+			error(MALLOC_FAIL_MAP, a);
 	}
 	if (add_line(*a->mlx.line, &first, &lst) == ERR)
-		error(-1, a);
+		error(MALLOC_FAIL_MAP, a);
 	y = 0;
 	if ((a->map.map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL) //verif free
-		error(-1, a);
+		error(MALLOC_FAIL_MAP, a);
 	lst = first;
 	while (lst != NULL)
 	{
 		a->map.map[y] = lst->content;
 		if (start_p(y, a->map.map[y], &(a->plr), &(a->dir)) == ERR)
-			error(-1, a);
+			error(TOO_MANY_START, a);
 		if (map_char(a->map.map[y]) == ERR)
-			error(-1, a);
+			error(NOT_VALID_CHAR_MAP, a);
 		lst = lst->next;
 		y++;
 	}
 	a->map.map[y] = NULL;
 	if (a->plr.pos_y == -1)
-		error(-1, a); // ajouter error position introuvable
+		error(NO_START, a);
 	// ft_lstclear(&first, (void *)ft_lstdelone);
-	if (map_leak(&(a->map), &(a->plr)) == ERR)
-		error(-1, a);
+	map_leak(&(a->map), &(a->plr));
 }

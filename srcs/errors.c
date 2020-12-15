@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/24 18:46:18 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/15 17:29:09 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,51 +60,36 @@ void	free_txr(t_a *a)
 		free(a->txr.ceiling);
 }
 
-void	error_map(int error)
-{
-	if (error == -2)
-		write(1, "\n", 21);
-	else if (error == -3)
-		write(1, "\n", 21);
-}
+	// else if (error == MUSIC_FILE_FAIL) // add it to the tab
+	// 	write(1, "Music file name/path is incorrect\n", 35);
 
-void	error_txr(int error)
+static const char *test[MAX_ERROR] = 
 {
-	if (error == -2)
-		write(1, "Invalid texture argument\n", 25);
-	else if (error == -3)
-		write(1, "Too many textures detected\n", 28);
-	else if (error == -4)
-		write(1, "Invalid color\n", 14);
-	else if (error == -5)
-		write(1, "Mallocing textures failed\n", 26);
-}
+	"Error\n",
+	".cub file not found\n",
+	"The second argument must be a .cub file\n",
+	"Initialization of MLX server failed\n",
+	"Not enough arguments entered\n",
+	"Incorrect argument entered\n",
+	"Too many resolution arguments\n",
+	"Incorrect resolution\n",
+	"Invalid texture argument\n",
+	"Too many textures detected\n",
+	"Invalid color\n",
+	"Malloc failed in parse_txr\n",
+	"Malloc failed in map\n",
+	"There are too many starting points in the map\n",
+	"Not a valid char in the map\n",
+	"No starting point found in the map\n"
+};
 
-void	error_res(int error)
-{
-	if (error == -2) // A changer en macro
-		write(1, "Incorrect resolution\n", 21);
-	else if (error == -3)
-		write(1, "Not enough arguments\n", 21);
-	else if (error == -4)
-		write(1, "Map not found\n", 14);
-	else if (error == NOT_VALID_ARG)
-		write(1, "Incorrect argument entered\n", 28);
-}
+#include <unistd.h>
 
 void	error(int error, t_a *a)
 {
 	(void)a;
-	
-	if (error != ERR)
-		write(1, "Error\n", 7);
-	if (error == MISSING_CUB_FILE)
-		write(1, ".cub file not found\n", 21);
-	else if (error == NOT_CUB_FILE)
-		write(1, "The last argument must be a .cub file\n", 38);
-	else if (error == MLX_INIT_FAIL)
-		write(1, "Initialization of MLX server failed\n", 37);
-	else if (error == MUSIC_FILE_FAIL)
-		write(1, "Music file name/path is incorrect\n", 35);
+
+	ft_putstr_fd((char *)test[0], STDERR_FILENO);
+	ft_putstr_fd((char *)test[error], STDERR_FILENO);
 	exit(-1);
 }

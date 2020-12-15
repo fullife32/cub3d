@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/24 13:23:19 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/15 17:29:27 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,33 @@
 # define OK 1
 # define FALSE 0
 # define ERR -1
-# define MISSING_CUB_FILE -2
-# define NOT_CUB_FILE -3
-# define MLX_INIT_FAIL -4
-# define MAP_NOT_CLOSED -5
-# define MUSIC_FILE_FAIL -6
-# define BMP_FAIL -7
 
+# define MAX_ERROR 200
 
-# define NOT_VALID_ARG -10
+# define MISS_CUB_FILE 1
+# define NOT_CUB_FILE 2
 
+# define MLX_INIT_FAIL 3
+
+# define NOT_ENOUGH_ARGS 4
+# define NOT_VALID_ARG 5
+
+# define TOO_MANY_RES 6
+# define NOT_VALID_RES 7
+
+# define NOT_VALID_TXR 8
+# define TOO_MANY_TXR 9
+# define NOT_VALID_COLOR 10
+# define MALLOC_FAIL_TXR 11
+
+# define MALLOC_FAIL_MAP 12
+# define TOO_MANY_START 13
+# define NOT_VALID_CHAR_MAP 14
+# define NO_START 15
+
+# define MAP_NOT_CLOSED 17
+# define MUSIC_FILE_FAIL 18
+# define BMP_FAIL 19
 
 typedef struct	s_res
 {
