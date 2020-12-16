@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/15 17:30:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/16 14:46:53 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ void	map_parse(t_a *a)
 	if (a->plr.pos_y == -1)
 		error(NO_START, a);
 	// ft_lstclear(&first, (void *)ft_lstdelone);
-	map_leak(&(a->map), &(a->plr));
+	map_cpy(&(a->map));
+	a->map.map[(int)a->plr.pos_y][(int)a->plr.pos_x] = '0'; //mieux lintegrer
 }

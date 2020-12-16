@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/15 16:33:26 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/16 12:16:42 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ void	save_check(char *av, t_a *a)
 	while (SAVE[i] && av[i])
 	{
 		if (SAVE[i] != av[i])
-			error(BMP_FAIL, a);
+			error(SAVE_FAIL, a);
 		i++;
 	}
+	if (SAVE[i] || av[i])
+		error(SAVE_FAIL, a);
 	a->bmp.fd = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/24 18:49:10 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/16 14:26:18 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,19 +118,18 @@ typedef struct	s_spr
 	int		*order;
 	double	*dist;
 	int		amount;
-
-	double	spriteX;
-	double	spriteY;
-	double	invDet;
-	double	transformX;
-	double	transformY;
-	int		spriteScreenX;
-	int		spriteHeight;
-	int		drawStartY;
-	int		drawEndY;
-	int		spriteWidth;
-	int		drawStartX;
-	int		drawEndX;
+	double	spr_x;
+	double	spr_y;
+	double	inv_det;
+	double	transform_x;
+	double	transform_y;
+	int		screen_x;
+	int		height;
+	int		width;
+	int		px_start_y;
+	int		px_end_y;
+	int		px_start_x;
+	int		px_end_x;
 }				t_spr;
 
 typedef struct	s_bmp
@@ -194,7 +193,6 @@ int		key_move(t_a *a);
 
 int		destroy(t_a *a);
 int		rc_loop(t_a *a);
-int		raycast(t_a *a);
 int		image_loader(t_a *a);
 
 void	sprite_swap(t_spr *spr, int min, int i);

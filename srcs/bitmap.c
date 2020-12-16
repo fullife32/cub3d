@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 14:19:36 by eassouli          #+#    #+#             */
-/*   Updated: 2020/11/25 01:12:09 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/16 12:15:10 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_bmp(t_a *a)
 int		rec_bmp_h(t_a *a)
 {
 	if ((a->bmp.fd = open("save.bmp", O_RDWR | O_CREAT, S_IRWXU | O_TRUNC)) < 0)
-		return (BMP_FAIL);
+		error(BMP_FAIL, a);
 	write(a->bmp.fd, &a->bmp.sign, 2);
 	write(a->bmp.fd, &a->bmp.size, 4);
 	write(a->bmp.fd, &a->bmp.rsv, 4);
@@ -80,22 +80,3 @@ void	rec_px(t_a *a)
 		j++;
 	}
 }
-
-// int	rec_bmp(t_a *a)
-// {
-// 	init_bmp(a);
-// 	if (rec_bmp_h(a) == BMP_FAIL)
-// 	{
-// 		write(1, "Some issues happened when creating the .bmp file", 49);
-// 		return (ERR);
-// 	}
-// 	else
-// 	{
-// 		image_loader(a);
-// 		rc_loop(a);
-// 		rec_px(a);
-// 		close(a->bmp.fd);
-// 		fp(a->mlx.fd, &a->txr);
-// 		return (OK);
-// 	}
-// }

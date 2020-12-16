@@ -6,12 +6,12 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/09 14:59:10 by eassouli          #+#    #+#              #
-#    Updated: 2020/12/15 14:56:29 by eassouli         ###   ########.fr        #
+#    Updated: 2020/12/16 15:42:37 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
 while pidof ./cub3D > /dev/null == true ; do
-	aplay --quiet ./sounds/doom.mp3
+	aplay --quiet ./sounds/sweden.wav
 done

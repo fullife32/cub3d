@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/15 17:29:27 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/16 14:22:39 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,35 @@
 
 # define MAX_ERROR 200
 
-# define MISS_CUB_FILE 1
-# define NOT_CUB_FILE 2
+# define NOT_ENOUGH_ARGS 0
+# define TOO_MANY_ARGS 1
 
-# define MLX_INIT_FAIL 3
+# define MISS_CUB_FILE 2
+# define NOT_CUB_FILE 3
+# define SAVE_FAIL 4
 
-# define NOT_ENOUGH_ARGS 4
-# define NOT_VALID_ARG 5
+# define MLX_INIT_FAIL 5
+# define MALLOC_FAIL_LINE 6
 
-# define TOO_MANY_RES 6
-# define NOT_VALID_RES 7
+# define NOT_ENOUGH_ID 7
+# define NOT_VALID_ID 8
 
-# define NOT_VALID_TXR 8
-# define TOO_MANY_TXR 9
-# define NOT_VALID_COLOR 10
-# define MALLOC_FAIL_TXR 11
+# define TOO_MANY_RES 9
+# define NOT_VALID_RES 10
 
-# define MALLOC_FAIL_MAP 12
-# define TOO_MANY_START 13
-# define NOT_VALID_CHAR_MAP 14
-# define NO_START 15
+# define NOT_VALID_TXR 11
+# define TOO_MANY_TXR 12
+# define NOT_VALID_COLOR 13
+# define MALLOC_FAIL_TXR 14
 
-# define MAP_NOT_CLOSED 17
-# define MUSIC_FILE_FAIL 18
-# define BMP_FAIL 19
+# define MALLOC_FAIL_MAP 15
+# define TOO_MANY_START 16
+# define NOT_VALID_CHAR_MAP 17
+# define NO_START 18
+
+# define MAP_NOT_CLOSED 100
+# define MUSIC_FILE_FAIL 101
+# define BMP_FAIL 102
 
 typedef struct	s_res
 {
@@ -108,8 +113,6 @@ int		add_line(char *line, t_list	**first, t_list	**lst);
 int		start_p(int y, char *line, t_plr *plr, t_dir *dir);
 void	map_parse(t_a *a);
 int		floodfill_map(char *line, int i, char trg, char rep);
-
-int		raycast(t_a *a);
 
 void	play_music();
 

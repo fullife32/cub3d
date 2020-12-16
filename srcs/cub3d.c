@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/15 17:02:39 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/16 12:06:52 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int		main(int ac, char **av)
 {
 	t_a		a;
 
-	if (ac < 2 || ac > 3)
-		error(MISS_CUB_FILE, &a);
+	if (ac < 2)
+		error(NOT_ENOUGH_ARGS, &a);
+	else if (ac > 3)
+		error(TOO_MANY_ARGS, &a);
 	cub_check(av[1], &a);
 	init(&a); // retour d'erreur dans init
 	parse(&a);
