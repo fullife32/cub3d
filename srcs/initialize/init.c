@@ -6,14 +6,14 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 12:06:59 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 17:20:13 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "raycast.h"
 
-void	init_txr(t_a *a)
+void	txr_init(t_a *a)
 {
 	a->txr.f_rgb = -1;
 	a->txr.c_rgb = -1;
@@ -24,9 +24,13 @@ void	init_txr(t_a *a)
 	a->txr.sprite = 0;
 	a->txr.floor = 0;
 	a->txr.ceiling = 0;
+	a->north_txr.ptr = 0;
+	a->south_txr.ptr = 0;
+	a->east_txr.ptr = 0;
+	a->west_txr.ptr = 0;
 }
 
-void	init_dir(t_a *a)
+void	dir_init(t_a *a)
 {
 	a->dir.plane_x = 0;
 	a->dir.plane_y = 0;
@@ -34,7 +38,7 @@ void	init_dir(t_a *a)
 	a->dir.y = 0;
 }
 
-void	init_plr(t_a *a)
+void	plr_init(t_a *a)
 {
 	a->plr.pos_x = -1;
 	a->plr.pos_y = -1;
@@ -42,7 +46,7 @@ void	init_plr(t_a *a)
 	a->plr.rot_spd = 0.024;
 }
 
-void	init_mov(t_a *a)
+void	mov_init(t_a *a)
 {
 	a->mov.mov[ESC] = FALSE;
 	a->mov.mov[FW] = FALSE;
@@ -61,10 +65,13 @@ void	init(t_a *a)
 		error(MALLOC_FAIL_LINE, a); //don't forget to free this if error or normal and create macro
 	a->res.h = 0;
 	a->res.w = 0;
-	init_txr(a);
+	txr_init(a);
+	spr_init(a);
 	a->map.map = 0;
-	init_dir(a);
-	init_plr(a);
-	init_mov(a);
+	a->map.first = NULL;
+	a->map.lst = NULL;
+	dir_init(a);
+	plr_init(a);
+	mov_init(a);
 	a->bmp.fd = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 12:14:50 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 17:04:34 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ int		rc_loop(t_a *a)
 
 int		image_loader(t_a *a)
 {
-	if (tx_set(a) == ERR)
-		return(ERR);
-	if (sprite_init(a) == ERR)
-		return (ERR);
+	tx_set(a);
+	sprite_init(a);
 	if (a->bmp.fd == 0)
 		a->mlx.win = mlx_new_window(a->mlx.ptr, a->res.w, a->res.h, "cub3D");
 	a->img.img_ptr = mlx_new_image(a->mlx.ptr, a->res.w, a->res.h);

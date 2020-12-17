@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 14:26:18 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 17:19:40 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,9 +174,7 @@ void	rc_line(t_a *a);
 void	rc_tex(t_a *a);
 
 t_atx	wall_set(t_a *a);
-int		tx_set(t_a *a);
-
-void	free_map(char **map);
+void	tx_set(t_a *a);
 
 void	draw_ceiling(t_a *a);
 void	draw_walls(t_a *a);
@@ -198,7 +196,6 @@ int		image_loader(t_a *a);
 void	sprite_swap(t_spr *spr, int min, int i);
 void	sprite_sort(t_spr *spr);
 void	sprite_dist(t_a *a);
-void	sprite_free(t_spr *spr);
 
 void	sprite_height(t_a *a);
 void	sprite_width(t_a *a);
@@ -207,5 +204,8 @@ void	sprite_raycast(t_a *a);
 void	init_bmp(t_a *a);
 int		rec_bmp_h(t_a *a);
 void	rec_px(t_a *a);
+
+void	txr_free(t_a *a);
+void	sprite_free(t_a *a);
 
 # endif

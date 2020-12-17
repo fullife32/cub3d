@@ -6,18 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 11:39:03 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 16:24:01 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-
-void	free_line(t_a *a)
-{
-	if (*a->mlx.line)
-		free(*a->mlx.line);
-	*a->mlx.line = NULL;
-}
 
 void	parse(t_a *a)
 {
@@ -45,7 +38,7 @@ void	parse(t_a *a)
 		}
 		else if (line[i] != ' ' && line[i]) //check if it works for a char between lines
 			error(NOT_VALID_ID, a);
-		free_line(a);
+		line_free(a);
 	}
 	error(NOT_ENOUGH_ID, a);
 }

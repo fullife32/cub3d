@@ -6,13 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 09:52:11 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 16:23:54 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "parse.h"
 #include "raycast.h"
+#include "stack.h"
 
 void	map_dim(t_map *map)
 {
@@ -27,69 +27,33 @@ void	map_dim(t_map *map)
 	}
 }
 
-char	**map_cpy(t_map *map)
+void	map_cpy(t_a *a)
 {
-	char	**m_cp;
 	int		line;
 
-	map_dim(map);
-	if (!(m_cp = malloc(sizeof(char **) * map->y + 1)))
-		return (FALSE);
+	map_dim(&a->map);
+	if (!(a->map.m_cp = malloc(sizeof(char **) * a->map.y + 1)))
+		error(MALLOC_FAIL_FILL, a);
 	line = 0;
-	while (line < map->y)
+	while (line < a->map.y)
 	{
-		m_cp[line] = ft_strdup(map->map[line]);
+		a->map.m_cp[line] = ft_strdup(a->map.map[line]);
+		if (a->map.m_cp[line] == NULL)
+			error(MALLOC_FAIL_FILL, a); //free map copy if error
 		line++;
 	}
-	m_cp[line] = NULL;
-	return (m_cp);
+	a->map.m_cp[line] = NULL;
 }
 
-t_vec	detect_start(t_map *map)
+void	map_vfy_print(t_a *a)
 {
-	t_vec		i;
-
-	i = (t_vec){0, 0};
-	while (i.y < map->y)
-	{
-		i.x = 0;
-		while (i.x < map->x)
-		{
-			if (ft_strchr("NSWE", map->map[i.y][i.x]))
-				return (i);
-			i.x++;
-		}
-		i.y++;
-	}
-	return (i);
-}
-
-void	free_map(char **cpy)
-{
-	int	i;
-
-	i = 0;
-	while (cpy[i])
-		free(cpy[i++]);
-	free(cpy);
-}
-
-int		map_vfy_print(t_map *map)
-{
-	char	**m_cpy;
+	t_vec	pos;
 	int		is_closed;
 
-	m_cpy = map_cpy(map);
-	is_closed = flood_fill(m_cpy, detect_start(map), (t_vec){map->x, map->y});
-	free_map(m_cpy);
-	if (is_closed)
-	{
-		ft_putstr_fd("MAP IS CLOSED\n", 1);
-		return (OK);
-	}
-	else
-	{
-		ft_putstr_fd("MAP ISN'T CLOSED PROPERLY\n", 1);
-		return (ERR);
-	}
+	pos = (t_vec){a->plr.pos_x, a->plr.pos_y};
+	map_cpy(a);
+	is_closed = flood_fill(a->map.m_cp, pos, (t_vec){a->map.x, a->map.y});
+	map_free(a->map.m_cp);
+	if (is_closed == FALSE)
+		error(MAP_NOT_CLOSE, a);
 }

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 14:22:39 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 17:21:14 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@
 # define NOT_VALID_CHAR_MAP 17
 # define NO_START 18
 
-# define MAP_NOT_CLOSED 100
-# define MUSIC_FILE_FAIL 101
+# define MALLOC_FAIL_FILL 19
+# define MAP_NOT_CLOSE 20
+
+# define MALLOC_FAIL_SPR 21
+
 # define BMP_FAIL 102
 
 typedef struct	s_res
@@ -81,10 +84,13 @@ typedef struct	s_txr
 typedef struct	s_map
 {
 	char	**map;
+	char	**m_cp;
 	int		y;
 	int		x;
 	int		hit;
 	int		side;
+	t_list	*first;
+	t_list	*lst;
 }				t_map;
 
 #include "raycast.h"
@@ -97,7 +103,6 @@ void	init(t_a *a);
 void	cub_check(char *av, t_a *a);
 void	save_check(char *av, t_a *a);
 
-void	free_line(t_a *a);
 void	parse(t_a *a);
 
 void	res_parse(t_a *a);
@@ -111,14 +116,21 @@ int		txr_atoi(char c, char *line, t_txr *txr);
 
 int		add_line(char *line, t_list	**first, t_list	**lst);
 int		start_p(int y, char *line, t_plr *plr, t_dir *dir);
+void	map_create(t_a *a);
 void	map_parse(t_a *a);
+
 int		floodfill_map(char *line, int i, char trg, char rep);
 
-void	play_music();
+void	play_music(t_a *a);
 
-int		sprite_init(t_a *a);
+void	spr_init(t_a *a);
+void	sprite_init(t_a *a);
 void	sprite_count(t_a *a);
 void	sprite_pos(t_a *a);
-int		sprite_list(t_a *a);
+void	sprite_list(t_a *a);
+
+void	line_free(t_a *a);
+void	parse_free(t_a *a);
+void	map_free(char **map);
 
 #endif

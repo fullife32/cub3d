@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   walls.c                                            :+:      :+:    :+:   */
+/*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:28:48 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 10:33:39 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 17:19:36 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_atx	wall_set(t_a *a)
 	return (a->west_txr); //OUEST
 }
 
-int		tx_set(t_a *a)
+void	tx_set(t_a *a)
 {
 	a->tex.dim = 64;
 	a->north_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.north,
@@ -49,5 +49,4 @@ int		tx_set(t_a *a)
 	if (a->north_txr.img == 0 || a->south_txr.img == 0 || a->east_txr.img == 0
 	|| a->west_txr.img == 0)
 		error(-1, a);
-	return (OK);
 }

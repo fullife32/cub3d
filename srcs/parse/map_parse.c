@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 14:46:53 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 17:34:03 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,41 +64,42 @@ int		start_p(int y, char *line, t_plr *plr, t_dir *dir)
 	return (OK);
 }
 
-void	map_parse(t_a *a)
+void	map_create(t_a *a)
 {
-	t_list	*first;
-	t_list	*lst;
-	int		y;
-
-	first = NULL;
-	lst = NULL;
-	if (add_line(*a->mlx.line, &first, &lst) == ERR)
+	if (add_line(*a->mlx.line, &a->map.first, &a->map.lst) == ERR)
 		error(MALLOC_FAIL_MAP, a);
 	while (get_next_line(a->mlx.fd, a->mlx.line) > 0)
 	{
-		if (add_line(*a->mlx.line, &first, &lst) == ERR)
+		if (add_line(*a->mlx.line, &a->map.first, &a->map.lst) == ERR)
 			error(MALLOC_FAIL_MAP, a);
 	}
-	if (add_line(*a->mlx.line, &first, &lst) == ERR)
+	if (add_line(*a->mlx.line, &a->map.first, &a->map.lst) == ERR)
 		error(MALLOC_FAIL_MAP, a);
+	if ((a->map.map = malloc(sizeof(char *) * (ft_lstsize(a->map.first) + 1))) == NULL) //verif free
+		error(MALLOC_FAIL_MAP, a);
+	a->map.lst = a->map.first;
+}
+
+void	map_parse(t_a *a)
+{
+	int		y;
+
+	map_create(a);
 	y = 0;
-	if ((a->map.map = malloc(sizeof(char *) * (ft_lstsize(first) + 1))) == NULL) //verif free
-		error(MALLOC_FAIL_MAP, a);
-	lst = first;
-	while (lst != NULL)
+	ft_memset(a->map.map, 0, ft_lstsize(a->map.first) * sizeof(char *));
+	while (a->map.lst != NULL)
 	{
-		a->map.map[y] = lst->content;
+		a->map.map[y] = a->map.lst->content;
 		if (start_p(y, a->map.map[y], &(a->plr), &(a->dir)) == ERR)
 			error(TOO_MANY_START, a);
-		if (map_char(a->map.map[y]) == ERR)
+		if (map_char(a->map.map[y]) == ERR) //a verif segfault
 			error(NOT_VALID_CHAR_MAP, a);
-		lst = lst->next;
+		a->map.lst = a->map.lst->next;
 		y++;
 	}
 	a->map.map[y] = NULL;
 	if (a->plr.pos_y == -1)
 		error(NO_START, a);
-	// ft_lstclear(&first, (void *)ft_lstdelone);
-	map_cpy(&(a->map));
+	map_vfy_print(a);
 	a->map.map[(int)a->plr.pos_y][(int)a->plr.pos_x] = '0'; //mieux lintegrer
 }

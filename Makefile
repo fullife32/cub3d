@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2020/12/16 14:41:45 by eassouli         ###   ########.fr        #
+#    Updated: 2020/12/17 17:31:43 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,19 +19,21 @@ SRCS		=	get_next_line/get_next_line.c\
 				cub3d.c\
 				args_check.c\
 				initialize/init.c\
-				initialize/walls.c\
+				initialize/wall.c\
 				parse/parse.c\
-				parse/parse_resolution.c\
-				parse/parse_color.c\
-				parse/parse_texture.c\
-				parse/parse_map.c\
+				parse/resolution_parse.c\
+				parse/color_parse.c\
+				parse/texture_parse.c\
+				parse/map_parse.c\
+				parse/free_parse.c\
 				flood_fill/flood_fill.c\
 				flood_fill/map_leak.c\
 				flood_fill/stack.c\
 				raycast/raycast.c\
-				raycast/raycast_wall.c\
-				raycast/raycast_sprite.c\
+				raycast/wall_raycast.c\
+				raycast/sprite_raycast.c\
 				raycast/display.c\
+				raycast/free_raycast.c\
 				sprite/sprite_list.c\
 				sprite/sprite_dist.c\
 				bitmap.c\
@@ -57,7 +59,7 @@ FLAGS		=	-g -Wall -Wextra -Werror -I $(HEADER) -L/usr/include/../lib -lXext -lX1
 
 RM			=	/bin/rm -f
 
-all:		$(NAME)
+all:		$(NAME) #attention a la recompilation
 
 $(NAME):	$(OBJS)
 			@cd $(LIBFT) && $(MAKE) re && $(MAKE) clean

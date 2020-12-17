@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:00:36 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 09:51:20 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 15:02:29 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	find(char **map, t_frame **stack, t_vec proj)
 {
-	if (ft_strchr("023 ", map[proj.y][proj.x]))
+	if (ft_strchr("02 ", map[proj.y][proj.x]))
 		stack_push(stack, proj);
 }
 

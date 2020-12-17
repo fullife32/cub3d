@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 12:06:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/17 15:55:52 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int ac, char **av)
 		save_check(av[2], &a);
 	image_loader(&a);
 	if (a.bmp.fd == 0)
-		play_music();
+		play_music(&a);
 	else
 		rc_loop(&a);
 	
