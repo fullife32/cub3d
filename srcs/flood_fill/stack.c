@@ -6,11 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:01:25 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 09:53:05 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:24:17 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "cub3d.h"
 
 t_frame	*stack_init(t_vec pos)
 {

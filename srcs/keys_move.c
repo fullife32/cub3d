@@ -6,12 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:05:04 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 14:42:55 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:30:33 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
+#include "cub3d.h"
 
 void	key_front(t_a *a)
 {

@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall.c                                             :+:      :+:    :+:   */
+/*   textures_set.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 15:28:48 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 17:19:36 by eassouli         ###   ########.fr       */
+/*   Created: 2020/12/18 14:06:41 by eassouli          #+#    #+#             */
+/*   Updated: 2020/12/18 15:30:08 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
+#include "cub3d.h"
 
-t_atx	wall_set(t_a *a)
-{	
-	if (a->map.side == 1 && a->dst.step_y == 1)
-		return (a->north_txr); //NORD
-	else if (a->map.side == 1 && a->dst.step_y == -1)
-		return (a->south_txr); //SUD
-	else if (a->map.side == 0 && a->dst.step_x == -1)
-		return (a->east_txr); //EST
-	return (a->west_txr); //OUEST
-}
-
-void	tx_set(t_a *a)
+void	wall_set(t_a *a)
 {
 	a->tex.dim = 64;
 	a->north_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.north,
@@ -48,5 +36,23 @@ void	tx_set(t_a *a)
 	&a->west_txr.bpp, &a->east_txr.size_l, &a->west_txr.endian);
 	if (a->north_txr.img == 0 || a->south_txr.img == 0 || a->east_txr.img == 0
 	|| a->west_txr.img == 0)
+		error(-1, a);
+}
+
+void	sprite_set(t_a *a)
+{
+	if ((a->spr.z_buff = malloc(sizeof(double) * (a->res.w + 1))) == NULL)
+		error(-1, a);
+	if ((a->spr.dist = malloc(sizeof(double) * (a->spr.amount + 1))) == NULL)
+		error(-1, a);
+	a->spr.dist[a->spr.amount] = '\0';
+	if ((a->spr.order = malloc(sizeof(int) * a->spr.amount + 1)) == NULL)
+		error(-1, a);
+	a->spr.order[a->spr.amount] = '\0';
+	if ((a->spr_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.sprite,
+	&a->tex.dim, &a->tex.dim)) == NULL)
+		error(-1, a);
+	if ((a->spr_txr.img = (int *)mlx_get_data_addr(a->spr_txr.ptr,
+	&a->spr_txr.bpp, &a->spr_txr.size_l, &a->spr_txr.endian)) == NULL)
 		error(-1, a);
 }

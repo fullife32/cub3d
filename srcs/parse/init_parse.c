@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 17:20:13 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:24:28 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
+#include "cub3d.h"
 
 void	txr_init(t_a *a)
 {
@@ -24,18 +23,6 @@ void	txr_init(t_a *a)
 	a->txr.sprite = 0;
 	a->txr.floor = 0;
 	a->txr.ceiling = 0;
-	a->north_txr.ptr = 0;
-	a->south_txr.ptr = 0;
-	a->east_txr.ptr = 0;
-	a->west_txr.ptr = 0;
-}
-
-void	dir_init(t_a *a)
-{
-	a->dir.plane_x = 0;
-	a->dir.plane_y = 0;
-	a->dir.x = 0;
-	a->dir.y = 0;
 }
 
 void	plr_init(t_a *a)
@@ -46,32 +33,22 @@ void	plr_init(t_a *a)
 	a->plr.rot_spd = 0.024;
 }
 
-void	mov_init(t_a *a)
-{
-	a->mov.mov[ESC] = FALSE;
-	a->mov.mov[FW] = FALSE;
-	a->mov.mov[BW] = FALSE;
-	a->mov.mov[L] = FALSE;
-	a->mov.mov[R] = FALSE;
-	a->mov.mov[LR] = FALSE;
-	a->mov.mov[RR] = FALSE;
-}
-
 void	init(t_a *a)
 {
 	if ((a->mlx.ptr = mlx_init()) == NULL)
 		error(MLX_INIT_FAIL, a);
 	if ((a->mlx.line = malloc(sizeof(char **))) == NULL)
-		error(MALLOC_FAIL_LINE, a); //don't forget to free this if error or normal and create macro
+		error(MALLOC_FAIL_LINE, a);
 	a->res.h = 0;
 	a->res.w = 0;
 	txr_init(a);
-	spr_init(a);
+	plr_init(a);
 	a->map.map = 0;
 	a->map.first = NULL;
 	a->map.lst = NULL;
 	dir_init(a);
-	plr_init(a);
 	mov_init(a);
+	wall_init(a);
+	sprite_init(a);
 	a->bmp.fd = 0;
 }

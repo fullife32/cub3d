@@ -6,13 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 16:54:34 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:30:29 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
-#include "stack.h"
+#include "cub3d.h"
 
 static const char	*g_error[MAX_ERROR] =
 {
@@ -43,8 +41,9 @@ static const char	*g_error[MAX_ERROR] =
 int		destroy(t_a *a) // destroy aussi image fenetre
 {
 	parse_free(a);
-	map_free(a->map.map);
-	// ft_lstclear(&a->map.first, (void *)ft_lstdelone); try adding it
+	// map_free(a->map.map);
+	// map_free(a->map.m_cp);
+	// ft_lstclear(&a->map.first, (void *)ft_lstdelone); //try adding it
 	txr_free(a);
 	sprite_free(a);
 	if (a->bmp.fd == -2)

@@ -6,12 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 14:19:36 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 12:15:10 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:30:23 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
+#include "cub3d.h"
 
 /*
 ** Create a structure for the .bmp file created when --save is used in the 3rd

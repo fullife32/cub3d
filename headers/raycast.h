@@ -6,15 +6,12 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:22:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 17:19:40 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:18:23 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCAST_H
 # define RAYCAST_H
-
-#include <math.h>
-#include "../minilibx_linux/mlx.h"
 
 # define ESC 65307
 # define FW 119
@@ -38,14 +35,6 @@ typedef struct	s_mlx
 	int		fd;
 	char	**line;
 }				t_mlx;
-
-typedef struct	s_plr
-{
-	double	pos_x;
-	double	pos_y;
-	double	move_spd;
-	double	rot_spd;
-}				t_plr;
 
 typedef struct	s_dir
 {
@@ -145,67 +134,5 @@ typedef struct	s_bmp
 	int		dib_clr_pln;
 	int		dib_bpp;
 }				t_bmp;
-
-typedef struct	s_a
-{
-	t_res	res;
-	t_txr	txr;
-	t_map	map;
-	t_mlx	mlx;
-	t_plr	plr;
-	t_dir	dir;
-	t_dst	dst;
-	t_img	img;
-	t_mov	mov;
-	t_atx	north_txr;
-	t_atx	south_txr;
-	t_atx	west_txr;
-	t_atx	east_txr;
-	t_atx	spr_txr;
-	t_tex	tex;
-	t_spr	spr;
-	t_bmp	bmp;
-}				t_a;
-
-void	rc_dir(t_a *a);
-void	rc_dst(t_a *a);
-void	rc_hit(t_a *a);
-void	rc_line(t_a *a);
-void	rc_tex(t_a *a);
-
-t_atx	wall_set(t_a *a);
-void	tx_set(t_a *a);
-
-void	draw_ceiling(t_a *a);
-void	draw_walls(t_a *a);
-void	draw_floor(t_a *a);
-void	draw_sprite(t_a *a);
-
-int		key_press(int key, t_a *a);
-int		key_release(int key, t_a *a);
-
-void	key_front(t_a *a);
-void	key_side(t_a *a);
-void	key_rotate(t_a *a);
-int		key_move(t_a *a);
-
-int		destroy(t_a *a);
-int		rc_loop(t_a *a);
-int		image_loader(t_a *a);
-
-void	sprite_swap(t_spr *spr, int min, int i);
-void	sprite_sort(t_spr *spr);
-void	sprite_dist(t_a *a);
-
-void	sprite_height(t_a *a);
-void	sprite_width(t_a *a);
-void	sprite_raycast(t_a *a);
-
-void	init_bmp(t_a *a);
-int		rec_bmp_h(t_a *a);
-void	rec_px(t_a *a);
-
-void	txr_free(t_a *a);
-void	sprite_free(t_a *a);
 
 # endif

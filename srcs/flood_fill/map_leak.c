@@ -6,13 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 16:23:54 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:24:14 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
-#include "stack.h"
+#include "cub3d.h"
 
 void	map_dim(t_map *map)
 {
@@ -32,8 +30,9 @@ void	map_cpy(t_a *a)
 	int		line;
 
 	map_dim(&a->map);
-	if (!(a->map.m_cp = malloc(sizeof(char **) * a->map.y + 1)))
+	if (!(a->map.m_cp = malloc(sizeof(char *) * (a->map.y + 1))))
 		error(MALLOC_FAIL_FILL, a);
+	a->map.m_cp = ft_memset(a->map.m_cp, 0, sizeof(char *) * (a->map.y + 1));
 	line = 0;
 	while (line < a->map.y)
 	{

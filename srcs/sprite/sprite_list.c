@@ -6,42 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 11:30:07 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 17:18:33 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:30:16 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
-
-void	spr_init(t_a *a)
-{
-	a->spr_txr.ptr = 0;
-	a->spr.pos_x = 0;
-	a->spr.pos_y = 0;
-	a->spr.z_buff = 0;
-	a->spr.dist = 0;
-	a->spr.order = 0;
-}
-
-void	sprite_init(t_a *a)
-{
-	a->spr_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.sprite,
-	&a->tex.dim, &a->tex.dim);
-	if (a->spr_txr.ptr == 0)
-		error(-1, a);
-	a->spr_txr.img = (int *)mlx_get_data_addr(a->spr_txr.ptr,
-	&a->spr_txr.bpp, &a->spr_txr.size_l, &a->spr_txr.endian);
-	if (a->spr_txr.img == 0)
-		error(-1, a);
-	if ((a->spr.z_buff = malloc(sizeof(double) * (a->res.w + 1))) == NULL)
-		error(-1, a);
-	if ((a->spr.dist = malloc(sizeof(double) * (a->spr.amount + 1))) == NULL)
-		error(-1, a);
-	a->spr.dist[a->spr.amount] = '\0';
-	if ((a->spr.order = malloc(sizeof(int) * a->spr.amount + 1)) == NULL)
-		error(-1, a);
-	a->spr.order[a->spr.amount] = '\0';
-}
+#include "cub3d.h"
 
 void	sprite_count(t_a *a)
 {

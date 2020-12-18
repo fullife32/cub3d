@@ -6,12 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 12:16:42 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:30:19 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
+#include "cub3d.h"
 
 void	cub_check(char *av, t_a *a)
 {

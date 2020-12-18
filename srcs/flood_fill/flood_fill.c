@@ -6,11 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:00:36 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 15:02:29 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:24:06 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "cub3d.h"
 
 //ici , Nord = (0, -1), Sud = (0, 1);
 //Est = (1, 0) et Ouest = (-1, 0);

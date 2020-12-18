@@ -6,13 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 17:34:03 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:24:31 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
-#include "stack.h"
+#include "cub3d.h"
 
 int		add_line(char *line, t_list **first, t_list **lst) // free liste en cas d'erreur avant error
 {
@@ -75,8 +73,11 @@ void	map_create(t_a *a)
 	}
 	if (add_line(*a->mlx.line, &a->map.first, &a->map.lst) == ERR)
 		error(MALLOC_FAIL_MAP, a);
-	if ((a->map.map = malloc(sizeof(char *) * (ft_lstsize(a->map.first) + 1))) == NULL) //verif free
+	if ((a->map.map = malloc(sizeof(char *)
+	* (ft_lstsize(a->map.first) + 1))) == NULL) //verif free
 		error(MALLOC_FAIL_MAP, a);
+	a->map.map = ft_memset(a->map.map, 0, sizeof(char *)
+	* (ft_lstsize(a->map.first) + 1));
 	a->map.lst = a->map.first;
 }
 
@@ -84,9 +85,8 @@ void	map_parse(t_a *a)
 {
 	int		y;
 
-	map_create(a);
 	y = 0;
-	ft_memset(a->map.map, 0, ft_lstsize(a->map.first) * sizeof(char *));
+	map_create(a);
 	while (a->map.lst != NULL)
 	{
 		a->map.map[y] = a->map.lst->content;

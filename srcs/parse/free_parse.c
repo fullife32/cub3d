@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_free.c                                       :+:      :+:    :+:   */
+/*   free_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:17:32 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 16:23:47 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:22:44 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "cub3d.h"
 
 void	line_free(t_a *a)
 {
@@ -37,7 +37,12 @@ void	map_free(char **map)
 	if (map)
 	{
 		while (map[i])
-			free(map[i++]);
+		{
+			free(map[i]);
+			map[i++] = NULL;
+		}
+		map[i] = NULL;
 		free(map);
+		map = NULL;
 	}
 }

@@ -6,12 +6,11 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/17 17:04:34 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:30:00 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
+#include "cub3d.h"
 
 int		rc_loop(t_a *a)
 {
@@ -23,7 +22,7 @@ int		rc_loop(t_a *a)
 		rc_dst(a);
 		rc_hit(a);
 		rc_line(a);
-		rc_tex(a);
+		rc_wal(a);
 		draw_ceiling(a);
 		draw_walls(a);
 		draw_floor(a);
@@ -36,7 +35,7 @@ int		rc_loop(t_a *a)
 		rec_bmp_h(a);
 		rec_px(a);
 		close(a->bmp.fd);
-		destroy(a); // faire en sorte que destroy fasse tous les free necessaires
+		destroy(a);
 	}
 	mlx_put_image_to_window(a->mlx.ptr, a->mlx.win, a->img.img_ptr, 0, 0);
 	return (OK);
@@ -44,8 +43,8 @@ int		rc_loop(t_a *a)
 
 int		image_loader(t_a *a)
 {
-	tx_set(a);
-	sprite_init(a);
+	wall_set(a);
+	sprite_set(a);
 	if (a->bmp.fd == 0)
 		a->mlx.win = mlx_new_window(a->mlx.ptr, a->res.w, a->res.h, "cub3D");
 	a->img.img_ptr = mlx_new_image(a->mlx.ptr, a->res.w, a->res.h);

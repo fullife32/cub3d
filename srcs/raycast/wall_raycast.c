@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_wall.c                                     :+:      :+:    :+:   */
+/*   wall_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/10/28 14:25:41 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:31:02 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
+#include "cub3d.h"
 
 void	rc_dir(t_a *a)
 {
@@ -101,9 +100,9 @@ void	rc_line(t_a *a)
 		a->img.px_end = a->res.h - 1;
 }
 
-void	rc_tex(t_a *a)
+void	rc_wal(t_a *a)
 {
-	a->tex.tx = wall_set(a);
+	a->tex.tx = wall_select(a);
 	if (a->map.side == 0)
 		a->tex.wall_x = a->plr.pos_y + a->dst.wall * a->dir.ray_y;
 	else

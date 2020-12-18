@@ -6,17 +6,16 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:57:15 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/16 14:26:32 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/18 15:24:45 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "raycast.h"
+#include "cub3d.h"
 
 void	draw_ceiling(t_a *a)
 {
-	int		y;
-	int		pos;
+	int				y;
+	int				pos;
 
 	y = 0;
 	while (y < a->img.px_start)
@@ -29,16 +28,14 @@ void	draw_ceiling(t_a *a)
 
 void	draw_walls(t_a *a)
 {
-	int		pos;
-	t_atx	tx;
+	int				pos;
 
-	tx = a->tex.tx;
 	while (a->img.px_start <= a->img.px_end)
 	{
 		pos = (a->img.px_start * a->img.size_l + a->mlx.x * (a->img.bpp / 8));
 		a->tex.y = (int)a->tex.pos & (a->tex.dim - 1);
-		*(unsigned int *)(a->img.img + pos) = tx.img[a->tex.y *
-		(tx.size_l / 4) + a->tex.x];
+		*(unsigned int *)(a->img.img + pos) = a->tex.tx.img[a->tex.y *
+		(a->tex.tx.size_l / 4) + a->tex.x];
 		a->tex.pos += a->tex.step;
 		a->img.px_start++;
 	}
@@ -46,7 +43,7 @@ void	draw_walls(t_a *a)
 
 void	draw_floor(t_a *a)
 {
-	int		pos;
+	int				pos;
 	
 	while (a->img.px_start < a->res.h)
 	{
@@ -58,11 +55,11 @@ void	draw_floor(t_a *a)
 
 void	draw_sprite(t_a *a)
 {
+	unsigned int	color;
 	int				stripe;
 	int				y;
 	int				pos;
 	int				d;
-	unsigned int	color;
 
 	stripe = a->spr.px_start_x;
 	while (stripe < a->spr.px_end_x)
