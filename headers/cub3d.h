@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:55 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:32:28 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/19 19:06:08 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
+#include <math.h>
 #include "../srcs/libft/libft.h"
 #include "../srcs/get_next_line/get_next_line.h"
+#include "../minilibx_linux/mlx.h"
 
 # define OK 1
 # define FALSE 0
@@ -60,6 +62,10 @@
 
 # define BMP_FAIL 102
 
+#include "parse.h"
+#include "raycast.h"
+#include "stack.h"
+
 typedef struct	s_a
 {
 	t_res	res;
@@ -81,8 +87,8 @@ typedef struct	s_a
 	t_bmp	bmp;
 }				t_a;
 
-#include "parse.h"
-#include "raycast.h"
-#include "stack.h"
+#include "parse_proto.h"
+#include "raycast_proto.h"
+#include "stack_proto.h"
 
 #endif

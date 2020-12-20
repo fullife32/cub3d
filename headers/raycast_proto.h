@@ -6,14 +6,12 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 15:18:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:27:59 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/19 19:06:57 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCAST_PROTO_H
 # define RAYCAST_PROTO_H
-
-#include "cub3d.h"
 
 void	dir_init(t_a *a);
 void	mov_init(t_a *a);

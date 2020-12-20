@@ -6,14 +6,12 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 15:16:14 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:28:21 by eassouli         ###   ########.fr       */
+/*   Updated: 2020/12/19 19:00:43 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_PROTO_H
 #define PARSE_PROTO_H
-
-#include "cub3d.h"
 
 void	error(int error, t_a *a);
 
