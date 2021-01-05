@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 16:48:53 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/02 17:09:03 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:20:30 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ int	get_next_line(int fd, char **line)
 	if (line == NULL || fd < 0 || BUFFER_SIZE <= 0)
 		return (clean(line));
 	if (ft_strclen(lst.buff, '\0') > 0)
-		if (!(*line = ft_strcjoin(*line, lst.buff)))
+	{
+		*line = ft_strcjoin(*line, lst.buff);
+		if (*line == NULL)
 			return (clean(line));
+	}
 	while (ft_strclen(lst.buff, '\n') == -1)
 	{
-		if ((nread = read(fd, lst.buff, BUFFER_SIZE)) < 0)
+		nread = read(fd, lst.buff, BUFFER_SIZE);
+		if (nread < 0)
 			return (clean(line));
 		lst.buff[nread] = '\0';
-		if (!(*line = ft_strcjoin(*line, lst.buff)))
+		*line = ft_strcjoin(*line, lst.buff);
+		if (*line == NULL)
 			return (clean(line));
 		if (nread == 0)
 			return (0);

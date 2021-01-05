@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eassouli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 12:30:45 by eassouli          #+#    #+#             */
-/*   Updated: 2019/10/20 15:52:33 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/02 15:55:34 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_intcount(unsigned int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (n != 0)
@@ -25,15 +25,20 @@ static int	ft_intcount(unsigned int n)
 	return (count);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	unsigned int	num;
 	int				count;
 	char			*nb;
 
-	num = n < 0 ? -n : n;
-	count = (n <= 0) ? ft_intcount(num) + 1 : ft_intcount(num);
-	if (!(nb = malloc(sizeof(char) * (count + 1))))
+	num = n;
+	if (n < 0)
+		num = -n;
+	count = ft_intcount(num);
+	if (n <= 0)
+		count++;
+	nb = malloc(sizeof(char) * (count + 1));
+	if (nb == NULL)
 		return (NULL);
 	nb[count] = '\0';
 	while (count-- != 0)

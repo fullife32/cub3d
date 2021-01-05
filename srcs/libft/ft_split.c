@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eassouli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:22:59 by eassouli          #+#    #+#             */
-/*   Updated: 2019/10/21 12:07:57 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/02 15:17:45 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ static char	*ft_sep(char const *s, char c, size_t i)
 	l = i;
 	while (s[l] != '\0' && s[l] != c)
 		l++;
-	if (!(split = malloc(sizeof(char) * (l - i + 1))))
-		return (0);
+	split = malloc(sizeof(char) * (l - i + 1));
+	if (split == NULL)
+		return (NULL);
 	t = 0;
 	while (i < l)
 	{
@@ -55,6 +56,8 @@ static char	**ft_alloc(char const *s, char c)
 	i = 0;
 	b = 0;
 	w = 0;
+	if (!s)
+		return (NULL);
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)
@@ -66,20 +69,20 @@ static char	**ft_alloc(char const *s, char c)
 		}
 		i++;
 	}
-	if (!(split = malloc(sizeof(char *) * (w + 1))))
-		return (0);
+	split = malloc(sizeof(char *) * (w + 1));
+	if (split == NULL)
+		return (NULL);
 	return (split);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	size_t	i;
 	int		tab;
 	char	**split;
 
-	if (!s)
-		return (NULL);
-	if ((split = ft_alloc(s, c)) == 0)
+	split = ft_alloc(s, c);
+	if (split == 0)
 		return (NULL);
 	i = 0;
 	tab = 0;
@@ -87,7 +90,8 @@ char		**ft_split(char const *s, char c)
 	{
 		if (s[i] != c)
 		{
-			if ((split[tab] = ft_sep(s, c, i)) == 0)
+			split[tab] = ft_sep(s, c, i);
+			if (split[tab] == 0)
 				return (ft_leak(split, tab));
 			while (s[i] != '\0' && s[i] != c)
 				i++;

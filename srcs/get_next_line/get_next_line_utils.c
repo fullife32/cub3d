@@ -6,13 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:15:23 by eassouli          #+#    #+#             */
-/*   Updated: 2020/04/02 17:07:36 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:14:17 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_strclen(const char *s, char c)
+int	ft_strclen(const char *s, char c)
 {
 	int				i;
 
@@ -28,15 +28,23 @@ int		ft_strclen(const char *s, char c)
 	return (-1);
 }
 
+int	ft_slen(char *s)
+{
+	if (s)
+		return (ft_strclen(s, '\0'));
+	return (0);
+}
+
 char	*ft_strcjoin(char *s1, char *s2)
 {
 	int				i;
 	int				j;
 	char			*str;
 
-	i = s1 ? ft_strclen(s1, '\0') : 0;
-	j = s2 ? ft_strclen(s2, '\0') : 0;
-	if (!(str = malloc(sizeof(char) * (i + j + 1))))
+	i = ft_slen(s1);
+	j = ft_slen(s2);
+	str = malloc(sizeof(char) * (i + j + 1));
+	if (str == NULL)
 		return (NULL);
 	i = 0;
 	j = 0;

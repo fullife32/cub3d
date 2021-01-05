@@ -6,23 +6,23 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 17:14:35 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/19 18:44:08 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/02 15:06:58 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
-#define PARSE_H
+# define PARSE_H
 
 # define CUB ".cub"
 # define SAVE "--save"
 
-typedef struct	s_res
+typedef struct s_res
 {
 	int		w;
 	int		h;
-}				t_res;
+}			t_res;
 
-typedef struct	s_txr
+typedef struct s_txr
 {
 	char	*north;
 	char	*south;
@@ -33,9 +33,9 @@ typedef struct	s_txr
 	char	*ceiling;
 	int		f_rgb;
 	int		c_rgb;
-}				t_txr;
+}			t_txr;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char	**map;
 	char	**m_cp;
@@ -45,14 +45,14 @@ typedef struct	s_map
 	int		side;
 	t_list	*first;
 	t_list	*lst;
-}				t_map;
+}			t_map;
 
-typedef struct	s_plr
+typedef struct s_plr
 {
 	double	pos_x;
 	double	pos_y;
 	double	move_spd;
 	double	rot_spd;
-}				t_plr;
+}			t_plr;
 
 #endif
