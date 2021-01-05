@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:24:31 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/05 17:02:45 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ void	map_parse(t_a *a)
 	a->map.map[y] = NULL;
 	if (a->plr.pos_y == -1)
 		error(NO_START, a);
-	map_vfy_print(a);
-	a->map.map[(int)a->plr.pos_y][(int)a->plr.pos_x] = '0'; //mieux lintegrer
+	// map_vfy_print(a);
+	a->map.map[(int)a->plr.pos_y][(int)a->plr.pos_x] = '0';
 }

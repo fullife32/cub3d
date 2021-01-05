@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:06:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:30:08 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/05 16:39:24 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	sprite_set(t_a *a)
 		error(-1, a);
 	if ((a->spr.dist = malloc(sizeof(double) * (a->spr.amount + 1))) == NULL)
 		error(-1, a);
-	a->spr.dist[a->spr.amount] = '\0';
+	a->spr.dist = ft_memset(a->spr.dist, '\0', a->spr.amount);
 	if ((a->spr.order = malloc(sizeof(int) * a->spr.amount + 1)) == NULL)
 		error(-1, a);
-	a->spr.order[a->spr.amount] = '\0';
+	a->spr.order = ft_memset(a->spr.order, '\0', a->spr.amount);
 	if ((a->spr_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.sprite,
 	&a->tex.dim, &a->tex.dim)) == NULL)
 		error(-1, a);

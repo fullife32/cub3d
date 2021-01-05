@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:17:32 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:22:44 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/05 16:51:00 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ void	map_free(char **map)
 		while (map[i])
 		{
 			free(map[i]);
-			map[i++] = NULL;
+			map[i] = NULL;
 		}
-		map[i] = NULL;
 		free(map);
 		map = NULL;
 	}

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:24:28 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/05 16:53:13 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	init(t_a *a)
 	txr_init(a);
 	plr_init(a);
 	a->map.map = 0;
+	a->map.m_cp = 0;
 	a->map.first = NULL;
 	a->map.lst = NULL;
 	dir_init(a);
