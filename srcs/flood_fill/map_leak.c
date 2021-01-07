@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:24:14 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 13:49:11 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	map_vfy_print(t_a *a)
 	map_cpy(a);
 	is_closed = flood_fill(a->map.m_cp, pos, (t_vec){a->map.x, a->map.y});
 	map_free(a->map.m_cp);
+	free(a->map.m_cp);
+	a->map.m_cp = NULL;
 	if (is_closed == FALSE)
 		error(MAP_NOT_CLOSE, a);
 }

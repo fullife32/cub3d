@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:55 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/02 14:48:39 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 14:31:45 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@
 # define MAP_NOT_CLOSE 20
 
 # define MALLOC_FAIL_SPR 21
+
+# define MALLOC_FAIL_WALL 22
+# define MALLOC_FAIL_SPRITE 23
 
 # define BMP_FAIL 102
 

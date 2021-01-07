@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:22:44 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 15:11:54 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	parse(t_a *a)
 		{
 			if (dup_check('c') != 8)
 				error(NOT_ENOUGH_ID, a);
-			map_parse(a); // add error if empty lines then something again
+			map_parse(a);
 			sprite_list(a);
 			return;
 		}
-		else if (line[i] != ' ' && line[i]) //check if it works for a char between lines
+		else if (line[i] != ' ' && line[i])
 			error(NOT_VALID_ID, a);
 		line_free(a);
 	}

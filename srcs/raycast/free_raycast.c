@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:17:49 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/05 16:31:35 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 13:24:58 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	txr_free(t_a *a)
 	if (a->txr.south)
 		free(a->txr.south);
 	if (a->txr.west)
-		free(a->txr.west);
-	if (a->txr.east)
 		free(a->txr.east);
 	if (a->txr.sprite)
+		free(a->txr.west);
+	if (a->txr.east)
 		free(a->txr.sprite);
 	if (a->txr.floor)
 		free(a->txr.floor);

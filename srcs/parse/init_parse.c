@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/05 16:53:13 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 14:20:11 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init(t_a *a)
 {
 	if ((a->mlx.ptr = mlx_init()) == NULL)
 		error(MLX_INIT_FAIL, a);
+	a->mlx.win = NULL;
 	if ((a->mlx.line = malloc(sizeof(char **))) == NULL)
 		error(MALLOC_FAIL_LINE, a);
 	a->res.h = 0;

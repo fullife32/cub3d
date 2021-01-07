@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:22:44 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 15:07:59 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(int ac, char **av)
 	else if (ac > 3)
 		error(TOO_MANY_ARGS, &a);
 	cub_check(av[1], &a);
-	init(&a); // retour d'erreur dans init
+	init(&a);
 	parse(&a);
 	if (ac == 3)
 		save_check(av[2], &a);
@@ -30,8 +30,6 @@ int		main(int ac, char **av)
 		play_music(&a);
 	else
 		rc_loop(&a);
-	
-
 	// Display infos
 	printf("\nRES :\nwidth = %d\nheight = %d\n", a.res.w, a.res.h);
 	printf("\nTXR :\nnorth = %s\nsouth = %s\nwest = %s\neast = %s\nsprite = %s\n", a.txr.north, a.txr.south, a.txr.west, a.txr.east, a.txr.sprite);

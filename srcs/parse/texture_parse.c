@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 00:32:33 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:22:44 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 15:28:13 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,10 @@ void	txr_parse(char c, char *line, t_a *a)
 	line++;
 	while (*line == ' ')
 		line++;
-	if ((c == 'F' || c == 'C') && (*line >= '0' && *line <= '9'))
+	if (c == 'F' || c == 'C')
 	{
+		if (!(*line >= '0' && *line <= '9'))
+			error(NOT_VALID_COLOR, a);
 		if (txr_atoi(c, line, &a->txr) == ERR)
 			error(NOT_VALID_COLOR, a);
 	}

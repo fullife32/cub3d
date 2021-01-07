@@ -1,15 +1,14 @@
-R 320 240
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+R 1 1
 
-S ./path_to_the_sprite_texture
-F 220,100,0
-C 225,30,0
+NO ./textures/walls/colorstone.xpm
+SO ./textures/walls/greystone.xpm
+WE ./textures/walls/mossy.xpm
+EA ./textures/walls/wood.xpm
 
-11111
-10S01
-10001
-10011
-11111
+S ./textures/sprites/barrel.xpm
+F 112,128,144
+C 0,191,255
+
+111
+1S1
+111

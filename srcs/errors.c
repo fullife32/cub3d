@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/05 17:10:46 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 15:00:45 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ static const char	*g_error[MAX_ERROR] =
 	"No starting point found in the map\n",
 	"Malloc failed in map_leak\n",
 	"Map is not closed correctly\n",
-	"Malloc failed in sprite_list\n"
+	"Malloc failed in sprite_list\n",
+	"Malloc failed in wall_set\n",
+	"Malloc failed in sprite_set\n"
 };
 
 void	del(void *content)
@@ -48,21 +50,25 @@ void	del(void *content)
 int		destroy(t_a *a) // destroy aussi image fenetre
 {
 	parse_free(a);
-	ft_lstclear(&a->map.first, (void *)del); //try adding it
+	ft_lstclear(&a->map.first, del); //try adding it
 	if (a->map.map)
-		map_free(a->map.map);
+		free(a->map.map);
 	if (a->map.m_cp)
 		map_free(a->map.m_cp);
 	txr_free(a);
+	wall_free(a);
 	sprite_free(a);
 	if (a->bmp.fd == -2)
 		system("kill -9 $(pidof aplay)");
-	if (a->mlx.win)
-		mlx_destroy_window(a->mlx.ptr, a->mlx.win);
 	if (a->img.img_ptr)
 		mlx_destroy_image(a->mlx.ptr, a->img.img_ptr);
+	if (a->mlx.win)
+		mlx_destroy_window(a->mlx.ptr, a->mlx.win);
 	if (a->mlx.ptr)
 		free(a->mlx.ptr);
+	a->mlx.ptr = NULL;
+	if (a->mlx.fd > 0)
+		close (a->mlx.fd);
 	exit(OK);
 }
 
@@ -74,8 +80,6 @@ int		destroy(t_a *a) // destroy aussi image fenetre
 
 void	error(int error, t_a *a)
 {
-	(void)a;
-
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	ft_putstr_fd((char *)g_error[error], STDERR_FILENO);
 	destroy(a);

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 14:17:32 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/05 16:51:00 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 14:53:39 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	line_free(t_a *a)
 
 void	parse_free(t_a *a)
 {
-	if (*a->mlx.line)
-		free(*a->mlx.line);
-	*a->mlx.line = NULL;
 	if (a->mlx.line)
 		free(a->mlx.line);
 	a->mlx.line = NULL;
@@ -40,8 +37,7 @@ void	map_free(char **map)
 		{
 			free(map[i]);
 			map[i] = NULL;
+			i++;
 		}
-		free(map);
-		map = NULL;
 	}
 }
