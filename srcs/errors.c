@@ -6,14 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/07 15:00:45 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 17:19:17 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static const char	*g_error[MAX_ERROR] =
-{
+static const char	*g_error[MAX_ERROR] = {
 	"No map path found after the program name\n",
 	"Too many arguments entered\n",
 	"'.cub' file not found\n",
@@ -47,10 +46,10 @@ void	del(void *content)
 	content = NULL;
 }
 
-int		destroy(t_a *a) // destroy aussi image fenetre
+int	destroy(t_a *a) // destroy aussi image fenetre
 {
 	parse_free(a);
-	ft_lstclear(&a->map.first, del); //try adding it
+	ft_lstclear(&a->map.first, del);
 	if (a->map.map)
 		free(a->map.map);
 	if (a->map.m_cp)
@@ -65,7 +64,10 @@ int		destroy(t_a *a) // destroy aussi image fenetre
 	if (a->mlx.win)
 		mlx_destroy_window(a->mlx.ptr, a->mlx.win);
 	if (a->mlx.ptr)
+	{
+		mlx_destroy_display(a->mlx.ptr);
 		free(a->mlx.ptr);
+	}
 	a->mlx.ptr = NULL;
 	if (a->mlx.fd > 0)
 		close (a->mlx.fd);

@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2021/01/07 13:15:42 by eassouli         ###   ########.fr        #
+#    Updated: 2021/01/07 17:16:34 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,10 +71,10 @@ $(NAME):	$(OBJS)
 
 clean:
 			$(MAKE) -s -C $(LIBFT) clean
-			$(RM) $(SAVE)
 
 fclean:		clean
 			$(RM) $(NAME)
+			$(RM) $(SAVE)
 			$(RM) srcs/libft/libft.a
 
 re:			fclean all

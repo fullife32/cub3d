@@ -1,4 +1,4 @@
-R 1 1
+R 200 100
 
 NO ./textures/walls/colorstone.xpm
 SO ./textures/walls/greystone.xpm

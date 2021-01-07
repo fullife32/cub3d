@@ -6,13 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/07 15:07:59 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/07 17:19:29 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_a		a;
 
@@ -40,10 +40,9 @@ int		main(int ac, char **av)
 		printf("|%s| %d\n", a.map.map[i], i);
 	// Display infos
 	
-	mlx_hook(a.mlx.win, 2, (1L<<0), key_press, &a);
-	mlx_hook(a.mlx.win, 3, (1L<<1), key_release, &a);
-	mlx_hook(a.mlx.win, 17, (1L<<5), destroy, &a); // voir macro (peut etre)
-	mlx_hook(a.mlx.win, 17, (1L<<17), destroy, &a);
+	mlx_hook(a.mlx.win, 2, (1L << 0), key_press, &a);
+	mlx_hook(a.mlx.win, 3, (1L << 1), key_release, &a);
+	mlx_hook(a.mlx.win, 17, (1L << 5), destroy, &a); //repair it
 	mlx_loop_hook(a.mlx.ptr, rc_loop, &a);
 	mlx_loop(a.mlx.ptr);
 	return (OK);
