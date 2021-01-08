@@ -1,11 +1,2 @@
 add check if every variables are correct after parsing
-check if map is correct (no leaks)
-Define posx and posy depending on start position
-Define dirx and dirx depending on NSWE
-Separate functions
-Test init/win mlx (return valide pointer)
-errno
-perror
-rien d'autre que les arguments (NO EA etc)
 rien d'autre apres la map (apres 1 ligne vide ou avec espaces)
-return perror quand fichier map invalide
