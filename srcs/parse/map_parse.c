@@ -6,21 +6,22 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/07 15:11:31 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 15:12:44 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		add_line(char *line, t_list **first, t_list **lst) // free liste en cas d'erreur avant error
+int	add_line(char *line, t_list **first, t_list **lst)
 {
-	if ((*lst = ft_lstnew(line)) == NULL)
+	*lst = ft_lstnew(line);
+	if (*lst == NULL)
 		return (ERR);
 	ft_lstadd_back(first, *lst);
 	return (OK);
 }
 
-int		map_char(char *line)
+int	map_char(char *line)
 {
 	int		x;
 
@@ -29,34 +30,6 @@ int		map_char(char *line)
 	{
 		if (ft_strchr("NSWE012 ", line[x]) == NULL)
 			return (ERR);
-		x++;
-	}
-	return (OK);
-}
-
-int		start_p(int y, char *line, t_plr *plr, t_dir *dir)
-{
-	int		x;
-
-	x = 0;
-	while (line[x] != '\0')
-	{
-		if (line[x] == 'N' || line[x] == 'S'
-		|| line[x] == 'W' || line[x] == 'E')
-		{
-			if (plr->pos_y != -1)
-				return (ERR);
-			plr->pos_x = x + 0.5;
-			plr->pos_y = y + 0.5;
-		}
-		dir->y = (line[x] == 'N') ? -1 : dir->y;
-		dir->plane_x = (line[x] == 'N') ? 1 : dir->plane_x;
-		dir->y = (line[x] == 'S') ? 1 : dir->y;
-		dir->plane_x = (line[x] == 'S') ? -1 : dir->plane_x;
-		dir->x = (line[x] == 'W') ? -1 : dir->x;
-		dir->plane_y = (line[x] == 'W') ? -1 : dir->plane_y;
-		dir->x = (line[x] == 'E') ? 1 : dir->x;
-		dir->plane_y = (line[x] == 'E') ? 1 : dir->plane_y;
 		x++;
 	}
 	return (OK);
@@ -73,11 +46,11 @@ void	map_create(t_a *a)
 	}
 	if (add_line(*a->mlx.line, &a->map.first, &a->map.lst) == ERR)
 		error(MALLOC_FAIL_MAP, a);
-	if ((a->map.map = malloc(sizeof(char *)
-	* (ft_lstsize(a->map.first) + 1))) == NULL) //verif free
+	a->map.map = malloc(sizeof(char *) * (ft_lstsize(a->map.first) + 1));
+	if (a->map.map == NULL)
 		error(MALLOC_FAIL_MAP, a);
 	a->map.map = ft_memset(a->map.map, 0, sizeof(char *)
-	* (ft_lstsize(a->map.first) + 1));
+			* (ft_lstsize(a->map.first) + 1));
 	a->map.lst = a->map.first;
 }
 

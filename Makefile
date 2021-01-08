@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2021/01/07 17:16:34 by eassouli         ###   ########.fr        #
+#    Updated: 2021/01/08 15:14:01 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SRCS		=	get_next_line/get_next_line.c\
 				parse/resolution_parse.c\
 				parse/color_parse.c\
 				parse/texture_parse.c\
+				parse/texture_malloc.c\
 				parse/map_parse.c\
+				parse/map_position.c\
 				flood_fill/map_leak.c\
 				flood_fill/stack.c\
 				flood_fill/flood_fill.c\

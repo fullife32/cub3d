@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:01:25 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:24:17 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 13:58:20 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_frame	*stack_init(t_vec pos)
 {
-	t_frame *frame;
+	t_frame	*frame;
 
 	frame = malloc(sizeof(t_frame));
 	if (frame == NULL)
@@ -47,7 +47,7 @@ t_vec	stack_pop(t_frame **item)
 	return (pos);
 }
 
-int		stack_len(t_frame *item)
+int	stack_len(t_frame *item)
 {
 	int	i;
 

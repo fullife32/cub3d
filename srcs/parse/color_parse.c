@@ -6,13 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:03 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:22:44 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 11:53:09 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		txr_atoi(char c, char *line, t_txr *txr)
+int	txr_atoi(char c, char *line, t_txr *txr)
 {
 	int	i;
 	int	rgb[3];

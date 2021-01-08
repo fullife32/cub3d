@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:00:36 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:24:06 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 13:57:05 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ void	find(char **map, t_frame **stack, t_vec proj)
 		stack_push(stack, proj);
 }
 
-int		flood_fill(char **map, t_vec pos, t_vec max)
+int	flood_fill(char **map, t_vec pos, t_vec max, t_frame *stack)
 {
-	t_frame		*stack;
 	t_proj		p;
 	int			i;
 
@@ -38,8 +37,8 @@ int		flood_fill(char **map, t_vec pos, t_vec max)
 		i = 0;
 		while (i < 4)
 		{
-			p.pr = (t_vec){p.n.x + (int[4]){-1, 0, 1, 0}[i],
-					p.n.y + (int[4]){0, 1, 0, -1}[i]};
+			p.pr = (t_vec){p.n.x + (int [4]){-1, 0, 1, 0}[i]
+				, p.n.y + (int [4]){0, 1, 0, -1}[i]};
 			if (p.pr.x >= 0 && p.pr.x < max.x && p.pr.y >= 0 && p.pr.y < max.y)
 				find(map, &stack, p.pr);
 			else

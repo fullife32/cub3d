@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 14:19:36 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/07 14:25:42 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 14:45:49 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	init_bmp(t_a *a)
 ** record the initialization of the .bmp structure's file
 */
 
-int		rec_bmp_h(t_a *a)
+int	rec_bmp_h(t_a *a)
 {
-	if ((a->bmp.fd = open("save.bmp", O_RDWR | O_CREAT, S_IRWXU | O_TRUNC)) < 0)
+	a->bmp.fd = open("save.bmp", O_RDWR | O_CREAT, S_IRWXU | O_TRUNC);
+	if (a->bmp.fd < 0)
 		error(BMP_FAIL, a);
 	write(a->bmp.fd, &a->bmp.sign, 2);
 	write(a->bmp.fd, &a->bmp.size, 4);
@@ -71,7 +72,7 @@ void	rec_px(t_a *a)
 	int	j;
 	int	pos;
 
-	j = 0;
+	j = 1;
 	while (j <= a->res.h)
 	{
 		pos = a->res.w * (a->res.h - j);

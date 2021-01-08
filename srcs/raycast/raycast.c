@@ -6,13 +6,13 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:10:31 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/07 15:05:22 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 13:16:38 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		rc_loop(t_a *a)
+int	rc_loop(t_a *a)
 {
 	key_move(a);
 	a->mlx.x = 0;
@@ -41,13 +41,14 @@ int		rc_loop(t_a *a)
 	return (OK);
 }
 
-int		image_loader(t_a *a)
+int	image_loader(t_a *a)
 {
 	wall_set(a);
 	sprite_set(a);
 	if (a->bmp.fd == 0)
 		a->mlx.win = mlx_new_window(a->mlx.ptr, a->res.w, a->res.h, "cub3D");
 	a->img.img_ptr = mlx_new_image(a->mlx.ptr, a->res.w, a->res.h);
-	a->img.img = mlx_get_data_addr(a->img.img_ptr, &a->img.bpp, &a->img.size_l, &a->img.endian);
+	a->img.img = mlx_get_data_addr(a->img.img_ptr, &a->img.bpp, &a->img.size_l
+			, &a->img.endian);
 	return (OK);
 }

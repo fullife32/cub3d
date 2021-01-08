@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:25:24 by eassouli          #+#    #+#             */
-/*   Updated: 2020/12/18 15:31:02 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 13:27:17 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ void	rc_hit(t_a *a)
 void	rc_line(t_a *a)
 {
 	if (a->map.side == 0)
-		a->dst.wall = ((double)a->map.x - a->plr.pos_x +
-		(1.0 - a->dst.step_x) / 2) / a->dir.ray_x;
+		a->dst.wall = ((double)a->map.x - a->plr.pos_x
+				+ (1.0 - a->dst.step_x) / 2) / a->dir.ray_x;
 	else
-		a->dst.wall = ((double)a->map.y - a->plr.pos_y +
-		(1.0 - a->dst.step_y) / 2) / a->dir.ray_y;
+		a->dst.wall = ((double)a->map.y - a->plr.pos_y
+				+ (1.0 - a->dst.step_y) / 2) / a->dir.ray_y;
 	a->img.line_h = (int)(a->res.h / a->dst.wall);
 	a->img.px_start = -a->img.line_h / 2 + a->res.h / 2;
 	if (a->img.px_start < 0)
@@ -115,6 +115,6 @@ void	rc_wal(t_a *a)
 		a->tex.x = a->tex.dim - a->tex.x - 1;
 	a->tex.step = 1.0 * a->tex.dim / a->img.line_h;
 	a->tex.pos = (a->img.px_start - a->res.h / 2 + a->img.line_h / 2)
-	* a->tex.step;
+		* a->tex.step;
 	a->spr.z_buff[a->mlx.x] = a->dst.wall;
 }

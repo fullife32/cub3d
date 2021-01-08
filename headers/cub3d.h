@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:55 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/07 17:05:44 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 15:26:47 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@
 # define MALLOC_FAIL_WALL 22
 # define MALLOC_FAIL_SPRITE 23
 
-# define BMP_FAIL 102
+# define BMP_FAIL 24
 
 typedef struct s_a
 {
@@ -87,6 +87,8 @@ typedef struct s_a
 	t_tex	tex;
 	t_spr	spr;
 	t_bmp	bmp;
+	t_vec	vec;
+	t_frame	*stk;
 }				t_a;
 
 /*
@@ -193,6 +195,6 @@ t_vec			stack_pop(t_frame **item);
 int				stack_len(t_frame *item);
 void			map_cpy(t_a *a);
 void			map_vfy_print(t_a *a);
-int				flood_fill(char **map, t_vec pos, t_vec max);
+int				flood_fill(char **map, t_vec pos, t_vec max, t_frame *stack);
 
 #endif

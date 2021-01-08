@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:20:16 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/02 16:15:45 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 14:19:08 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_buff
 }			t_buff;
 
 int		clean(char **line);
+int		get_next_loop(t_buff *lst, char **line, int nread, int fd);
 int		get_next_line(int fd, char **line);
 int		ft_strclen(const char *s, char c);
 int		ft_slen(char *s);

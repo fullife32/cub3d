@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 00:32:33 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/07 15:28:13 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 17:01:18 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,9 @@ void	txr_cpy(char c, char *line, int len, t_txr *txr)
 		ft_strlcpy(txr->ceiling, line, len + 1);
 }
 
-int		txr_malloc(char c, int len, t_txr *txr)
-{
-	if (c == 'N')
-		if ((txr->north = malloc(sizeof(char) * len + 1)) == NULL)
-			return (ERR);
-	if (c == 'S')
-		if ((txr->south = malloc(sizeof(char) * len + 1)) == NULL)
-			return (ERR);
-	if (c == 'W')
-		if ((txr->west = malloc(sizeof(char) * len + 1)) == NULL)
-			return (ERR);
-	if (c == 'E')
-		if ((txr->east = malloc(sizeof(char) * len + 1)) == NULL)
-			return (ERR);
-	if (c == ' ')
-		if ((txr->sprite = malloc(sizeof(char) * len + 1)) == NULL)
-			return (ERR);
-	if (c == 'F')
-		if ((txr->floor = malloc(sizeof(char) * len + 1)) == NULL)
-			return (ERR);
-	if (c == 'C')
-		if ((txr->ceiling = malloc(sizeof(char) * len + 1)) == NULL)
-			return (ERR);
-	return (OK);
-}
-
 int	dup_check(char c)
 {
-	int i;
+	int			i;
 	static char	tab[10];
 
 	i = 0;
@@ -72,24 +46,11 @@ int	dup_check(char c)
 	return (i);
 }
 
-void	txr_parse(char c, char *line, t_a *a)
+void	txr_choice(char c, char *line, t_a *a)
 {
 	int	len;
 
 	len = 0;
-	line++;
-	if ((c == 'N' && *line != 'O') || (c == 'W' && *line != 'E')
-	|| (c == 'S' && (*line != ' ' && *line != 'O'))
-	|| (c == 'E' && *line != 'A')
-	|| ((c == 'F' || c == 'C') && *line != ' '))
-		error(NOT_VALID_TXR, a);
-	c = (c == 'S' && *line == 'O') ? 'S' : c;
-	c = (c == 'S' && *line == ' ') ? ' ' : c;
-	if (dup_check(c) == ERR)
-		error(TOO_MANY_TXR, a);
-	line++;
-	while (*line == ' ')
-		line++;
 	if (c == 'F' || c == 'C')
 	{
 		if (!(*line >= '0' && *line <= '9'))
@@ -105,4 +66,24 @@ void	txr_parse(char c, char *line, t_a *a)
 			error(MALLOC_FAIL_TXR, a);
 		txr_cpy(c, line, len, &a->txr);
 	}
+}
+
+void	txr_parse(char c, char *line, t_a *a)
+{
+	line++;
+	if ((c == 'N' && *line != 'O') || (c == 'W' && *line != 'E')
+		|| (c == 'S' && (*line != ' ' && *line != 'O'))
+		|| (c == 'E' && *line != 'A')
+		|| ((c == 'F' || c == 'C') && *line != ' '))
+		error(NOT_VALID_TXR, a);
+	if (c == 'S' && *line == 'O')
+		c = 'S';
+	else if (c == 'S' && *line == ' ')
+		c = ' ';
+	if (dup_check(c) == ERR)
+		error(TOO_MANY_TXR, a);
+	line++;
+	while (*line == ' ')
+		line++;
+	txr_choice(c, line, a);
 }

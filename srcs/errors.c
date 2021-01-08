@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/07 17:19:17 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/08 15:19:30 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ static const char	*g_error[MAX_ERROR] = {
 	"Malloc failed in map_leak\n",
 	"Map is not closed correctly\n",
 	"Malloc failed in sprite_list\n",
-	"Malloc failed in wall_set\n",
-	"Malloc failed in sprite_set\n"
+	"Fail to load a texture\n",
+	"Malloc failed in sprite_set\n",
+	"Unable to generate a '.bmp' file\n"
 };
 
 void	del(void *content)
@@ -46,7 +47,7 @@ void	del(void *content)
 	content = NULL;
 }
 
-int	destroy(t_a *a) // destroy aussi image fenetre
+int	destroy(t_a *a)
 {
 	parse_free(a);
 	ft_lstclear(&a->map.first, del);
@@ -73,12 +74,6 @@ int	destroy(t_a *a) // destroy aussi image fenetre
 		close (a->mlx.fd);
 	exit(OK);
 }
-
-// void	error_raycast(int error)
-// {
-// 	if (error == BMP_FAIL)
-// 		write(1, "Some issues happened when creating the .bmp file", 49);
-// }
 
 void	error(int error, t_a *a)
 {
