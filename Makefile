@@ -6,13 +6,36 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2021/01/08 15:14:01 by eassouli         ###   ########.fr        #
+#    Updated: 2021/01/11 00:42:07 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	cub3D
 
+CC			=	/usr/bin/clang
+
+CFLAGS		=	 -g -Wall -Wextra -Werror $(HEADERS)
+
+DFLAGS		=	-L/usr/lib -lXext -lX11 -lm -lbsd \
+				-L$(LIBS)libft -lft \
+				-L$(LIBS)minilibx_linux -lmlx
+
+MAKE		=	/usr/bin/make -s -C
+
+RM			=	/bin/rm -rf
+
+LIBS		=	libs/
+
+LIBFT		=	$(LIBS)libft
+
 PATH		=	srcs/
+
+SAVE		=	save.bmp
+
+HEADERS		=	-I headers \
+				-I $(PATH)get_next_line \
+				-I $(LIBS)libft \
+				-I $(LIBS)minilibx_linux
 
 SRCS		=	get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c\
@@ -46,39 +69,31 @@ SRCS		=	get_next_line/get_next_line.c\
 				music.c\
 				errors.c
 
-OBJS		=	$(addprefix $(PATH), $(SRCS))
+OBJS		=	$(addprefix $(PATH), $(SRCS:.c=.o))
 
-LIBFT		=	srcs/libft
-
-MAKE		=	/usr/bin/make
-
-CC			=	/usr/bin/clang
-
-LIBS		=	srcs/libft/libft.a\
-				minilibx_linux/libmlx.a
-
-HEADER		=	headers
-
-SAVE		=	save.bmp
-
-FLAGS		=	-g -Wall -Wextra -Werror -I $(HEADER) -L/usr/include/../lib -lXext -lX11 -lm -lbsd
-
-RM			=	/bin/rm -f
-
-all:		$(NAME) #attention a la recompilation
+all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			$(MAKE) -s -C $(LIBFT)
-			$(CC) -o $(NAME) $(FLAGS) $(OBJS) $(LIBS)
+			$(MAKE) $(LIBFT)
+			$(CC) $(OBJS) $(DFLAGS) -o $(NAME)
 
 clean:
-			$(MAKE) -s -C $(LIBFT) clean
+			$(RM) $(OBJS)
+			$(MAKE) $(LIBFT) clean
 
 fclean:		clean
 			$(RM) $(NAME)
 			$(RM) $(SAVE)
-			$(RM) srcs/libft/libft.a
+			$(MAKE) $(LIBFT) fclean
 
 re:			fclean all
 
 .PHONY:		all clean fclean re
+
+# depend:		.depend
+
+# .depend:	$(OBJ)
+# 			$(RM) ./.depend
+# 			$(CC) $(OBJS) $(DFLAGS) $(HEADERS) -MM $^ > ./.depend;
+
+# -include .depend
