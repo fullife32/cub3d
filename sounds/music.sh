@@ -13,5 +13,5 @@
 #!/bin/bash
 
 while pidof ./cub3D > /dev/null == true ; do
-	aplay --quiet ./sounds/doom.wav
+	aplay --quiet ./sounds/spoiler.wav
 done
