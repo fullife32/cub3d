@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 17:14:37 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/10 19:47:52 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_a		a;
 
 	init(&a); //check if all functions are statics or indexed in header
-	if (ac < 2) //ajouter musique
+	if (ac < 2)
 		error(NOT_ENOUGH_ARGS, &a); //peut etre changer nom map_hub dans parse
 	else if (ac > 3) //peut etre changer nom texture choice dans texture_parse
 		error(TOO_MANY_ARGS, &a); //diminuer vitesse
@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 	// Display infos
 	mlx_hook(a.mlx.win, 2, (1L << 0), key_press, &a);
 	mlx_hook(a.mlx.win, 3, (1L << 1), key_release, &a);
-	mlx_hook(a.mlx.win, 33, (1L << 0), destroy, &a); //repair it
+	mlx_hook(a.mlx.win, 33, (5L << 0), destroy, &a);
 	mlx_loop_hook(a.mlx.ptr, rc_loop, &a);
 	mlx_loop(a.mlx.ptr);
 	return (OK);
