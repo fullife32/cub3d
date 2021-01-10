@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:55 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 15:26:47 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/10 20:30:20 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <unistd.h>
 # include <limits.h>
 # include <math.h>
-# include "../srcs/libft/libft.h"
-# include "../srcs/get_next_line/get_next_line.h"
-# include "../minilibx_linux/mlx.h"
+# include "get_next_line.h"
+# include "libft.h"
+# include "mlx.h"
 # include "parse.h"
 # include "raycast.h"
 # include "stack.h"
