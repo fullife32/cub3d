@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/12 22:55:11 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 00:05:31 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(int ac, char **av)
 	cub_check(av[1], &a); //rassembler fonctions init
 	parse(&a); //do all test
 	if (ac == 3) //check leaks
-		save_check(av[2], &a);
-	image_loader(&a);
+		save_check(av[2], &a); //voir pour espaces fichier
+	image_loader(&a); //recompiler si header change
 	if (a.bmp.fd == 0)
 		play_music(&a);
 	else
