@@ -6,19 +6,32 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:00:36 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/12 17:27:42 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 18:18:32 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//ici , Nord = (0, -1), Sud = (0, 1);
-//Est = (1, 0) et Ouest = (-1, 0);
+/*
+** North = (0, -1), South = (0, 1);
+** East = (1, 0), West = (-1, 0);
+*/
 
-void	find(char **map, t_frame **stack, t_vec proj)
+int	free_stack(t_frame *stack, t_proj p)
+{
+	while (stack_len(stack) != 0)
+		p.n = stack_pop(&stack);
+	return (FALSE);
+}
+
+int	find(char **map, t_frame **stack, t_vec proj)
 {
 	if (ft_strchr("02 ", map[proj.y][proj.x]))
-		stack_push(stack, proj);
+	{
+		if (stack_push(stack, proj) == ERR)
+			return (ERR);
+	}
+	return (OK);
 }
 
 int	flood_fill(char **map, t_vec pos, t_vec max, t_frame *stack)
@@ -38,13 +51,12 @@ int	flood_fill(char **map, t_vec pos, t_vec max, t_frame *stack)
 			p.pr = (t_vec){p.n.x + (int [4]){-1, 0, 1, 0}[i]
 				, p.n.y + (int [4]){0, 1, 0, -1}[i]};
 			if (p.pr.x >= 0 && p.pr.x < max.x && p.pr.y >= 0 && p.pr.y < max.y)
-				find(map, &stack, p.pr);
-			else
 			{
-				while (stack_len(stack) != 0)
-					p.n = stack_pop(&stack);
-				return (FALSE);
+				if (find(map, &stack, p.pr) == ERR)
+					return (free_stack(stack, p));
 			}
+			else
+				return (free_stack(stack, p));
 			i++;
 		}
 	}

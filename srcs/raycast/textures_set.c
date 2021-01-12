@@ -6,37 +6,52 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:06:41 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 13:26:15 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 22:24:01 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	wall_set2(t_a *a)
+{
+	a->north_txr.img = (int *)mlx_get_data_addr(a->north_txr.ptr,
+			&a->north_txr.bpp, &a->north_txr.size_l, &a->north_txr.endian);
+	if (a->north_txr.img == NULL)
+		error(MALLOC_FAIL_NO, a);
+	a->south_txr.img = (int *)mlx_get_data_addr(a->south_txr.ptr,
+			&a->south_txr.bpp, &a->south_txr.size_l, &a->south_txr.endian);
+	if (a->south_txr.img == NULL)
+		error(MALLOC_FAIL_SO, a);
+	a->east_txr.img = (int *)mlx_get_data_addr(a->east_txr.ptr,
+			&a->east_txr.bpp, &a->west_txr.size_l, &a->east_txr.endian);
+	if (a->east_txr.img == NULL)
+		error(MALLOC_FAIL_EA, a);
+	a->west_txr.img = (int *)mlx_get_data_addr(a->west_txr.ptr,
+			&a->west_txr.bpp, &a->east_txr.size_l, &a->west_txr.endian);
+	if (a->west_txr.img == NULL)
+		error(MALLOC_FAIL_WE, a);
+}
 
 void	wall_set(t_a *a)
 {
 	a->tex.dim = 64;
 	a->north_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.north,
 			&a->tex.dim, &a->tex.dim);
+	if (a->north_txr.ptr == NULL)
+		error(MALLOC_FAIL_NO, a);
 	a->south_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.south,
 			&a->tex.dim, &a->tex.dim);
+	if (a->south_txr.ptr == NULL)
+		error(MALLOC_FAIL_SO, a);
 	a->east_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.east,
 			&a->tex.dim, &a->tex.dim);
+	if (a->east_txr.ptr == NULL)
+		error(MALLOC_FAIL_EA, a);
 	a->west_txr.ptr = mlx_xpm_file_to_image(a->mlx.ptr, a->txr.west,
 			&a->tex.dim, &a->tex.dim);
-	if (a->north_txr.ptr == 0 || a->south_txr.ptr == 0 || a->east_txr.ptr == 0
-		|| a->west_txr.ptr == 0)
-		error(MALLOC_FAIL_WALL, a);
-	a->north_txr.img = (int *)mlx_get_data_addr(a->north_txr.ptr,
-			&a->north_txr.bpp, &a->north_txr.size_l, &a->north_txr.endian);
-	a->south_txr.img = (int *)mlx_get_data_addr(a->south_txr.ptr,
-			&a->south_txr.bpp, &a->south_txr.size_l, &a->south_txr.endian);
-	a->east_txr.img = (int *)mlx_get_data_addr(a->east_txr.ptr,
-			&a->east_txr.bpp, &a->west_txr.size_l, &a->east_txr.endian);
-	a->west_txr.img = (int *)mlx_get_data_addr(a->west_txr.ptr,
-			&a->west_txr.bpp, &a->east_txr.size_l, &a->west_txr.endian);
-	if (a->north_txr.img == 0 || a->south_txr.img == 0 || a->east_txr.img == 0
-		|| a->west_txr.img == 0)
-		error(MALLOC_FAIL_WALL, a);
+	if (a->west_txr.ptr == NULL)
+		error(MALLOC_FAIL_WE, a);
+	wall_set2(a);
 }
 
 void	sprite_set(t_a *a)

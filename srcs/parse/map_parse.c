@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 15:12:44 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 22:08:43 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,21 @@ void	map_create(t_a *a)
 	a->map.lst = a->map.first;
 }
 
+int	empty_line(char *line)
+{
+	static int	end = 0;
+	int			i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == '\0')
+		end = 1;
+	else if (end == 1 && line[i])
+		return (ERR);
+	return (OK);
+}
+
 void	map_parse(t_a *a)
 {
 	int		y;
@@ -65,6 +80,8 @@ void	map_parse(t_a *a)
 		a->map.map[y] = a->map.lst->content;
 		if (start_p(y, a->map.map[y], &(a->plr), &(a->dir)) == ERR)
 			error(TOO_MANY_START, a);
+		if (empty_line(a->map.map[y]) == ERR)
+			error(MAP_END_OF_FILE, a);
 		if (map_char(a->map.map[y]) == ERR)
 			error(NOT_VALID_CHAR_MAP, a);
 		a->map.lst = a->map.lst->next;

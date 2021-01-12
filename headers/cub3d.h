@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:55 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/12 17:25:42 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 22:28:39 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,20 @@
 # define TOO_MANY_START 16
 # define NOT_VALID_CHAR_MAP 17
 # define NO_START 18
+# define MAP_END_OF_FILE 24
 
 # define MALLOC_FAIL_FILL 19
 # define MAP_NOT_CLOSE 20
 
 # define MALLOC_FAIL_SPR 21
 
-# define MALLOC_FAIL_WALL 22
-# define MALLOC_FAIL_SPRITE 23
+# define MALLOC_FAIL_NO 25
+# define MALLOC_FAIL_SO 26
+# define MALLOC_FAIL_EA 27
+# define MALLOC_FAIL_WE 28
+# define MALLOC_FAIL_SPRITE 22
 
-# define BMP_FAIL 24
+# define BMP_FAIL 23
 
 typedef struct s_a
 {
@@ -109,7 +113,8 @@ void			res_parse(t_a *a);
 
 int				dup_check(char c);
 void			txr_cpy(char c, char *line, int len, t_txr *txr);
-int				txr_malloc(char c, int len, t_txr *txr);
+void			txr_malloc(char c, int len, t_a *a);
+void			txr_malloc2(char c, int len, t_a *a);
 void			txr_parse(char c, char *line, t_a *a);
 
 int				txr_atoi(char c, char *line, t_txr *txr);
@@ -189,12 +194,15 @@ void			sprite_init(t_a *a);
 ** stack prototypes
 */
 
-t_frame			*stack_init(t_vec pos);
-void			stack_push(t_frame **item, t_vec pos);
-t_vec			stack_pop(t_frame **item);
-int				stack_len(t_frame *item);
+void			map_dim(t_map *map);
 void			map_cpy(t_a *a);
 void			map_vfy_print(t_a *a);
+int				free_stack(t_frame *stack, t_proj p);
+int				find(char **map, t_frame **stack, t_vec proj);
 int				flood_fill(char **map, t_vec pos, t_vec max, t_frame *stack);
+t_frame			*stack_init(t_vec pos);
+int				stack_push(t_frame **item, t_vec pos);
+t_vec			stack_pop(t_frame **item);
+int				stack_len(t_frame *item);
 
 #endif

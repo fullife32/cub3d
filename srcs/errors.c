@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/12 15:28:33 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 22:29:37 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,13 @@ static const char	*g_error[MAX_ERROR] = {
 	"Malloc failed in map_leak\n",
 	"The map is not correctly closed\n",
 	"Malloc failed in sprite_list\n",
-	"Cannot load a texture\n",
-	"Cannot load a sprite\n",
-	"Cannot generate a '.bmp' file\n"
+	"Cannot load the sprite texture\n",
+	"Cannot generate a '.bmp' file\n",
+	"Nothing should be found after the map\n",
+	"Cannot load the north texture\n",
+	"Cannot load the south texture\n",
+	"Cannot load the east texture\n",
+	"Cannot load the west texture\n",
 };
 
 void	del(void *content)
@@ -54,7 +58,11 @@ int	destroy(t_a *a)
 	if (a->map.map)
 		free(a->map.map);
 	if (a->map.m_cp)
+	{
 		map_free(a->map.m_cp);
+		free(a->map.m_cp);
+	}
+	a->map.m_cp = NULL;
 	txr_free(a);
 	wall_free(a);
 	sprite_free(a);

@@ -6,60 +6,59 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 15:05:17 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 15:27:24 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 22:16:15 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	txr_malloc2(char c, int len, t_txr *txr)
+void	txr_malloc2(char c, int len, t_a *a)
 {
 	if (c == ' ')
 	{
-		txr->sprite = malloc(sizeof(char) * len + 1);
-		if (txr->sprite == NULL)
-			return (ERR);
+		a->txr.sprite = malloc(sizeof(char) * len + 1);
+		if (a->txr.sprite == NULL)
+			error(MALLOC_FAIL_TXR, a);
 	}
 	if (c == 'F')
 	{
-		txr->floor = malloc(sizeof(char) * len + 1);
-		if (txr->floor == NULL)
-			return (ERR);
+		a->txr.floor = malloc(sizeof(char) * len + 1);
+		if (a->txr.floor == NULL)
+			error(MALLOC_FAIL_TXR, a);
 	}
 	if (c == 'C')
 	{
-		txr->ceiling = malloc(sizeof(char) * len + 1);
-		if (txr->ceiling == NULL)
-			return (ERR);
+		a->txr.ceiling = malloc(sizeof(char) * len + 1);
+		if (a->txr.ceiling == NULL)
+			error(MALLOC_FAIL_TXR, a);
 	}
-	return (OK);
 }
 
-int	txr_malloc(char c, int len, t_txr *txr)
+void	txr_malloc(char c, int len, t_a *a)
 {
 	if (c == 'N')
 	{
-		txr->north = malloc(sizeof(char) * len + 1);
-		if (txr->north == NULL)
-			return (ERR);
+		a->txr.north = malloc(sizeof(char) * len + 1);
+		if (a->txr.north == NULL)
+			error(MALLOC_FAIL_TXR, a);
 	}
 	if (c == 'S')
 	{
-		txr->south = malloc(sizeof(char) * len + 1);
-		if (txr->south == NULL)
-			return (ERR);
+		a->txr.south = malloc(sizeof(char) * len + 1);
+		if (a->txr.south == NULL)
+			error(MALLOC_FAIL_TXR, a);
 	}
 	if (c == 'W')
 	{
-		txr->west = malloc(sizeof(char) * len + 1);
-		if (txr->west == NULL)
-			return (ERR);
+		a->txr.west = malloc(sizeof(char) * len + 1);
+		if (a->txr.west == NULL)
+			error(MALLOC_FAIL_TXR, a);
 	}
 	if (c == 'E')
 	{
-		txr->east = malloc(sizeof(char) * len + 1);
-		if (txr->east == NULL)
-			return (ERR);
+		a->txr.east = malloc(sizeof(char) * len + 1);
+		if (a->txr.east == NULL)
+			error(MALLOC_FAIL_TXR, a);
 	}
-	return (txr_malloc2(c, len, txr));
+	txr_malloc2(c, len, a);
 }

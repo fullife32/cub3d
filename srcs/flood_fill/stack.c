@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 15:01:25 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 13:58:20 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 17:42:09 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@ t_frame	*stack_init(t_vec pos)
 	return (frame);
 }
 
-void	stack_push(t_frame **item, t_vec pos)
+int	stack_push(t_frame **item, t_vec pos)
 {
 	t_frame	*old;
 
 	old = *item;
 	*item = stack_init(pos);
+	if (*item == NULL)
+		return (ERR);
 	(*item)->next = old;
+	return (OK);
 }
 
 t_vec	stack_pop(t_frame **item)

@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 00:32:33 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 17:01:18 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 22:13:52 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void	txr_choice(char c, char *line, t_a *a)
 	{
 		while (*(line + len) != '\0' && *(line + len) != ' ')
 			len++;
-		if (txr_malloc(c, len + 1, &a->txr) == ERR)
-			error(MALLOC_FAIL_TXR, a);
+		txr_malloc(c, len, a);
 		txr_cpy(c, line, len, &a->txr);
 	}
 }
