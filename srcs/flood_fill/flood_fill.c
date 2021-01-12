@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:00:36 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 13:57:05 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 17:27:42 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	flood_fill(char **map, t_vec pos, t_vec max, t_frame *stack)
 	int			i;
 
 	stack = NULL;
-	if (ft_strchr("NSWE0", map[pos.y][pos.x]) == NULL)
-		return (FALSE);
 	stack_push(&stack, pos);
 	while (stack_len(stack) != 0)
 	{
@@ -42,7 +40,11 @@ int	flood_fill(char **map, t_vec pos, t_vec max, t_frame *stack)
 			if (p.pr.x >= 0 && p.pr.x < max.x && p.pr.y >= 0 && p.pr.y < max.y)
 				find(map, &stack, p.pr);
 			else
+			{
+				while (stack_len(stack) != 0)
+					p.n = stack_pop(&stack);
 				return (FALSE);
+			}
 			i++;
 		}
 	}

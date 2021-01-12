@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 14:53:55 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/10 20:30:20 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 17:25:42 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_a
 	t_spr	spr;
 	t_bmp	bmp;
 	t_vec	vec;
-	t_frame	*stk;
+	t_frame	stk;
 }				t_a;
 
 /*

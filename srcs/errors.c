@@ -6,19 +6,19 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 15:19:30 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 15:28:33 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static const char	*g_error[MAX_ERROR] = {
-	"No map path found after the program name\n",
+	"No map path found after program name\n",
 	"Too many arguments entered\n",
 	"'.cub' file not found\n",
 	"The second argument must be a '.cub' file\n",
 	"The third argument must be '--save'\n",
-	"Initialization of MLX server failed\n",
+	"MLX server initialization failed\n",
 	"Malloc failed in init\n",
 	"Not enough identifier entered\n",
 	"Incorrect identifier entered\n",
@@ -29,15 +29,15 @@ static const char	*g_error[MAX_ERROR] = {
 	"Invalid color\n",
 	"Malloc failed in parse_txr\n",
 	"Malloc failed in map\n",
-	"There are too many starting points in the map\n",
-	"There is an invalid char in the map\n",
-	"No starting point found in the map\n",
+	"There are too many starting points on the map\n",
+	"There is an invalid character in the map\n",
+	"No starting point found on the map\n",
 	"Malloc failed in map_leak\n",
-	"Map is not closed correctly\n",
+	"The map is not correctly closed\n",
 	"Malloc failed in sprite_list\n",
-	"Fail to load a texture\n",
-	"Malloc failed in sprite_set\n",
-	"Unable to generate a '.bmp' file\n"
+	"Cannot load a texture\n",
+	"Cannot load a sprite\n",
+	"Cannot generate a '.bmp' file\n"
 };
 
 void	del(void *content)

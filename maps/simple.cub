@@ -1,0 +1,16 @@
+R 800 600
+
+NO ./textures/walls/colorstone.xpm
+SO ./textures/walls/greystone.xpm
+WE ./textures/walls/mossy.xpm
+EA ./textures/walls/wood.xpm
+
+S ./textures/sprites/barrel.xpm
+
+C 0,255,255
+F 128,255,0
+
+111111
+10N001
+100000
+111111
