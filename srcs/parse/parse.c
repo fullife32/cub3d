@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 17:01:05 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 23:15:05 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void	parse(t_a *a)
 			error(NOT_VALID_ID, a);
 		line_free(a);
 	}
+	line_free(a);
 	error(NOT_ENOUGH_ID, a);
 }

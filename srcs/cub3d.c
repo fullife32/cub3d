@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/10 19:47:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/12 22:55:11 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_a		a;
 
 	init(&a); //check if all functions are statics or indexed in header
-	if (ac < 2)
+	if (ac < 2) //rassembler fonctions errors
 		error(NOT_ENOUGH_ARGS, &a); //peut etre changer nom map_hub dans parse
 	else if (ac > 3) //peut etre changer nom texture choice dans texture_parse
 		error(TOO_MANY_ARGS, &a); //diminuer vitesse
