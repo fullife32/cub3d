@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 10:56:41 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/13 16:24:00 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 21:03:05 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ void	map_cpy(t_a *a)
 	line = 0;
 	while (line < a->map.y)
 	{
-		a->map.m_cp[line] = ft_strdup(a->map.map[line]);
+		a->map.m_cp[line] = malloc(sizeof(char) * (a->map.x + 1));
 		if (a->map.m_cp[line] == NULL)
 			error(MALLOC_FAIL_FILL, a);
+		ft_memset(a->map.m_cp[line], '0', a->map.x + 1);
+		ft_strlcpy(a->map.m_cp[line], a->map.map[line], a->map.x + 1);
 		line++;
 	}
 	a->map.m_cp[line] = NULL;
