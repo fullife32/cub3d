@@ -1,15 +1,13 @@
-
-S ./textures/sprites/barrel.xpm
-SO ./textures/walls/leaf_block.xpm
-EA ./textures/walls/leaf_block.xpm
-
-C 135, 206,235
-F 75, 122, 71
-WE ./textures/walls/leaf_block.xpm
-NO ./textures/walls/leaf_block.xpm
-
 R 1000 500
 
+NO ./textures/walls/leaf_block.xpm
+SO ./textures/walls/leaf_block.xpm
+WE ./textures/walls/leaf_block.xpm
+EA ./textures/walls/leaf_block.xpm
+
+S ./textures/sprites/barrel.xpm
+F 75, 122, 71
+C 135, 206,235
 
 111111111111111
 120000001000001

@@ -1,14 +1,16 @@
-R 1000 500
+R
 
-NO ./textures/walls/colorstone.xpm
-SO ./textures/walls/greystone.xpm
-WE ./textures/walls/mossy.xpm
-EA ./textures/walls/wood.xpm
+NO ./textures/
+SO ./textures/
+WE ./textures/
+EA ./textures/
 
-S ./textures/sprites/barrel.xpm
-F 112,128,144
-C 0,191,255
+S ./textures/
+F 255,255,255
+C 255,255,255
 
-111
-1S1
-111
+11111
+10001
+10N01
+10001
+11111

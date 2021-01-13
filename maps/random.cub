@@ -1,0 +1,24 @@
+
+C55	  	,	 12	 ,54 	
+
+R   1280		   		  720		 
+NO 	  	 ./textures/sprites/pillar.xpm	  
+
+
+SO 	    	./textures/sprites/barrel.xpm 	  		 
+EA 	  ./textures/sprites/barrel.xpm	  	  	
+
+F	41,	  	112 	,3
+S 	 	 ./textures/walls/wolfenminet_64.xpm	  	 	
+
+WE./textures/sprites/eagle.xpm	  
+
+11110001110001111
+10011111211111001
+10000000000000001
+11110000000001111
+00120000N00002100
+11110000000001111
+10000000000000001
+10011111211111001
+11110001110001111
