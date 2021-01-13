@@ -1,2 +1,0 @@
-add check if every variables are correct after parsing
-rien d'autre apres la map (apres 1 ligne vide ou avec espaces)

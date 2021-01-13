@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2021/01/11 01:25:37 by eassouli         ###   ########.fr        #
+#    Updated: 2021/01/13 18:00:11 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,13 +40,20 @@ INCLUDES	=	-I headers \
 SRCS	+=	get_next_line/get_next_line.c\
 	get_next_line/get_next_line_utils.c
 
-SRCS	+=	parse/init_parse.c\
-	parse/free_parse.c\
+SRCS	+=	cub3d.c
+
+SRCS	+=	destroy/errors.c\
+	destroy/free_parse.c\
+	destroy/free_raycast.c
+
+SRCS	+=	parse/args_check.c\
+	parse/init_parse.c\
 	parse/parse.c\
 	parse/resolution_parse.c\
 	parse/color_parse.c\
 	parse/texture_parse.c\
 	parse/texture_malloc.c\
+	parse/sprite_list.c\
 	parse/map_parse.c\
 	parse/map_position.c
 
@@ -55,24 +62,19 @@ SRCS	+=	flood_fill/map_leak.c\
 	flood_fill/flood_fill.c
 
 SRCS	+=	raycast/init_raycast.c\
-	raycast/free_raycast.c\
 	raycast/textures_set.c\
 	raycast/raycast.c\
+	raycast/sprite_dist.c\
 	raycast/wall_raycast.c\
+	raycast/wall_select.c\
 	raycast/sprite_raycast.c\
 	raycast/display.c
 
-SRCS	+=	sprite/sprite_list.c\
-	sprite/sprite_dist.c
+SRCS	+=	bonus/bitmap.c\
+	bonus/music.c
 
-SRCS	+=	cub3d.c\
-	args_check.c\
-	wall.c\
-	bitmap.c\
-	keys_bind.c\
-	keys_move.c\
-	music.c\
-	errors.c
+SRCS	+=	events/keys_bind.c\
+	events/keys_move.c
 
 OBJS	=	$(addprefix $(PATH), $(SRCS:.c=.o))
 
@@ -94,11 +96,3 @@ fclean:	clean
 re:	fclean all
 
 .PHONY:	all clean fclean re
-
-# depend:	.depend
-
-# .depend:	$(OBJ)
-# 	$(RM) ./.depend
-# 	$(CC) $(OBJS) $(DFLAGS) $(HEADERS) -MM $^ > ./.depend;
-
-# -include .depend

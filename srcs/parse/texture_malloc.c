@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 15:05:17 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/12 22:16:15 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 15:10:14 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	txr_malloc2(char c, int len, t_a *a)
 {
-	if (c == ' ')
+	if (c == 's')
 	{
 		a->txr.sprite = malloc(sizeof(char) * len + 1);
 		if (a->txr.sprite == NULL)

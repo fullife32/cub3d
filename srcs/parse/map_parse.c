@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 16:15:09 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/12 23:13:14 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 17:25:31 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ int	map_char(char *line)
 	return (OK);
 }
 
+int	empty_line(char *line)
+{
+	static int	end = 0;
+	int			i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == '\0')
+		end = 1;
+	else if (end == 1 && line[i])
+		return (ERR);
+	return (OK);
+}
+
 void	map_create(t_a *a)
 {
 	if (add_line(*a->mlx.line, &a->map.first, &a->map.lst) == ERR)
@@ -52,21 +67,6 @@ void	map_create(t_a *a)
 	a->map.map = ft_memset(a->map.map, 0, sizeof(char *)
 			* (ft_lstsize(a->map.first) + 1));
 	a->map.lst = a->map.first;
-}
-
-int	empty_line(char *line)
-{
-	static int	end = 0;
-	int			i;
-
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	if (line[i] == '\0')
-		end = 1;
-	else if (end == 1 && line[i])
-		return (ERR);
-	return (OK);
 }
 
 void	map_parse(t_a *a)

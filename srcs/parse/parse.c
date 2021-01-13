@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 18:02:44 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/13 00:24:58 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 17:04:20 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 void	map_hub(t_a *a)
 {
 	if (dup_check('c') != 8)
-	{
-		line_free(a);
 		error(NOT_ENOUGH_ID, a);
-	}
 	map_parse(a);
 	sprite_list(a);
 }
@@ -32,7 +29,7 @@ void	parse(t_a *a)
 	{
 		i = 0;
 		line = *a->mlx.line;
-		while (line[i] == ' ')
+		while (line[i] == ' ' || line[i] == '\t')
 			i++;
 		if (line[i] == 'R')
 			res_parse(a);
@@ -46,6 +43,5 @@ void	parse(t_a *a)
 			error(NOT_VALID_ID, a);
 		line_free(a);
 	}
-	line_free(a);
 	error(NOT_ENOUGH_ID, a);
 }

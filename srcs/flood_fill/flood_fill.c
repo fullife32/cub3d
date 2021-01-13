@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 18:00:36 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/12 18:18:32 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 17:15:15 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	flood_fill(char **map, t_vec pos, t_vec max, t_frame *stack)
 	int			i;
 
 	stack = NULL;
-	stack_push(&stack, pos);
+	if (stack_push(&stack, pos) == ERR)
+		return (FALSE);
 	while (stack_len(stack) != 0)
 	{
 		p.n = stack_pop(&stack);
@@ -50,11 +51,9 @@ int	flood_fill(char **map, t_vec pos, t_vec max, t_frame *stack)
 		{
 			p.pr = (t_vec){p.n.x + (int [4]){-1, 0, 1, 0}[i]
 				, p.n.y + (int [4]){0, 1, 0, -1}[i]};
-			if (p.pr.x >= 0 && p.pr.x < max.x && p.pr.y >= 0 && p.pr.y < max.y)
-			{
-				if (find(map, &stack, p.pr) == ERR)
-					return (free_stack(stack, p));
-			}
+			if (p.pr.x >= 0 && p.pr.x < max.x && p.pr.y >= 0 && p.pr.y < max.y
+				&& find(map, &stack, p.pr) != ERR)
+				;
 			else
 				return (free_stack(stack, p));
 			i++;

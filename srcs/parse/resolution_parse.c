@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:33:18 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 14:39:40 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 16:27:27 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,19 @@ void	res_parse(t_a *a)
 	if (dup_check(*line) == ERR)
 		error(TOO_MANY_RES, a);
 	line++;
-	while (*line == ' ')
+	while (*line == ' ' || *line == '\t')
 		line++;
 	mlx_get_screen_size(a->mlx.ptr, &w, &h);
 	line = size_check(line, &a->res.w, w);
-	while (*line == ' ')
+	while (*line == ' ' || *line == '\t')
 		line++;
 	line = size_check(line, &a->res.h, h);
+	while (*line == ' ' || *line == '\t')
+		line++;
 	if (*line != '\0')
-		a->res.w = 0;
-	if (a->res.w <= 0 || a->res.h <= 0)
-		error(NOT_VALID_RES, a);
+		error(NOT_VALID_RES_NB, a);
+	if (a->res.w <= 0)
+		error(NOT_VALID_RES_W, a);
+	else if (a->res.h <= 0)
+		error(NOT_VALID_RES_H, a);
 }

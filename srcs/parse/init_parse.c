@@ -6,11 +6,21 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 17:17:42 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 15:26:05 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 15:32:07 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	map_init(t_a *a)
+{
+	a->map.map = 0;
+	a->map.m_cp = 0;
+	a->map.x = 0;
+	a->map.y = 0;
+	a->map.first = NULL;
+	a->map.lst = NULL;
+}
 
 void	txr_init(t_a *a)
 {
@@ -37,26 +47,23 @@ void	init(t_a *a)
 {
 	a->mlx.ptr = NULL;
 	a->mlx.win = NULL;
+	a->mlx.fd = 0;
 	a->img.img_ptr = NULL;
 	a->res.h = 0;
 	a->res.w = 0;
 	txr_init(a);
 	plr_init(a);
-	a->map.map = 0;
-	a->map.m_cp = 0;
-	a->map.x = 0;
-	a->map.y = 0;
-	a->map.first = NULL;
-	a->map.lst = NULL;
+	map_init(a);
 	dir_init(a);
 	mov_init(a);
 	wall_init(a);
 	sprite_init(a);
 	a->bmp.fd = 0;
-	a->mlx.ptr = mlx_init();
-	if (a->mlx.ptr == NULL)
-		error(MLX_INIT_FAIL, a);
 	a->mlx.line = malloc(sizeof(char **));
 	if (a->mlx.line == NULL)
 		error(MALLOC_FAIL_LINE, a);
+	*a->mlx.line = NULL;
+	a->mlx.ptr = mlx_init();
+	if (a->mlx.ptr == NULL)
+		error(MLX_INIT_FAIL, a);
 }
