@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2021/01/13 19:08:48 by eassouli         ###   ########.fr        #
+#    Updated: 2021/01/13 20:09:31 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ DFLAGS	=	-L/usr/lib -lXext -lX11 -lm -lbsd \
 	-Llibft -lft \
 	-L$(LIBS)minilibx_linux -lmlx
 
-MAKE	=	/usr/bin/make -s -C
+MAKE	=	/usr/bin/make -C
 
 RM	=	/bin/rm -rf
 
