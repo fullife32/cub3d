@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:57:15 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/08 14:24:59 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 18:48:44 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	draw_sprite_loop(t_a *a, int stripe)
 		d = y * 256 - a->res.h * 128 + a->spr.height * 128;
 		a->tex.y = ((d * a->tex.dim) / a->spr.height) / 256;
 		if (a->tex.y < 0)
-			a->tex.y = 0; // Solution temporaire
+			a->tex.y = 0;
 		if (a->tex.x < 0)
-			a->tex.x = 0; // Solution temporaire
+			a->tex.x = 0;
 		color = a->spr_txr.img[a->tex.y * (a->spr_txr.size_l / 4) + a->tex.x];
 		if ((color & 0xFFFFFF) != 0)
 			*(unsigned int *)(a->img.img + pos) = color;

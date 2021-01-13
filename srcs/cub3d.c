@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/31 16:17:39 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/13 17:35:26 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/13 18:48:35 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ int	main(int ac, char **av)
 {
 	t_a		a;
 
-	init(&a); //check if all functions are statics or indexed in header
+	init(&a);
 	if (ac < 2)
 		error(NOT_ENOUGH_ARGS, &a);
 	else if (ac > 3)
 		error(TOO_MANY_ARGS, &a);
 	cub_check(av[1], &a);
-	parse(&a); //do all test
+	parse(&a);
 	if (ac == 3)
 		save_check(av[2], &a);
-	image_loader(&a); //recompiler si header change
+	image_loader(&a);
 	if (a.bmp.fd == 0)
 		play_music(&a);
 	else
