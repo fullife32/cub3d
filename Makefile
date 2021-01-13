@@ -6,7 +6,7 @@
 #    By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/26 17:20:04 by eassouli          #+#    #+#              #
-#    Updated: 2021/01/13 18:00:11 by eassouli         ###   ########.fr        #
+#    Updated: 2021/01/13 19:08:48 by eassouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC	=	/usr/bin/clang
 CFLAGS	=	 -g -Wall -Wextra -Werror $(INCLUDES)
 
 DFLAGS	=	-L/usr/lib -lXext -lX11 -lm -lbsd \
-	-L$(LIBS)libft -lft \
+	-Llibft -lft \
 	-L$(LIBS)minilibx_linux -lmlx
 
 MAKE	=	/usr/bin/make -s -C
@@ -26,7 +26,7 @@ RM	=	/bin/rm -rf
 
 LIBS	=	libs/
 
-LIBFT	=	$(LIBS)libft
+LIBFT	=	libft
 
 PATH	=	srcs/
 
@@ -34,7 +34,7 @@ SAVE	=	save.bmp
 
 INCLUDES	=	-I headers \
 	-I $(PATH)get_next_line \
-	-I $(LIBS)libft \
+	-I $(LIBFT) \
 	-I $(LIBS)minilibx_linux
 
 SRCS	+=	get_next_line/get_next_line.c\
