@@ -6,7 +6,7 @@
 /*   By: eassouli <eassouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:19:43 by eassouli          #+#    #+#             */
-/*   Updated: 2021/01/13 17:12:52 by eassouli         ###   ########.fr       */
+/*   Updated: 2021/01/14 11:55:02 by eassouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	destroy(t_a *a)
 	wall_free(a);
 	sprite_free(a);
 	if (a->bmp.fd == -2)
-		system("kill -9 $(pidof aplay)");
+		system("kill -STOP $(pidof aplay)");
 	if (a->img.img_ptr)
 		mlx_destroy_image(a->mlx.ptr, a->img.img_ptr);
 	if (a->mlx.win)
